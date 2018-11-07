@@ -1,0 +1,113 @@
+.wrapper {
+    height: 100%;
+    padding: 10px;
+}
+
+.header {
+    height: 30px;
+    line-height: 30px;
+    margin: 4px 0 10px 0;
+}
+
+.header .wrds {
+    font-size: 14px;
+    color: #84d8ff;
+    cursor: pointer;
+}
+
+.header .wrds:hover span {
+    color: #73c2e6;
+}
+
+.header .wrds span {
+    margin: 0 5px;
+}
+
+.search-condition {
+    margin-top: -4px;
+}
+
+.account-month {
+    height: 34px;
+    line-height: 32px;
+    margin-right: 8px;
+    border: 1px solid #3c78da;
+}
+
+.account-month-title {
+    padding: 0 10px;
+    font-size: 14px;
+    background-color: #2d5aa5;
+    border-right: 1px solid #3c78da;
+    color: #fff;
+}
+
+.card {
+    position: relative;
+}
+
+.card .title {
+    width: 100%;
+    height: 32px;
+    line-height: 32px;
+    color: #fff;
+    font-size: 16px;
+    text-shadow: 0 0 5px #8ce9dd;
+    text-align: center;
+}
+
+.card .info {
+    position: absolute;
+    top: 47px;
+    left: 23px;
+}
+
+.ul-one-line {
+    margin-bottom: 8px;
+}
+
+.ul-one-line li {
+    width: 434px;
+    height: 334px;
+    margin-right: 8px;
+}
+
+.ul-one-line li:last-child {
+    margin-right: 0;
+}
+
+.ul-two-line li {
+    position: relative;
+    width: 656px;
+    height: 334px;
+    margin-right: 8px;
+}
+
+.ul-two-line li:last-child {
+    margin-right: 0;
+}
+
+.ul-two-line {
+    margin-bottom: 8px;
+}
+
+.ng-city-check span {
+    top: 0;
+}
+
+.ng-select-box span {
+    top: 0;
+}
+
+.chart-one {
+    height: 275px;
+}
+
+.ul-two-line li .legend {
+    position: absolute;
+    top: 80px;
+    right: 96px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+}

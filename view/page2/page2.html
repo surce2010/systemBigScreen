@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>图形化报表</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="../../resources/css/bootstrap.css">
+    <link rel="stylesheet" href="../../resources/css/jquery.dialog.css">
+    <link rel="stylesheet" href="../../resources/css/reset.css">
+    <link rel="stylesheet" href="../../resources/css/common.css">
+    <link rel="stylesheet" href="../../resources/css/ngDirective.css">
+    <link rel="stylesheet" href="page2.css">
+</head>
+
+<body>
+<div class="wrapper box-1342" ng-controller="pageCtrl">
+    <div class="header fn-clear">
+        <p class="wrds fn-left"><img src="../../resources/images/icon-loc.png"><span>图形化报表</span></p>
+    </div>
+    <div class="card">
+        <ul class="ul-item fn-clear">
+            <li class="fn-left" ng-click="link('整体终端进销存数据', '../page2-1/page2-1.html', 'page2-1')">
+                <img src="../../resources/images/page-icon1.png">
+                <p class="word">整体终端进销存数据</p>
+            </li>
+            <li class="fn-left" ng-click="link('分省终端进销存数据', '../page2-2/page2-2.html', 'page2-2')">
+                <img src="../../resources/images/page-icon2.png">
+                <p class="word">分省终端进销存数据</p>
+            </li>
+            <li class="fn-left" ng-click="link('重点明星机进销存数据', '../page2-3/page2-3.html', 'page2-3')">
+                <img src="../../resources/images/page-icon3.png">
+                <p class="word">重点明星机型进销存数据</p>
+            </li>
+            <li class="fn-left" ng-click="link('门店进销存数据', '../page2-4/page2-4.html', 'page2-4')">
+                <img src="../../resources/images/page-icon4.png">
+                <p class="word">门店进销存数据</p>
+            </li>
+        </ul>
+    </div>
+</div>
+<script id="page" src="../../resources/js/require.js" data-main="../../resources/js/requireConfig.js"
+        current-page="./page2.js" target-module="pageModule"></script>
+</body>
+
+</html>

@@ -1,0 +1,429 @@
+.ng-select-box {
+    position: relative;
+    width: 100%;
+    height: 32px;
+    background-color: #2d5aa5;
+}
+
+.ng-select-box .select-bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 99;
+    display: block;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    cursor: pointer;
+}
+
+.ng-select-box .select-bg:after {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -6px;
+    content: '\e65d';
+    color: #fff;
+    font-family: 'iconfont';
+    font-size: 14px;
+}
+
+.ng-select-box input {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    padding: 0 42px 0 10px;
+    border: none;
+    background: none;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.ng-select-box input::placeholder {
+    color: #ccc;
+}
+
+.ng-select-box input:focus {
+    outline: 0;
+}
+
+.ng-select-box span {
+    position: absolute;
+    right: 28px;
+    top: 10px;
+    z-index: 99;
+    color: #ccc;
+    font-size: 12px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.select-opt-list {
+    position: absolute;
+    left: 0;
+    top: 34px;
+    z-index: 9999;
+    width: calc(100% + 1px);
+    max-height: 320px;
+    overflow-y: auto;
+    background-color: #13295b;
+    border: 1px solid #679cf4;
+}
+
+.select-opt-list li {
+    line-height: 32px;
+    padding: 0 10px;
+    color: #77caff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.select-opt-list li:hover {
+    background: #2d5aa5;
+    color: #fff;
+}
+
+.track {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 6px;
+    height: 100%;
+    padding: 0 1px;
+    background-color: rgba(6, 9, 43, 0.65);
+    border-radius: 2px;
+}
+
+.track div {
+    width: 4px;
+    background-color: #3f4fb8;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.track-x {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 6px;
+    padding: 1px 0;
+    background-color: rgba(6, 9, 43, 0.65);
+    border-radius: 2px;
+}
+
+.track-x div {
+    height: 4px;
+    background-color: #3f4fb8;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.header {
+}
+
+.logo {
+    height: 5em;
+    padding: 0 1.6em 0 0.8em;
+    background-color: rgba(0, 0, 0, 0.15);
+    border: 1px solid #374594;
+    border-top: none;
+    border-left: none;
+    border-bottom-right-radius: 0.5em;
+}
+
+.logo-title {
+    background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#64ecd6), to(#6e81f0));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 1.6em;
+    text-shadow: 0 0 1em #87e5da;
+}
+
+.time-stamp {
+    margin-top: 0.6em;
+    padding-left: 0.2em;
+    color: #99ffee;
+    font-size: 1em;
+}
+
+.data-collection {
+    height: 4.2em;
+    margin: 0 0.8em;
+    padding: 0.8em;
+    background-color: rgba(0, 0, 0, 0.15);
+    border: 1px solid #374594;
+    border-radius: 0.5em;
+}
+
+.data-item {
+    padding-left: 0.8em;
+    border-right: 1px solid #374594;
+}
+
+.data-item:last-of-type {
+    border-right: none;
+}
+
+.data-item-title {
+    color: #b2dcef;
+    font-size: 1em;
+}
+
+.data-item-num {
+    margin-top: 4px;
+    color: #1efff7;
+    font-size: 1.5em;
+    font-weight: 800;
+}
+
+/* ng-city-check */
+.city-check-box {
+    position: absolute;
+    top: 34px;
+    left: 0;
+    z-index: 999;
+    width: calc(100% + 1px);
+    border: 1px solid #4972bf;
+    background-color: #13295b;
+    font-size: 14px;
+    overflow: hidden;
+}
+
+.ng-city-check {
+    position: relative;
+    width: 100%;
+    height: 32px;
+    background-color: #2d5aa5;
+}
+
+.ng-city-check span {
+    position: absolute;
+    right: 28px;
+    top: 10px;
+    z-index: 99;
+    color: #ccc;
+    font-size: 12px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.ng-city-check input {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    padding: 0 42px 0 10px;
+    border: none;
+    background: none;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.ng-city-check input::placeholder {
+    color: #ccc;
+}
+
+.ng-city-check input:focus {
+    outline: 0;
+}
+
+.ng-city-check input::placeholder {
+    color: #ccc;
+}
+
+.ng-city-check .btn-location {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 99;
+    display: block;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    border: none;
+    cursor: pointer;
+}
+
+.ng-city-check .btn-location:after {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -6px;
+    content: '\e65d';
+    color: #fff;
+    font-family: 'iconfont';
+    font-size: 14px;
+}
+
+.city-check-box .nav-tabs {
+    background-color: #13295b;
+}
+
+.city-check-box .nav-tabs > li > a {
+    margin-right: 0;
+    border: none;
+    border-radius: 0;
+    color: #77caff;
+}
+
+.city-check-box .nav-tabs > li.active > a,
+.city-check-box .nav-tabs > li.active > a:focus,
+.city-check-box .nav-tabs > li.active > a:hover,
+.city-check-box .nav-tabs > li > a:hover {
+    background-color: #295299;
+    color: #fff;
+}
+
+.city-check-box .nav-tabs > li.active > a,
+.city-check-box .nav-tabs > li.active > a:focus,
+.city-check-box .nav-tabs > li.active > a:hover,
+.city-check-box .nav-tabs > li > a {
+    height: 34px;
+    margin-left: 0;
+    padding: 0 15px;
+    line-height: 34px;
+}
+
+.nav-tabs {
+    padding-bottom: 1px;
+    border-bottom: 1px solid #679cf4;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    background: #2d5aa5;
+}
+
+.city-check-box .nav-tabs > li.active > a,
+.city-check-box .nav-tabs > li.active > a:focus,
+.city-check-box .nav-tabs > li.active > a:hover {
+    border: none;
+    border-radius: 0;
+}
+
+.city-content {
+    max-height: 320px;
+    overflow-y: auto;
+}
+
+.city-item {
+    line-height: 32px;
+    padding: 0 10px;
+    color: #77caff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.city-item:hover, .city-item.current {
+    background: #2d5aa5;
+    color: #fff;
+}
+
+/*pages*/
+.page {
+    position: relative;
+    height: 26px;
+    font-size: 14px;
+}
+
+.pagination {
+    margin: 0;
+    vertical-align: top;
+}
+
+.page-num {
+    display: inline-block;
+    height: 26px;
+    margin-left: 6px;
+    line-height: 26px;
+    color: #fff;
+}
+.pagination-sm > li > a, .pagination-sm > li > span{
+    font-size: 14px;
+}
+.pagination > li > a, .pagination > li > span{
+    border: 1px solid #4972bf;
+    background: #2d5aa5;
+}
+.pagination > .active > a,
+.pagination > .active > a:focus,
+.pagination > .active > a:hover,
+.pagination > .active > span,
+.pagination > .active > span:focus,
+.pagination > .active > span:hover {
+    border: 1px solid #38d8d4;
+    background-color: #38d8d4;
+}
+
+.pagination > .disabled > a,
+.pagination > .disabled > a:focus,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > span,
+.pagination > .disabled > span:focus,
+.pagination > .disabled > span:hover {
+    border-color: #4972bf;
+}
+
+.pagination > li {
+    display: inline-block;
+    margin-right: 4px;
+}
+
+.pagination-sm > li > a,
+.pagination-sm > li > span {
+    padding: 3px 6px;
+}
+
+.pagination-sm > li:first-child > a,
+.pagination-sm > li:first-child > span {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.pagination-sm > li:last-child > a,
+.pagination-sm > li:last-child > span {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.pagination > li > a:hover, .pagination > li > span:hover, .pagination > li > a:focus, .pagination > li > span:focus{
+    background: rgba(28, 50, 101, 0.66);
+    border: 1px solid #4972bf;
+}
+.pagination > li > a,
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span,
+.pagination > li > span:focus,
+.pagination > li > span:hover {
+    color: #fff;
+}
+.page-num input {
+    display: inline-block;
+    width: 30px;
+    height: 24px;
+    margin: 0 3px;
+    padding: 0 6px;
+    border: 1px solid #4972bf;
+    background: #2d5aa5;
+    line-height: 24px;
+    text-align: center;
+    vertical-align: top;
+}
+
+.page .confirm-btn {
+    height: 24px;
+    padding: 0 12px;
+    margin-left: 12px;
+    background: #2d5aa5;
+    border: 1px solid #4972bf;
+    color: #fff;
+    font-size: 14px;
+    text-decoration: none;
+}
+.pagination > .disabled > span, .pagination > .disabled > span:hover, .pagination > .disabled > span:focus, .pagination > .disabled > a, .pagination > .disabled > a:hover, .pagination > .disabled > a:focus{
+    color: #fff;
+    background-color: #2d5aa5;
+}

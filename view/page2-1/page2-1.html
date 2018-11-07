@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>整体进销存分析</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="../../resources/css/bootstrap.css">
+    <link rel="stylesheet" href="../../resources/css/jquery.dialog.css">
+    <link rel="stylesheet" href="../../resources/css/reset.css">
+    <link rel="stylesheet" href="../../resources/css/common.css">
+    <link rel="stylesheet" href="../../resources/css/ngDirective.css">
+    <link rel="stylesheet" href="page2-1.css">
+</head>
+
+<body>
+<div class="wrapper box-1342" ng-controller="pageCtrl">
+    <div class="header fn-clear">
+        <p class="wrds fn-left"><img src="../../resources/images/icon-loc.png"><span ng-click="link('图形化报表', '../page2/page2.html', 'page2')">图形化报表</span></p>
+        <p class="wrds fn-left">><span>整体终端进销存数据</span></p>
+        <div class="search-condition fn-right">
+            <div class="account-month fn-left fn-clear">
+                <div class="account-month-title fn-left">帐期:</div>
+                <div class="account-month-select fn-left">
+                    <div ng-select value="month" select-id="key" select-name="value" list="monthList"
+                         require="true"></div>
+                </div>
+            </div>
+            <div class="account-month fn-left fn-clear">
+                <div class="account-month-title fn-left">渠道类型:</div>
+                <div class="account-month-select fn-left">
+                    <div ng-select value="channelType" select-id="channelTypeCd" select-name="channelTypeName"
+                         list="channelList"></div>
+                </div>
+            </div>
+            <div class="account-month fn-left fn-clear">
+                <div class="account-month-title fn-left">地区:</div>
+                <div class="account-month-select fn-left">
+                    <div ng-region-selection value="checkedCity" list="commonRegionList" name-list="nameList"
+                         require="true" name="regionName" code="commonRegionId"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <ul class="ul-one-line fn-clear">
+            <li class="card fn-left">
+                <p class="title">连续6个月采购入库量</p>
+                <div class="chart-one">
+                    <div class="chart" e-chart options="purchaseInAmountLast6Months"></div>
+                </div>
+            </li>
+            <li class="card fn-left">
+                <p class="title">连续6月终端核销量</p>
+                <div class="chart-one">
+                    <div class="chart" e-chart options="salesAmountLast6Months"></div>
+                </div>
+            </li>
+            <li class="card fn-left">
+                <p class="title">连续6个月核销量结构</p>
+                <div class="chart-one">
+                    <div class="chart" e-chart options="salesAmountStructureLast6Months"></div>
+                </div>
+            </li>
+        </ul>
+        <ul class="ul-one-line fn-clear">
+            <li class="card fn-left">
+                <p class="title">连续6个月分价位段销量占比</p>
+                <div class="chart-one">
+                    <div class="chart" e-chart options="priceSalesRatioLast6Months"></div>
+                </div>
+            </li>
+            <li class="card fn-left">
+                <p class="title">连续6个月有销门店单店月销量</p>
+                <div class="chart-one">
+                    <div class="chart" e-chart options="salesAmountPerSaleShopLast6Months"></div>
+                </div>
+            </li>
+            <li class="card fn-left">
+                <p class="title">连续6个月核销激活量及拉新率</p>
+                <div class="chart-one">
+                    <div class="chart" e-chart options="zzcInfoLast6Months"></div>
+                </div>
+            </li>
+        </ul>
+        <ul class="ul-two-line fn-clear">
+            <li class="card fn-left">
+                <p class="title">库存量--在库时间分布</p>
+                <div class="legend">单位：万台</div>
+                <div style="width: 100%; height: 280px;" high-charts config="inStockTimeByConds"></div>
+            </li>
+            <li class="card fn-left">
+                <p class="title">库存量--分价位段分布</p>
+                <div class="legend" style="right: 127px">单位：万台</div>
+                <div style="width: 100%; height: 280px;" high-charts config="inStockByPriceRange"></div>
+            </li>
+        </ul>
+        <ul class="ul-two-line fn-clear">
+            <li class="card fn-left">
+                <p class="title">库存量--TOP5品牌分布</p>
+                <div class="legend" style="right: 83px;">单位：万台</div>
+                <div style="width: 100%; height: 280px;" high-charts config="inStockTopBrand"></div>
+            </li>
+            <li class="card fn-left">
+                <p class="title">库存量--TOP5机型分布</p>
+                <div class="legend" style="right: 118px;">单位：万台</div>
+                <div style="width: 100%; height: 280px;" high-charts config="inStockTopModel"></div>
+            </li>
+        </ul>
+        <ul class="ul-two-line fn-clear">
+            <li class="card fn-left">
+                <p class="title">TOP10销量品牌有销门店及占比</p>
+                <p class="info">有销门店占比=筛选条件下该品牌有销门店数/筛选条件下的上线门店数</p>
+                <div class="chart-one">
+                    <div class="chart" e-chart options="retailShopTopBrand"></div>
+                </div>
+            </li>
+            <li class="card fn-left">
+                <p class="title">TOP10销量机型有销门店及占比</p>
+                <p class="info">有销门店占比=筛选条件下该机型有销门店数/筛选条件下的上线门店数</p>
+                <div class="chart-one">
+                    <div class="chart" e-chart options="retailShopTopModel"></div>
+                </div>
+            </li>
+        </ul>
+        <ul class="ul-two-line fn-clear">
+            <li class="card fn-left">
+                <p class="title">TOP10销量品牌销量及销量占比</p>
+                <p class="info">销量占比=筛选条件下品牌核销量/筛选条件下总核销量</p>
+                <div class="chart-one">
+                    <div class="chart" e-chart options="retailTopBrand"></div>
+                </div>
+            </li>
+            <li class="card fn-left">
+                <p class="title">TOP10销量机型销量及销量占比</p>
+                <p class="info">销量占比=筛选条件下品牌核销量/筛选条件下总核销量</p>
+                <div class="chart-one">
+                    <div class="chart" e-chart options="retailTopModel"></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<script id="page" src="../../resources/js/require.js" data-main="../../resources/js/requireConfig.js"
+        current-page="./page2-1.js" target-module="pageModule"></script>
+</body>
+
+</html>

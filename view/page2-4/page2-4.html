@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>门店进销存数据</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="../../resources/css/bootstrap.css">
+    <link rel="stylesheet" href="../../resources/css/jquery.dialog.css">
+    <link rel="stylesheet" href="../../resources/css/reset.css">
+    <link rel="stylesheet" href="../../resources/css/common.css">
+    <link rel="stylesheet" href="../../resources/css/ngDirective.css">
+    <link rel="stylesheet" href="page2-4.css">
+</head>
+
+<body>
+<div class="wrapper box-1342" ng-controller="pageCtrl">
+    <div class="header fn-clear">
+        <p class="wrds fn-left"><img src="../../resources/images/icon-loc.png"><span
+            ng-click="link('图形化报表', '../page2/page2.html', 'page2')">图形化报表</span></p>
+        <p class="wrds fn-left">><span>门店进销存数据</span></p>
+        <div class="search-condition fn-right">
+            <div class="account-month fn-left fn-clear">
+                <div class="account-month-title fn-left">帐期:</div>
+                <div class="account-month-select fn-left">
+                    <div ng-select value="monthNew" select-id="key" select-name="value" list="monthList"
+                         require="true"></div>
+                </div>
+            </div>
+            <div class="account-month fn-left">
+                <div class="store-search">
+                    <input type="text" placeholder="选择门店" ng-model="targetStore.CHANNEL_NAME" readonly/>
+                    <button class="store-search-btn iconfont" ng-click="chooseStore()">&#xe621;</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="cnt-top fn-clear">
+            <div class="info-list card fn-left">
+                <p class="title">门店基本信息</p>
+                <p class="p-line">门店名称：<span ng-bind="targetStore.CHANNEL_NAME || '--'"></span></p>
+                <p class="p-line">门店地址：<span ng-bind="targetStore.CHANNEL_ADDRESS || '--'"></span></p>
+                <p class="p-line">渠道类型：<span ng-bind="targetStore.CHANNEL_TYPE_NAME || '--'"></span></p>
+                <p class="p-line">自有厅级别：<span ng-bind="targetStore.HALL_LEVEL || '--'"></span></p>
+                <p class="p-line">专营店星级：<span ng-bind="targetStore.BOUTIQUE_STAR || '--'"></span></p>
+                <p class="p-line">归属商圈级别：<span ng-bind="targetStore.BUSINESS_LEVEL_VALUE || '--'"></span></p>
+                <p class="p-line">经营主体：<span ng-bind="targetStore.OPERATORS_NAME || '--'"></span></p>
+                <p class="p-line">店中商信息：</p>
+                <p class="p-line" ng-repeat="item in targetStore.BIZMAN_LIST"><span ng-bind="item.CHANNEL_NAME"></span></p>
+                <p class="p-line">是否精品标杆门店：<span ng-bind="targetStore.BIAOGAN_FLAG || '--'"></span></p>
+                <p class="p-line">店长：<span ng-bind="targetStore.SM_NAME || '--'"></span></p>
+                <p class="p-line">店长联系电话：<span ng-bind="targetStore.SM_PHONE || '--'"></span></p>
+            </div>
+            <div class="list-right fn-left">
+                <ul class="ul-one-line fn-clear">
+                    <li class="card fn-left">
+                        <p class="title">连续6月入库核销量</p>
+                        <div class="chart-one">
+                            <div class="chart" e-chart options="shopProcureSalesLast6Months" ng-show="shopProcureSalesLast6MonthsList.length"></div>
+                            <img class="none-img" src="../../resources/images/icon-none.png" ng-show="!shopProcureSalesLast6MonthsList.length">
+                        </div>
+                    </li>
+                    <li class="card fn-left">
+                        <p class="title">连续6月终端核销量</p>
+                        <div class="chart-one">
+                            <div class="chart" e-chart options="shopSalesInfoLast6Months" ng-show="shopSalesInfoLast6MonthsList.length"></div>
+                            <img class="none-img" src="../../resources/images/icon-none.png" ng-show="!shopSalesInfoLast6MonthsList.length">
+                        </div>
+                    </li>
+                </ul>
+                <ul class="ul-one-line fn-clear">
+                    <li class="card fn-left">
+                        <p class="title">连续6月终端核销量结构</p>
+                        <div class="chart-one">
+                            <div class="chart" e-chart options="shopSalesStockInfoLast6Months" ng-show="shopSalesStockInfoLast6MonthsList.length"></div>
+                            <img class="none-img" src="../../resources/images/icon-none.png" ng-show="!shopSalesStockInfoLast6MonthsList.length">
+                        </div>
+                    </li>
+                    <li class="card fn-left">
+                        <p class="title">连续6月终端核销激活量及拉新</p>
+                        <div class="chart-one">
+                            <div class="chart" e-chart options="shopSalesJhLxLast6Months" ng-show="shopSalesJhLxLast6MonthsList.length"></div>
+                            <img class="none-img" src="../../resources/images/icon-none.png" ng-show="!shopSalesJhLxLast6MonthsList.length">
+                        </div>
+                    </li>
+                </ul>
+                <div class="list-right-bottom card">
+                    <p class="title">连续6月终端核销量</p>
+                    <div class="chart-one">
+                        <div class="chart" e-chart options="shopSalesBrandModelNumLast6Months" ng-show="shopSalesBrandModelNumLast6MonthsList.length"></div>
+                        <img class="none-img" src="../../resources/images/icon-none.png" ng-show="!shopSalesBrandModelNumLast6MonthsList.length">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ul class="ul-two-line fn-clear">
+            <li class="card fn-left">
+                <p class="title">{{month.key}}月分店中商入库核销收银</p>
+                <div class="chart-one">
+                    <div class="chart" e-chart options="bizmanProcureSales" ng-show="bizmanProcureSalesList.length"></div>
+                    <img class="none-img" src="../../resources/images/icon-none.png" ng-show="!bizmanProcureSalesList.length">
+                </div>
+            </li>
+            <li class="card fn-left">
+                <p class="title">{{month.key}}月分店中商收银结算（元）</p>
+                <div ng-show="bizmanSalesInfoList.length">
+                    <div class="rank-thead">
+                        <div class="rank-th">
+                            <div class="rank-th-td">店中商</div>
+                            <div class="rank-th-td" style="width: 54px">现金</div>
+                            <div class="rank-th-td" style="width: 56px">POS</div>
+                            <div class="rank-th-td" style="width: 60px">抵用券</div>
+                            <div class="rank-th-td" style="width: 70px">微信支付</div>
+                            <div class="rank-th-td" style="width: 60px">支付宝</div>
+                        </div>
+                    </div>
+                    <div class="top-rank-result" ng-scroll-bar>
+                        <div class="result-list">
+                            <div class="scroll-content rank-tbody">
+                                <div class="rank-tr" ng-repeat="item in bizmanSalesInfoList track by $index" ng-cloak>
+                                    <div class="rank-tr-td"
+                                         style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                                         title="{{item.CHANNEL_NAME}}">{{item.CHANNEL_NAME}}
+                                    </div>
+                                    <div class="rank-tr-td"
+                                         style="width: 54px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                                         title="{{item.XJ_AMOUNT}}">{{item.XJ_AMOUNT}}
+                                    </div>
+                                    <div class="rank-tr-td"
+                                         style="width: 56px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                                         title="{{item.POS_AMOUNT}}">{{item.POS_AMOUNT}}
+                                    </div>
+                                    <div class="rank-tr-td"
+                                         style="width: 60px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                                         title="{{item.DYQ_AMOUNT}}">{{item.DYQ_AMOUNT}}
+                                    </div>
+                                    <div class="rank-tr-td"
+                                         style="width: 66px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                                         title="{{item.WXZF_AMOUNT}}">{{item.WXZF_AMOUNT}}
+                                    </div>
+                                    <div class="rank-tr-td"
+                                         style="width: 54px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                                         title="{{item.ZFB_AMOUNT}}">{{item.ZFB_AMOUNT}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="track">
+                                <div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <img class="none-img" src="../../resources/images/icon-none.png" ng-show="!bizmanSalesInfoList.length">
+            </li>
+            <li class="card fn-left">
+                <p class="title">库存预警TOP5机型</p>
+                <div ng-show="shopStockZZModelTop5List.length">
+                    <div class="rank-thead">
+                        <div class="rank-th">
+                            <div class="rank-th-td">库存预警TOP5机型</div>
+                            <div class="rank-th-td" style="width: 112px">库存量POS</div>
+                            <div class="rank-th-td" style="width: 120px">库存周转周数</div>
+                        </div>
+                    </div>
+                    <div class="top-rank-result" ng-scroll-bar>
+                        <div class="result-list">
+                            <div class="scroll-content rank-tbody">
+                                <div class="rank-tr" ng-repeat="item in shopStockZZModelTop5List track by $index" ng-cloak>
+                                    <div class="rank-tr-td"
+                                         style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                                         title="{{item.OFFER_MODEL_NAME}}">{{item.OFFER_MODEL_NAME}}
+                                    </div>
+                                    <div class="rank-tr-td"
+                                         style="width: 112px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                                         title="{{item.STOCK_COUNT}}">{{item.STOCK_COUNT}}
+                                    </div>
+                                    <div class="rank-tr-td"
+                                         style="width: 120px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                                         title="{{item.STOCK_ZZZS}}">{{item.STOCK_ZZZS}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="track">
+                                <div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <img class="none-img" src="../../resources/images/icon-none.png" ng-show="!shopStockZZModelTop5List.length">
+            </li>
+        </ul>
+        <ul class="ul-two-line fn-clear">
+            <li class="card fn-left">
+                <p class="title">{{month.key}}月TOP5销量机型</p>
+                <div class="chart-one">
+                    <div class="chart" e-chart options="shopSalesModelTop5" ng-show="shopSalesModelTop5List.length"></div>
+                    <img class="none-img" src="../../resources/images/icon-none.png" ng-show="!shopSalesModelTop5List.length">
+                </div>
+            </li>
+            <li class="card fn-left">
+                <p class="title">{{month.key}}月TOP5销售员</p>
+                <div class="chart-one">
+                    <div class="chart" e-chart options="shopSalesManTop5" ng-show="shopSalesManTop5List.length"></div>
+                    <img class="none-img" src="../../resources/images/icon-none.png" ng-show="!shopSalesManTop5List.length">
+                </div>
+            </li>
+            <li class="card fn-left">
+                <p class="title">库存量--TOP5机型分布（单位：台）</p>
+                <div class="chart-one">
+                    <div style="width: 100%; height: 280px;" high-charts config="shopStockModelTop5" ng-show="shopSalesManTop5List.length"></div>
+                    <img class="none-img" src="../../resources/images/icon-none.png" ng-show="!shopSalesManTop5List.length">
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- 选择营业厅 -->
+<script type="text/ng-template" id="chooseServiceHallModal.html">
+    <div class="modal-header">
+        <button type="button" class="close iconfont" ng-click="$ctrl.cancel()">&#xe611;</button>
+        <h3 class="modal-title">选择营业厅</h3>
+    </div>
+    <!-- 条件查询 -->
+    <div class="depot-query-box fn-clear">
+        <div class="account-month fn-left fn-clear">
+            <div class="account-month-title fn-left">门店编码:</div>
+            <div class="account-month-select fn-left">
+                <input type="text" ng-model="channelNbr"/>
+            </div>
+        </div>
+        <div class="account-month fn-left fn-clear">
+            <div class="account-month-title fn-left">门店名称:</div>
+            <div class="account-month-select fn-left">
+                <input type="text" ng-model="channelName"/>
+            </div>
+        </div>
+        <div class="account-month fn-left fn-clear">
+            <button type="submit" class="btn-query" ng-click="qryShopByConds()">查询</button>
+        </div>
+    </div>
+    <!-- 结果列表 -->
+    <div class="result-table">
+        <table class="table">
+            <thead>
+            <tr>
+                <th width="10%">选择</th>
+                <th width="20%">门店编码</th>
+                <th>门店名称</th>
+                <th width="30%">是否精品标杆门店</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in shopByCondsList">
+                <td>
+                    <input type="checkbox" name="checkbox" ng-model="item.checked" ng-click="check(item, item.checked)">
+                </td>
+                <td>
+                    <p class="overflow-handle" title="{{item.CHANNEL_NBR}}" ng-bind="item.CHANNEL_NBR"></p>
+                </td>
+                <td>
+                    <p class="overflow-handle" title="{{item.CHANNEL_NAME}}" ng-bind="item.CHANNEL_NAME"></p>
+                </td>
+                <td>
+                    <p ng-bind="item.BIAOGAN_FLAG"></p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <p class="no-data" ng-if="shopByCondsList && !shopByCondsList.length" ng-cloak>没有数据</p>
+        <div ng-pages query-submit='qryShopByConds(currentPage, pageSize)' page-size="pageSize"
+             max-size="maxSize" current-page="currentPage" total="totalNum" page-num="pageNums"></div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-submit" type="button" ng-disabled="isDisabled" ng-click="$ctrl.ok()">确定</button>
+        <button class="btn btn-cancel" type="button" ng-click="$ctrl.cancel()">取消</button>
+    </div>
+</script>
+<script id="page" src="../../resources/js/require.js" data-main="../../resources/js/requireConfig.js"
+        current-page="./page2-4.js" target-module="pageModule"></script>
+</body>
+
+</html>

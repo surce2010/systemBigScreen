@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>重点明星机型进销存数据</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="../../resources/css/bootstrap.css">
+    <link rel="stylesheet" href="../../resources/css/jquery.dialog.css">
+    <link rel="stylesheet" href="../../resources/css/reset.css">
+    <link rel="stylesheet" href="../../resources/css/common.css">
+    <link rel="stylesheet" href="../../resources/css/ngDirective.css">
+    <link rel="stylesheet" href="page2-3.css">
+</head>
+<body>
+<div class="wrapper box-1342" ng-controller="pageCtrl">
+    <div class="wrap-head">
+        <div class="loc"><span ng-click="link('图形化报表', '../page2/page2.html', 'page2')">图形化报表</span> > 重点明星机进销存数据</div>
+        <div class="condition fn-right">
+            <div class="account-month fn-left">
+                <div class="account-month-title fn-left">帐期:</div>
+                <div class="account-month-select fn-right">
+                    <div ng-select value="month" select-id="key" select-name="value" list="monthList"
+                         require="true"></div>
+                </div>
+            </div>
+            <div class="channel-type fn-left">
+                <div class="channel-type-title fn-left">渠道类型:</div>
+                <div class="channel-type-select fn-right">
+                    <div ng-select value="channelType" select-id="channelTypeCd" select-name="channelTypeName"
+                         list="channelList"></div>
+                </div>
+            </div>
+            <div class="checked-city fn-left">
+                <div class="checked-city-title fn-left">地区:</div>
+                <div class="checked-city-select fn-right">
+                    <div ng-region-selection value="checkedCity" list="commonRegionList" name-list="nameList"
+                         require="true" name="regionName" code="commonRegionId"></div>
+                </div>
+            </div>
+            <div class="channel-type fn-right">
+                <div class="channel-type-title fn-left">机型名称:</div>
+                <div class="channel-type-select fn-right">
+                    <div ng-select value="constOfferModel" select-id="publicName" select-name="publicName"
+                         list="constOfferModelList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrap-content fn-clear">
+        <div class="wrap-l fn-left">
+            <div class="wrap-l-box">
+                <div class="card">
+                    <p class="title">TOP5销量机型有销门店单店月销量</p>
+                    <div class="wrap-l-chart">
+                        <div e-chart options="top5ShopConfig"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="wrap-l-box">
+                <div class="card">
+                    <p class="title">TOP5销量机型核销激活拉新</p>
+                    <div class="wrap-l-chart">
+                        <div e-chart options="top5SaleConfig"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="wrap-l-box">
+                <div class="card">
+                    <p class="title">TOP5销量机型库存周转</p>
+                    <div class="wrap-l-chart">
+                        <div e-chart options="top5StockConfig"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wrap-r fn-right">
+            <div class="card">
+                <div class="rank-thead">
+                    <div class="rank-th">
+                        <div class="rank-th-td">机型名称</div>
+                        <div class="rank-th-td" style="width: 85px">有销门店数</div>
+                        <div class="rank-th-td" style="width: 80px">核销量</div>
+                        <div class="rank-th-td" style="width: 80px">自注册激活量</div>
+                        <div class="rank-th-td" style="width: 75px">拉新用户</div>
+                        <div class="rank-th-td" style="width: 75px">库存量</div>
+                        <div class="rank-th-td" style="width: 80px">有销门店单店月销量</div>
+                        <div class="rank-th-td" style="width: 75px">库存周转周数</div>
+                        <div class="rank-th-td" style="width: 70px">激活率</div>
+                        <div class="rank-th-td" style="width: 70px">拉新率</div>
+                    </div>
+                </div>
+                <div class="top-rank-result" ng-scroll-bar>
+                    <div class="result-list">
+                        <div class="scroll-content rank-tbody">
+                            <div class="rank-tr" ng-repeat="item in dataForStarModelList track by $index" ng-cloak>
+                                <div class="rank-tr-td" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{item.modelName}}">{{item.modelName}}</div>
+                                <div class="rank-tr-td" style="width: 85px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{item.retailShopCount}}">{{item.retailShopCount}}</div>
+                                <div class="rank-tr-td" style="width: 80px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{item.allSaleCout}}">{{item.allSaleCout}}</div>
+                                <div class="rank-tr-td" style="width: 80px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{item.allZccCount}}">{{item.allZccCount}}</div>
+                                <div class="rank-tr-td" style="width: 75px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{item.allLxCount}}">{{item.allLxCount}}</div>
+                                <div class="rank-tr-td" style="width: 75px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{item.allStockCount}}">{{item.allStockCount}}</div>
+                                <div class="rank-tr-td" style="width: 80px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{item.singleShopMonthSaleCount}}">{{item.singleShopMonthSaleCount}}</div>
+                                <div class="rank-tr-td" style="width: 75px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{item.stockDuring}}">{{item.stockDuring}}</div>
+                                <div class="rank-tr-td" style="width: 70px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{item.jhRate + '%'}}">{{item.jhRate + '%'}}</div>
+                                <div class="rank-tr-td" style="width: 70px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{item.lxRate + '%'}}">{{item.lxRate + '%'}}</div>
+                            </div>
+                        </div>
+                        <div class="track">
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrap-content">
+        <div class="card">
+            <p class="title">有销门店及有销门店占比</p>
+            <div class="sale-shop-chart">
+                <div e-chart options="saleShopConfig"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrap-content">
+        <div class="card">
+            <p class="title">核销量及单店月销量</p>
+            <div class="sale-shop-chart">
+                <div e-chart options="saleCountConfig"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrap-content">
+        <div class="card">
+            <p class="title">库存量及库存周转周数</p>
+            <div class="sale-shop-chart">
+                <div e-chart options="stockCountConfig"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrap-content">
+        <div class="card">
+            <p class="title"><span ng-bind="currentMonth"></span>月<span ng-bind="brandName"></span>品牌<span ng-bind="modelName"></span>机型核销量、激活量、拉新用户</p>
+            <div class="sale-shop-chart">
+                <div e-chart options="regionDataConfig"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrap-content">
+        <div class="card">
+            <p class="title"><span ng-bind="currentMonth"></span>月<span ng-bind="brandName"></span>品牌<span ng-bind="modelName"></span>机型激活率、拉新率</p>
+            <div class="sale-shop-chart">
+                <div e-chart options="regionRateConfig"></div>
+            </div>
+        </div>
+    </div>
+
+    <script id="page" src="../../resources/js/require.js" data-main="../../resources/js/requireConfig.js"
+            current-page="./page2-3.js" target-module="pageModule"></script>
+</body>
+</html>

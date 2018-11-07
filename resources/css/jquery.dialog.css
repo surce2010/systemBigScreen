@@ -1,0 +1,148 @@
+.dialog {
+    position: relative;
+    z-index: 9999;
+}
+.dialog .widget-container {
+    position: relative;
+    width: 546px;
+    background: #fff;
+    border: 1px solid #4d73d2;
+}
+
+.dialog .widget-head {
+    position: relative;
+    height: 36px;
+    padding-left: 10px;
+    background: #6b8ee6;
+    border-bottom: 1px solid #b0b0b0;
+    line-height: 36px;
+    color: #fff;
+    font-size: 14px;
+    text-align: left;
+}
+
+.dialog .widget-head h3 {
+    height: 36px;
+    line-height: 36px;
+    font-size: 14px;
+}
+
+.dialog .widget-head a {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+    opacity: 1;
+}
+
+.dialog .widget-body {
+    position: relative;
+    padding: 10px;
+    background-color: #fff;
+}
+
+.dialog .widget-body .alert-info-wrap {
+    height: 250px;
+    padding-top: 20px;
+    padding-left: 96px;
+}
+
+.dialog .widget-body .alert-info-wrap.alert-success {
+    height: 250px;
+    background: url('../images/icon-succ.png') no-repeat 0 0;
+}
+
+.dialog .widget-body .alert-info-wrap.alert-error {
+    background: url('../images/icon-err.png') no-repeat 0 0;
+}
+
+.dialog .widget-body .alert-info-wrap.alert-info {
+    background: url('../images/icon-info.png') no-repeat 0 0;
+}
+
+.dialog .widget-body .alert-title {
+    height: 200px;
+    line-height: 25px;
+    color: #020202;
+    font-size: 14px;
+    text-align: left;
+    overflow-y: auto;
+}
+
+.dialog .widget-body .alert-subtitle {
+    line-height: 24px;
+    color: #7d7d7d;
+    font-size: 14px;
+    text-align: left;
+}
+
+.dialog .widget-body .errstack-btn {
+    position: absolute;
+    right: 30px;
+    top: 235px;
+    color: #fc8803;
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+.dialog .widget-body .alert-err-stack {
+    display: none;
+    max-height: 136px;
+    padding: 5px;
+    background-color: #eff6fb;
+    border-radius: 4px;
+    line-height: 22px;
+    color: #818181;
+    font-size: 12px;
+    text-align: left;
+    overflow-y: auto;
+}
+
+.dialog .widget-foot {
+    height: 50px;
+    padding: 10px 0;
+    background-color: #fafafa;
+    border-top: 1px solid #b0b0b0;
+    text-align: center;
+}
+
+.dialog .widget-foot button {
+    margin: 0 10px;
+    height: 30px;
+    padding: 5px 20px;
+    background-color: #d6e1fd;
+    border: 1px solid #8fabf0;
+    border-radius: 15px;
+    outline: none;
+    color: #4d73d2;
+    cursor: pointer;
+}
+.dialog .widget-foot button:hover {
+    background-color: #b2c7f9;
+}
+.dialog .remind-text{
+    padding: 50px 0;
+}
+.dialog .remind-text .alert-title{
+    text-align: center;
+}
+.dialog .remind-text .alert-title .iconfont{
+    margin-right: 10px;
+    font-size: 40px;
+    color: #ed5656;
+    vertical-align: middle;
+}
+.dialog .widget-foot .btn-ok{
+    background-color: #6d90e3;
+    border: 1px solid #6d90e3;
+    color: #fff;
+}
+.dialog .widget-foot .btn-ok:hover {
+    background-color: #6180c9;
+}

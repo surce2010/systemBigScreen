@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>中国电信精品渠道终端销售系统</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="../../resources/css/bootstrap.css">
+    <link rel="stylesheet" href="../../resources/css/jquery.dialog.css">
+    <link rel="stylesheet" href="../../resources/css/reset.css">
+    <link rel="stylesheet" href="../../resources/css/common.css">
+    <link rel="stylesheet" href="../../resources/css/ngDirective.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body ng-controller="indexCtrl">
+<div ng-controller="tabsCtrl">
+    <div class="header fn-clear">
+        <div class="header-logo fn-left fn-clear">
+            <div class="img-logo fn-left">
+                <img src="../../resources/images/icon-logo.png" alt="">
+            </div>
+            <ul class="foldlist fn-left fn-clear" ng-cloak>
+                <li class="fold-first fn-left" ng-repeat="item in menuInfo"
+                    ng-class="{'on': myCheck === item.resourceName}"
+                    ng-click="addTab(item.resourceName, item.menuPath, item.resourceId, item)">
+                    <span ng-bind="item.resourceName"></span>
+                </li>
+            </ul>
+        </div>
+        <div class="header-topbar fn-right">
+            <button class="alink fn-left" ng-click="redirectToVisualReport()">进入进销存<img src="../../resources/images/icon-arrowright.png"></button>
+            <div class="user fn-left">
+                <img src="../../resources/images/photo.jpg" alt="" class="photo fn-left">
+                <span class="name" ng-bind="userInfo.name"></span>
+            </div>
+            <div class="remind fn-left" ng-cloak ng-if="userInfo.retailShopName && userInfo.retailShopName != ''">
+                <span ng-bind="userInfo.retailShopName"></span>
+            </div>
+            <div class="login-out fn-left" ng-click="loginOut()">退出</div>
+        </div>
+    </div>
+    <div class="index-content" id="tabs">
+        <div class="tab-container">
+            <tabs-content-directive></tabs-content-directive>
+        </div>
+    </div>
+</div>
+<script id="page" src="../../resources/js/require.js" data-main="../../resources/js/requireConfig.js"
+        current-page="index.js" target-module="indexModule"></script>
+</body>
+
+</html>
+

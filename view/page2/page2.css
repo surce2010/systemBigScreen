@@ -1,0 +1,44 @@
+.wrapper {
+    height: 100%;
+    padding: 10px;
+}
+.header{
+    height: 30px;
+    line-height: 30px;
+    margin: -4px 0 6px 0;
+}
+.header .wrds{
+    font-size: 14px;
+    color: #84d8ff;
+    cursor: pointer;
+}
+.header .wrds img{
+    /*margin-right: 2px;*/
+}
+.header .wrds:hover span{
+    color: #73c2e6;
+}
+.header .wrds span{
+    margin: 0 5px;
+}
+.card{
+    height: 585px;
+}
+
+
+.ul-item li{
+    width: 160px;
+    height: 126px;
+    border: 1px solid rgba(32, 54, 106, 0);
+    text-align: center;
+    border-radius: 2px;
+    cursor: pointer;
+}
+.ul-item li:hover{
+    border: 1px solid #298bab;
+    background-color: rgba(32, 54, 106, 0.6);
+}
+.word{
+    font-size: 14px;
+    color: #18e9de;
+}

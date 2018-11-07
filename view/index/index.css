@@ -1,0 +1,202 @@
+html, body {
+    overflow: hidden;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    background: url('../../resources/images/bg.jpg') no-repeat center center / 110% fixed;
+    background-size: 120% 120%;
+}
+
+/* 头部 */
+.header {
+    width: 100%;
+    height: 50px;
+    border-bottom: 1px solid #5f70d0;
+}
+
+.header-topbar {
+    position: relative;
+    height: 50px;
+    font-size: 14px;
+}
+
+.header-topbar .remind {
+    height: 30px;
+    margin-top: 10px;
+    padding: 0 10px;
+    border-left: 1px solid #5670af;
+    color: #b1c7fc;
+    line-height: 30px;
+
+}
+
+.header-topbar .user {
+    height: 30px;
+    margin-top: 10px;
+    padding: 0 10px;
+    line-height: 30px;
+    border-left: 1px solid #5670af;
+}
+
+.header-topbar .user .photo {
+    display: block;
+    width: 33px;
+    height: 33px;
+    border-radius: 20px;
+    margin: -3px 6px 0 0;
+}
+
+.header-topbar .user .name {
+    color: #b1c7fc;
+    white-space: nowrap;
+}
+
+.header-topbar .login-out {
+    height: 30px;
+    margin-top: 10px;
+    padding-left: 38px;
+    padding-right: 20px;
+    background: url("../../resources/images/icon-14.png") no-repeat 10px 3px;
+    border-left: 1px solid #5670af;
+    line-height: 30px;
+    color: #b1c7fc;
+    cursor: pointer;
+}
+
+.header-topbar .login-out:hover {
+    color: #fff;
+}
+
+.index-content {
+    position: relative;
+    min-width: 1200px;
+}
+
+.result-list {
+    width: 100%;
+}
+
+.tab-container {
+    width: 100%;
+    transition: all linear 0.5s;
+}
+
+.tabs-title {
+    height: 32px;
+    padding-left: 1px;
+    background-color: #f7f5f0;
+    border-bottom: 1px solid #ddd;
+    overflow: hidden;
+}
+
+.tabs-title ul {
+    width: 9999px;
+}
+
+.tabs-title .title {
+    position: relative;
+    display: inline-block;
+    height: 32px;
+    padding: 0 26px 0 8px;
+    border-right: 1px solid #ddd;
+    line-height: 32px;
+    color: #999;
+    font-size: 14px;
+}
+
+.tabs-title .title.current {
+    color: #fc8803;
+}
+
+.tabs-title .title-line {
+    position: absolute;
+    left: -1px;
+    top: 0;
+    display: block;
+    width: calc(100% + 2px);
+    height: 3px;
+    background-color: #fc8803;
+}
+
+.tabs-title .title .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #ccc;
+}
+
+.tabs-title .title.current .close {
+    color: #fc8803;
+}
+
+.tabs-content {
+    height: 100%;
+}
+
+.iframe-box {
+    width: 100%;
+    height: 100%;
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+.alink {
+    padding: 0 10px;
+    height: 24px;
+    line-height: 24px;
+    background: #326bc9;
+    color: #fff;
+    font-size: 14px;
+    border: 0;
+    margin: 14px 10px 0 0;
+    border-radius: 24px;
+}
+
+.alink:hover {
+    color: #fff;
+}
+
+.alink img {
+    vertical-align: top;
+    margin: 4px 0 0 5px;
+}
+
+.img-logo {
+    width: 72px;
+    height: 50px;
+    text-align: center;
+    border-right: 1px solid #6b7bcc;
+    overflow: hidden;
+}
+
+.foldlist {
+    display: inline-block;
+}
+
+.fold-first {
+    width: 106px;
+    line-height: 50px;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    border-right: 1px solid #6b7bcc;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.fold-first:hover {
+    color: #dc963b;
+}
+
+.fold-first.on {
+    color: #e1e9f2;
+    background-color: #dc963b;
+}
+
+.fold-first.on:hover {
+    color: #e1e9f2;
+}

@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>可视化报表主页</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="../../resources/css/bootstrap.css">
+    <link rel="stylesheet" href="../../resources/css/jquery.dialog.css">
+    <link rel="stylesheet" href="../../resources/css/reset.css">
+    <link rel="stylesheet" href="../../resources/css/common.css">
+    <link rel="stylesheet" href="../../resources/css/ngDirective.css">
+    <link rel="stylesheet" href="page1.css">
+</head>
+<body>
+<div class="wrapper box-1342" ng-controller="pageCtrl">
+    <div class="wrap-head fn-clear">
+        <div class="query-criteria fn-left">
+            <div class="text-link fn-clear">
+                <div class="link-store fn-left"><i class="iconfont">&#xe621;</i>查找门店</div>
+                <div class="line fn-left"></div>
+                <div class="link-norm fn-right"><i class="iconfont">&#xe61d;</i>指标说明</div>
+            </div>
+            <div class="account-month fn-clear">
+                <div class="account-month-title fn-left">帐期:</div>
+                <div class="account-month-select fn-right">
+                    <div ng-select value="month" select-id="key" select-name="value" list="monthList"
+                         require="true"></div>
+                </div>
+            </div>
+        </div>
+        <div class="information-of-month fn-right">
+            <div class="information-title fn-left">
+                <p>当月</p>
+                <p>实时数据</p>
+            </div>
+            <div class="information-item fn-left">
+                <p class="item-name">有销门店（万个）</p>
+                <p class="item-data" ng-bind="headSaleStockInfo.SALE_SHOP_COUNT || 0"></p>
+            </div>
+            <div class="information-item fn-left">
+                <p class="item-name">入库量（万台）</p>
+                <p class="item-data" ng-bind="headSaleStockInfo.IN_STOCK_COUNT || 0"></p>
+            </div>
+            <div class="information-item fn-left">
+                <p class="item-name">核销量（万台）</p>
+                <p class="item-data" ng-bind="headSaleStockInfo.ALL_SALE_COUNT || 0"></p>
+            </div>
+            <div class="information-item fn-left">
+                <p class="item-name">收银额（亿元）</p>
+                <p class="item-data" ng-bind="headSaleStockInfo.ALL_SALE_AMOUNT || 0"></p>
+            </div>
+            <div class="information-item fn-left">
+                <p class="item-name">销售机型（款）</p>
+                <p class="item-data" ng-bind="headSaleStockInfo.SALE_MODEL_COUNT || 0"></p>
+            </div>
+            <div class="information-item fn-left">
+                <p class="item-name">激活量（万台）</p>
+                <p class="item-data" ng-bind="headSaleStockInfo.JIHUO_COUNT || 0"></p>
+            </div>
+            <div class="information-item fn-left">
+                <p class="item-name">拉新用户（万户）</p>
+                <p class="item-data" ng-bind="headSaleStockInfo.LAXIN_COUNT || 0"></p>
+            </div>
+            <div class="information-item fn-left">
+                <p class="item-name">库存量（万台）</p>
+                <p class="item-data" ng-bind="headSaleStockInfo.NOW_STOCK_COUNT || 0"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrap-content fn-clear">
+        <div class="l-wrap fn-left">
+            <div class="l-wrap-top">
+                <p class="card-title" title="{{currentRegionName + indexInfo.INDEX_NAME}}指标排名"><span ng-bind="currentRegionName"></span><span ng-bind="indexInfo.INDEX_NAME"></span>指标排名</p>
+                <div class="index-rank">
+                    <div class="rank-thead">
+                        <div class="rank-th">
+                            <div class="rank-th-td" style="width: 45px">排名</div>
+                            <div class="rank-th-td" style="width: 60px">地区</div>
+                            <div class="rank-th-td">指标数值(单位:万)</div>
+                            <div class="rank-th-td" style="width: 45px">排名变化</div>
+                        </div>
+                    </div>
+                    <div class="top-rank-result" ng-scroll-bar>
+                        <div class="result-list">
+                            <div class="scroll-content rank-tbody">
+                                <div class="rank-tr" ng-repeat="item in indexSeqGroupRegionList" ng-cloak>
+                                    <div class="rank-tr-td" style="width: 45px"><span ng-class="['seq', 'seq'+($index % 10 + 1)]">{{item.SEQ}}</span></div>
+                                    <div class="rank-tr-td" style="width: 60px; white-space: nowrap; overflow: hidden; text-overflow: clip;" title="{{item.REGION_ALIAS_NAME}}">{{item.REGION_ALIAS_NAME}}</div>
+                                    <div class="rank-tr-td">{{item.INDEX_COUNT}}</div>
+                                    <div class="rank-tr-td" style="width: 45px"><p ng-class="{'up-status': item.SEQ_CHANGE_TYPE === '1', 'down-status': item.SEQ_CHANGE_TYPE === '2', 'equal-status': item.SEQ_CHANGE_TYPE === '3'}"></p></div>
+                                </div>
+                            </div>
+                            <div class="track">
+                                <div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="l-wrap-bottom">
+                <div class="region-chart">
+                    <p class="card-title" title="分区域{{indexInfo.INDEX_NAME}}指标数值">分区域<span ng-bind="indexInfo.INDEX_NAME"></span>指标数值</p>
+                    <div style="width: 100%; height: 170px;" high-charts config="regionConfig"></div>
+                </div>
+                <div class="trade-chart">
+                    <p class="card-title" title="分商圈{{indexInfo.INDEX_NAME}}指标数值">分商圈<span ng-bind="indexInfo.INDEX_NAME"></span>指标数值</p>
+                    <div style="width: 100%; height: 182px;" high-charts config="tradeConfig"></div>
+                </div>
+            </div>
+        </div>
+        <div class="m-wrap fn-left">
+            <div class="m-wrap-top">
+                <div class="index-type" fn-clear>
+                    <div class="index-type-title fn-left">指标类型:</div>
+                    <div class="index-type-select fn-right">
+                        <div ng-select value="indexInfo" select-id="INDEX_ID" select-name="INDEX_NAME"
+                             list="indexInfoList" require="true"></div>
+                    </div>
+                </div>
+                <p class="total-num" ng-cloak><span ng-bind="currentRegionName"></span><span ng-bind="indexInfo.INDEX_NAME"></span>数：<span class="num" ng-bind="indexSum"></span></p>
+                <div class="navigation">位置:<span ng-repeat="item in navigationList track by $index" ng-cloak><em
+                    class="navigation-item" ng-click="navigationToggle($index)" ng-bind="item.name"></em><i
+                    ng-if="!$last">></i></span></div>
+                <div class="notice">说明：显示每个地区终端指标数据情况，并可根据颜色不同进行区分。</div>
+                <div class="unit-text">(单位:万)</div>
+                <div class="map-chart" map-drill-chart data="mapData" common-region-id="commonRegionId" current-region-name="currentRegionName" level="level"
+                     navigation-list="navigationList"></div>
+            </div>
+            <div class="m-wrap-bottom">
+                <div class="unit-text">(单位:万)</div>
+                <div class="x-scroll-bar" ng-x-scroll-bar>
+                    <div class="scroll-content line-chart-wrap">
+                        <div e-chart options="config.indexGroupDay"></div>
+                    </div>
+                    <div class="track-x"><div></div></div>
+                </div>
+            </div>
+        </div>
+        <div class="r-wrap fn-right">
+            <div class="r-wrap-top" ng-controller="topBandCtrl">
+                <div class="tab-header">
+                    <span ng-click="toggleShow(1)" class="tab-header-item" ng-class="{'curr': selectIndex === 1}">TOP12品牌</span>
+                    <span ng-click="toggleShow(2)" class="tab-header-item" ng-class="{'curr': selectIndex === 2}">TOP6成长型品牌</span>
+                    <span ng-click="toggleShow(3)" class="tab-header-item" ng-class="{'curr': selectIndex === 3}">TOP6特色品牌</span>
+                    <div class="unit-text">(单位:万)</div>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-content-item" ng-class="{'curr': selectIndex === 1}">
+                        <div class="top-brand">
+                            <div class="top-brand-thead">
+                                <div class="top-brand-th">
+                                    <div class="top-brand-th-td" style="width: 38px">排名</div>
+                                    <div class="top-brand-th-td" style="width: 50px">品牌</div>
+                                    <div class="top-brand-th-td" style="width: 58px">有销门店</div>
+                                    <div class="top-brand-th-td" style="width: 50px">核销量</div>
+                                    <div class="top-brand-th-td" style="width: 50px">激活量</div>
+                                    <div class="top-brand-th-td" style="width: 58px">拉新用户</div>
+                                    <div class="top-brand-th-td">库存量</div>
+                                </div>
+                            </div>
+                            <div class="top-brand-result" ng-scroll-bar>
+                                <div class="scroll-content top-brand-tbody">
+                                    <div class="top-brand-tr" ng-repeat="item in top12BrandList track by $index"
+                                         ng-cloak>
+                                        <div class="top-brand-tr-td" style="width: 38px">{{item.SEQ}}</div>
+                                        <div class="top-brand-tr-td"
+                                             style="width: 50px;"
+                                             title="{{item.BRAND_NAME}}">{{item.BRAND_NAME}}
+                                        </div>
+                                        <div class="top-brand-tr-td"
+                                             style="width: 58px;"
+                                             title="{{item.SALE_SHOP_COUNT}}">{{item.SALE_SHOP_COUNT}}
+                                        </div>
+                                        <div class="top-brand-tr-td"
+                                             style="width: 50px;"
+                                             title="{{item.ALL_SALE_COUNT}}">{{item.ALL_SALE_COUNT}}
+                                        </div>
+                                        <div class="top-brand-tr-td"
+                                             style="width: 50px;"
+                                             title="{{item.JIHUO_COUNT}}">{{item.JIHUO_COUNT}}
+                                        </div>
+                                        <div class="top-brand-tr-td"
+                                             style="width: 58px;"
+                                             title="{{item.LAXIN_COUNT}}">{{item.LAXIN_COUNT}}
+                                        </div>
+                                        <div class="top-brand-tr-td"
+                                             title="{{item.NOW_STOCK_COUNT}}">{{item.NOW_STOCK_COUNT}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="track">
+                                    <div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content-item" ng-class="{'curr': selectIndex === 2}">
+                        <div class="top-brand">
+                            <div class="top-brand-thead">
+                                <div class="top-brand-th">
+                                    <div class="top-brand-th-td" style="width: 38px">排名</div>
+                                    <div class="top-brand-th-td" style="width: 50px">品牌</div>
+                                    <div class="top-brand-th-td" style="width: 58px">有销门店</div>
+                                    <div class="top-brand-th-td" style="width: 50px">核销量</div>
+                                    <div class="top-brand-th-td" style="width: 50px">激活量</div>
+                                    <div class="top-brand-th-td" style="width: 58px">拉新用户</div>
+                                    <div class="top-brand-th-td">库存量</div>
+                                </div>
+                            </div>
+                            <div class="top-brand-result">
+                                <div class="scroll-content top-brand-tbody">
+                                    <div class="top-brand-tr" ng-repeat="item in top6GrowthBrand track by $index"
+                                         ng-cloak>
+                                        <div class="top-brand-tr-td" style="width: 38px">{{item.SEQ}}</div>
+                                        <div class="top-brand-tr-td"
+                                             style="width: 50px;"
+                                             title="{{item.BRAND_NAME}}">{{item.BRAND_NAME}}
+                                        </div>
+                                        <div class="top-brand-tr-td"
+                                             style="width: 58px;"
+                                             title="{{item.SALE_SHOP_COUNT}}">{{item.SALE_SHOP_COUNT}}
+                                        </div>
+                                        <div class="top-brand-tr-td"
+                                             style="width: 50px;"
+                                             title="{{item.ALL_SALE_COUNT}}">{{item.ALL_SALE_COUNT}}
+                                        </div>
+                                        <div class="top-brand-tr-td"
+                                             style="width: 50px;"
+                                             title="{{item.JIHUO_COUNT}}">{{item.JIHUO_COUNT}}
+                                        </div>
+                                        <div class="top-brand-tr-td"
+                                             style="width: 58px;"
+                                             title="{{item.LAXIN_COUNT}}">{{item.LAXIN_COUNT}}
+                                        </div>
+                                        <div class="top-brand-tr-td"
+                                             title="{{item.NOW_STOCK_COUNT}}">{{item.NOW_STOCK_COUNT}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content-item" ng-class="{'curr': selectIndex === 3}">
+                        <div class="top-brand">
+                            <div class="top-brand-thead">
+                                <div class="top-brand-th">
+                                    <div class="top-brand-th-td" style="width: 38px">排名</div>
+                                    <div class="top-brand-th-td" style="width: 50px">品牌</div>
+                                    <div class="top-brand-th-td" style="width: 58px">有销门店</div>
+                                    <div class="top-brand-th-td" style="width: 50px">核销量</div>
+                                    <div class="top-brand-th-td" style="width: 50px">激活量</div>
+                                    <div class="top-brand-th-td" style="width: 58px">拉新用户</div>
+                                    <div class="top-brand-th-td">库存量</div>
+                                </div>
+                            </div>
+                            <div class="top-brand-result">
+                                <div class="scroll-content top-brand-tbody">
+                                    <div class="top-brand-tr" ng-repeat="item in top6FeatureBrand track by $index"
+                                         ng-cloak>
+                                        <div class="top-brand-tr-td" style="width: 38px">{{item.SEQ}}</div>
+                                        <div class="top-brand-tr-td"
+                                             style="width: 50px;"
+                                             title="{{item.BRAND_NAME}}">{{item.BRAND_NAME}}
+                                        </div>
+                                        <div class="top-brand-tr-td"
+                                             style="width: 58px;"
+                                             title="{{item.SALE_SHOP_COUNT}}">{{item.SALE_SHOP_COUNT}}
+                                        </div>
+                                        <div class="top-brand-tr-td"
+                                             style="width: 50px;"
+                                             title="{{item.ALL_SALE_COUNT}}">{{item.ALL_SALE_COUNT}}
+                                        </div>
+                                        <div class="top-brand-tr-td"
+                                             style="width: 50px;"
+                                             title="{{item.JIHUO_COUNT}}">{{item.JIHUO_COUNT}}
+                                        </div>
+                                        <div class="top-brand-tr-td"
+                                             style="width: 58px;"
+                                             title="{{item.LAXIN_COUNT}}">{{item.LAXIN_COUNT}}
+                                        </div>
+                                        <div class="top-brand-tr-td"
+                                             title="{{item.NOW_STOCK_COUNT}}">{{item.NOW_STOCK_COUNT}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="r-wrap-middle" ng-controller="topModelCtrl">
+                <div class="tab-header">
+                    <span ng-click="toggleShow(1)" class="tab-header-item" ng-class="{'curr': selectIndex === 1}">TOP10销量机型</span>
+                    <span ng-click="toggleShow(2)" class="tab-header-item" ng-class="{'curr': selectIndex === 2}">TOP10销量泛智能终端</span>
+                    <div class="unit-text">(单位:万)</div>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-content-item" ng-class="{'curr': selectIndex === 1}">
+                        <div class="top-brand">
+                            <div class="top-brand-thead">
+                                <div class="top-brand-th">
+                                    <div class="top-brand-th-td" style="width: 38px">排名</div>
+                                    <div class="top-brand-th-td" style="width: 50px">型号</div>
+                                    <div class="top-brand-th-td" style="width: 58px">有销门店</div>
+                                    <div class="top-brand-th-td" style="width: 50px">核销量</div>
+                                    <div class="top-brand-th-td" style="width: 50px">激活量</div>
+                                    <div class="top-brand-th-td" style="width: 58px">拉新用户</div>
+                                    <div class="top-brand-th-td">库存量</div>
+                                </div>
+                            </div>
+                            <div class="top-model-result">
+                                <div class="scroll-content top-brand-tbody">
+                                    <div class="top-brand-tr" ng-repeat="item in top10SaleModel track by $index"
+                                         ng-cloak>
+                                        <div class="top-brand-tr-td" style="width: 38px">{{item.SEQ}}</div>
+                                        <div class="top-brand-tr-td"
+                                             style="width: 50px;"
+                                             title="{{item.MODEL_NAME}}">{{item.MODEL_NAME}}
+                                        </div>
+                                        <div class="top-brand-tr-td"
+                                             style="width: 58px;"
+                                             title="{{item.SALE_SHOP_COUNT}}">{{item.SALE_SHOP_COUNT}}
+                                        </div>
+                                        <div class="top-brand-tr-td"
+                                             style="width: 50px;"
+                                             title="{{item.ALL_SALE_COUNT}}">{{item.ALL_SALE_COUNT}}
+                                        </div>
+                                        <div class="top-brand-tr-td"
+                                             style="width: 50px;"
+                                             title="{{item.JIHUO_COUNT}}">{{item.JIHUO_COUNT}}
+                                        </div>
+                                        <div class="top-brand-tr-td"
+                                             style="width: 58px;"
+                                             title="{{item.LAXIN_COUNT}}">{{item.LAXIN_COUNT}}
+                                        </div>
+                                        <div class="top-brand-tr-td"
+                                             title="{{item.NOW_STOCK_COUNT}}">{{item.NOW_STOCK_COUNT}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content-item" ng-class="{'curr': selectIndex === 2}">
+                        <div class="top-brand">
+                            <div class="top-brand-thead">
+                                <div class="top-brand-th">
+                                    <div class="top-brand-th-td" style="width: 38px">排名</div>
+                                    <div class="top-brand-th-td" style="width: 50px">型号</div>
+                                    <div class="top-brand-th-td" style="width: 58px">有销门店</div>
+                                    <div class="top-brand-th-td" style="width: 50px">核销量</div>
+                                    <div class="top-brand-th-td" style="width: 50px">激活量</div>
+                                    <div class="top-brand-th-td" style="width: 58px">拉新用户</div>
+                                    <div class="top-brand-th-td">库存量</div>
+                                </div>
+                            </div>
+                            <div class="top-model-result">
+                                <div class="scroll-content top-brand-tbody">
+                                    <div class="top-brand-tr" ng-repeat="item in top10FznModel track by $index"
+                                         ng-cloak>
+                                        <div class="top-brand-tr-td" style="width: 38px">{{item.SEQ}}</div>
+                                        <div class="top-brand-tr-td"
+                                             style="width: 50px;"
+                                             title="{{item.MODEL_NAME}}">{{item.MODEL_NAME}}
+                                        </div>
+                                        <div class="top-brand-tr-td"
+                                             style="width: 58px;"
+                                             title="{{item.SALE_SHOP_COUNT}}">{{item.SALE_SHOP_COUNT}}
+                                        </div>
+                                        <div class="top-brand-tr-td"
+                                             style="width: 50px;"
+                                             title="{{item.ALL_SALE_COUNT}}">{{item.ALL_SALE_COUNT}}
+                                        </div>
+                                        <div class="top-brand-tr-td"
+                                             style="width: 50px;"
+                                             title="{{item.JIHUO_COUNT}}">{{item.JIHUO_COUNT}}
+                                        </div>
+                                        <div class="top-brand-tr-td"
+                                             style="width: 58px;"
+                                             title="{{item.LAXIN_COUNT}}">{{item.LAXIN_COUNT}}
+                                        </div>
+                                        <div class="top-brand-tr-td"
+                                             title="{{item.NOW_STOCK_COUNT}}">{{item.NOW_STOCK_COUNT}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="r-wrap-bottom" ng-controller="topChannelCtrl">
+                <p class="card-title">分渠道类型数据</p>
+                <div class="unit-text">(单位:万)</div>
+                <div class="top-channel">
+                    <div class="top-channel-thead">
+                        <div class="top-channel-th">
+                            <div class="top-channel-th-td" style="width: 58px">渠道类型</div>
+                            <div class="top-channel-th-td" style="width: 42px">有销门店</div>
+                            <div class="top-channel-th-td" style="width: 58px">有销门店占比</div>
+                            <div class="top-channel-th-td" style="width: 42px">入库量</div>
+                            <div class="top-channel-th-td" style="width: 42px">核销量</div>
+                            <div class="top-channel-th-td" style="width: 42px">激活量</div>
+                            <div class="top-channel-th-td" style="width: 42px">拉新用户</div>
+                            <div class="top-channel-th-td">库存量</div>
+                        </div>
+                    </div>
+                    <div class="top-channel-result">
+                        <div class="scroll-content top-channel-tbody">
+                            <div class="top-channel-tr" ng-repeat="item in infoGroupChannelTypeList track by $index"
+                                 ng-cloak>
+                                <div class="top-channel-tr-td"
+                                     style="width: 58px;"
+                                     title="{{item.CHANNEL_TYPE}}">{{item.CHANNEL_TYPE}}
+                                </div>
+                                <div class="top-channel-tr-td"
+                                     style="width: 42px;"
+                                     title="{{item.SALE_SHOP_COUNT}}">{{item.SALE_SHOP_COUNT}}
+                                </div>
+                                <div class="top-channel-tr-td"
+                                     style="width: 58px;"
+                                     title="{{item.SALE_SHOP_RATIO}}">{{item.SALE_SHOP_RATIO}}
+                                </div>
+                                <div class="top-channel-tr-td"
+                                     style="width: 42px;"
+                                     title="{{item.IN_STOCK_COUNT}}">{{item.IN_STOCK_COUNT}}
+                                </div>
+                                <div class="top-channel-tr-td"
+                                     style="width: 42px;"
+                                     title="{{item.ALL_SALE_COUNT}}">{{item.ALL_SALE_COUNT}}
+                                </div>
+                                <div class="top-channel-tr-td"
+                                     style="width: 42px;"
+                                     title="{{item.JIHUO_COUNT}}">{{item.JIHUO_COUNT}}
+                                </div>
+                                <div class="top-channel-tr-td"
+                                     style="width: 42px;"
+                                     title="{{item.LAXIN_COUNT}}">{{item.LAXIN_COUNT}}
+                                </div>
+                                <div class="top-channel-tr-td"
+                                     title="{{item.NOW_STOCK_COUNT}}">{{item.NOW_STOCK_COUNT}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script id="page" src="../../resources/js/require.js" data-main="../../resources/js/requireConfig.js"
+            current-page="./page1.js" target-module="pageModule"></script>
+</body>
+</html>
