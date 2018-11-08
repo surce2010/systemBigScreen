@@ -1190,7 +1190,7 @@
                 'sysMenuTypeCd': '1',
                 'submenu|5-20': [{
                     'imgUrl': 'null',
-                    'id': '2561',
+                    'id': '@id',
                     'orderSeq': '0',
                     'name': '@cword(4, 10)',
                     'sysMenuTypeCd': '1',
@@ -1200,14 +1200,14 @@
                 'menuflag': '1'
             }],
             'userInfo': {
-                'timePeriod': '下午好',
-                'userId': '101090',
-                'name': 'sunxiaotao',
+                'timePeriod': '@cword(4, 6)',
+                'userId': '@id',
+                'name': '@cname',
                 'postRoleLevel': '51',
-                'retailShopName': '中国电信虹桥营业厅',
-                'roleName': '宁夏自治区店长',
-                'retailShopId': '106490891',
-                'loginCode': 'sunxiaotao'
+                'retailShopName': '@cword(6, 10)',
+                'roleName': '@cword(6, 10)',
+                'retailShopId': '@id',
+                'loginCode': '@id'
             }
         }
     });

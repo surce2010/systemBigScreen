@@ -15,7 +15,7 @@
 </head>
 
 <body>
-<div class="wrapper box-1342" ng-controller="pageCtrl">
+<div class="wrapper box-1342" ng-controller="pageCtrl" ng-cloak>
     <div class="header fn-clear">
         <p class="wrds fn-left"><img src="../../resources/images/icon-loc.png"><span>数据报表</span></p>
     </div>
@@ -25,7 +25,7 @@
             <span ng-bind="item.name"></span>
         </div>
         <ul class="ul-item fn-clear">
-            <li ng-repeat="opt in item.submenu" class="fn-left" ng-click="link(opt.name, '../page3-1/page3-1.html', 'page3-1', opt)">
+            <li ng-repeat="opt in item.submenu" class="fn-left" ng-click="link(opt.name, '../page3-1/page3-1.html', opt.id, opt)">
                 <img src="../../resources/images/page-icon5.png">
                 <p class="word" ng-bind="opt.name"></p>
             </li>

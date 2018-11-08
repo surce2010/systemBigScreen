@@ -10,7 +10,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'httpMethod'], function (a
         .controller('pageCtrl', ['$rootScope', '$scope', '$log', 'httpMethod', function ($rootScope, $scope, $log, httpMethod) {
 
             $scope.link = function (title, view, id, data) {
-                parent.angular.element(parent.$('#tabs')).scope().addTab(title, view, id, data);
+                parent.angular.element(parent.$('#tabs')).scope().addTab(title, view, id, JSON.stringify(data));
             };
 
             httpMethod.index().then(function(rsp){
