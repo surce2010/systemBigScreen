@@ -1,0 +1,49 @@
+.wrapper {
+    height: 100%;
+    padding: 10px;
+}
+.header{
+    height: 30px;
+    line-height: 30px;
+    margin: -4px 0 6px 0;
+}
+.header .wrds{
+    font-size: 14px;
+    color: #84d8ff;
+    cursor: pointer;
+}
+.header .wrds img{
+    /*margin-right: 2px;*/
+}
+.header .wrds:hover span{
+    color: #73c2e6;
+}
+.header .wrds span{
+    margin: 0 5px;
+}
+
+.report{
+    min-height: 200px;
+    width: 100%;
+    height: auto;
+    margin-bottom: 11px;
+    padding: 0;
+    border: 1px solid #5f70d0;
+    border-radius: 10px;
+    box-shadow: 0 0 16px #7b8bf7 inset;
+}
+
+.report-content{
+    padding: 2px 0 13px 0;
+}
+
+.iframe-box{
+    width: 100%;
+    max-height: 585px;
+    height: auto;
+    background: #fff;
+    border-radius: 10px 10px 0 0;
+}
+.iframe-box html{
+    height: auto;
+}

@@ -299,5 +299,11 @@ angular
             return httpServer(httpConfig.siteUrl + '/visual/q/qryShopStockModelTop5', params, 'POST');
         };
 
+        //可视化平台获取系统菜单接口（新增）
+        httpMethod.index = function (params) {
+            return httpServer(httpConfig.siteUrl + '/chain-visual/user/index', params, 'POST');
+        };
+
+
         return httpMethod;
     }]);

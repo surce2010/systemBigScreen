@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>数据报表</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="../../resources/css/bootstrap.css">
+    <link rel="stylesheet" href="../../resources/css/jquery.dialog.css">
+    <link rel="stylesheet" href="../../resources/css/reset.css">
+    <link rel="stylesheet" href="../../resources/css/common.css">
+    <link rel="stylesheet" href="../../resources/css/ngDirective.css">
+    <link rel="stylesheet" href="page3.css">
+</head>
+
+<body>
+<div class="wrapper box-1342" ng-controller="pageCtrl">
+    <div class="header fn-clear">
+        <p class="wrds fn-left"><img src="../../resources/images/icon-loc.png"><span>数据报表</span></p>
+    </div>
+
+    <div class="report" ng-repeat="item in menuInfoList">
+        <div class="report-header">
+            <span ng-bind="item.name"></span>
+        </div>
+        <ul class="ul-item fn-clear">
+            <li ng-repeat="opt in item.submenu" class="fn-left" ng-click="link(opt.name, '../page3-1/page3-1.html', 'page3-1', opt)">
+                <img src="../../resources/images/page-icon5.png">
+                <p class="word" ng-bind="opt.name"></p>
+            </li>
+        </ul>
+    </div>
+
+</div>
+<script id="page" src="../../resources/js/require.js" data-main="../../resources/js/requireConfig.js"
+        current-page="./page3.js" target-module="pageModule"></script>
+</body>
+
+</html>

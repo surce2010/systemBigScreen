@@ -1172,4 +1172,43 @@
             "STOCK_COUNT|1-5000": 1//库存量
         }]
     });
+
+
+    //可视化平台获取系统菜单接口（新增）
+    Mock.mock(new RegExp('/chain-visual/user/index'), {
+        rsphead: 's',
+        success: 'true', //是否成功true/失败false
+        code: null,
+        msg: null, //失败信息
+        error: null,
+        'data': {
+            'menuInfo|2-10': [{
+                'imgUrl': '/chain-retail/valetOrder/ico.jpg',
+                'id': '1',
+                'orderSeq': '1',
+                'name': '@cword(4, 10)',
+                'sysMenuTypeCd': '1',
+                'submenu|5-20': [{
+                    'imgUrl': 'null',
+                    'id': '2561',
+                    'orderSeq': '0',
+                    'name': '@cword(4, 10)',
+                    'sysMenuTypeCd': '1',
+                    'menuflag': '2',
+                    'url': '../addAdjustIn/addAdjustIn.html'
+                }],
+                'menuflag': '1'
+            }],
+            'userInfo': {
+                'timePeriod': '下午好',
+                'userId': '101090',
+                'name': 'sunxiaotao',
+                'postRoleLevel': '51',
+                'retailShopName': '中国电信虹桥营业厅',
+                'roleName': '宁夏自治区店长',
+                'retailShopId': '106490891',
+                'loginCode': 'sunxiaotao'
+            }
+        }
+    });
 });

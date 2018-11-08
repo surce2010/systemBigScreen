@@ -34,7 +34,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'httpMethod'], function (a
                 'parentResourceId': '',
                 'resourceName': '图形化报表'
             }, {
-                'menuPath': '',
+                'menuPath': '../page3/page3.html',
                 'resourceId': '502',
                 'dispOrder': 1,
                 'parentResourceId': '',
