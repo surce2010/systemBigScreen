@@ -1195,7 +1195,7 @@
                     'name': '@cword(4, 10)',
                     'sysMenuTypeCd': '1',
                     'menuflag': '2',
-                    'url': '../addAdjustIn/addAdjustIn.html'
+                    'url': '/chain-retail/valetOrder/valetSerialCodeQuery'
                 }],
                 'menuflag': '1'
             }],
