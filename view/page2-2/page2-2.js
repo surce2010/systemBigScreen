@@ -85,7 +85,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             textStyle: {
                                 color: '#fff'
                             },
-                            data: ['入库量', '环比']
+                            data: ['入库量（万台）', '环比']
                         },
                         xAxis: [
                             {
@@ -162,7 +162,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             }
                         ],
                         series: [{
-                            name: '入库量',
+                            name: '入库量（万台）',
                             type: 'bar',
                             stack: false,
                             barWidth: 22,
@@ -225,7 +225,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             textStyle: {
                                 color: '#fff'
                             },
-                            data: ['核销量', '环比']
+                            data: ['核销量（万台）', '环比']
                         },
                         xAxis: [
                             {
@@ -302,7 +302,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             }
                         ],
                         series: [{
-                            name: '核销量',
+                            name: '核销量（万台）',
                             type: 'bar',
                             stack: false,
                             barWidth: 22,
@@ -365,7 +365,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             textStyle: {
                                 color: '#fff'
                             },
-                            data: ['当月入库当月核销量', '非当月入库当月核销量']
+                            data: ['当月入库当月核销量（万台）', '非当月入库当月核销量（万台）']
                         },
                         xAxis: [
                             {
@@ -425,7 +425,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             }
                         ],
                         series: [{
-                            name: '当月入库当月核销量',
+                            name: '当月入库当月核销量（万台）',
                             type: 'bar',
                             stack: true,
                             barWidth: 22,
@@ -438,7 +438,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             },
                             data: monthInstockSale
                         }, {
-                            name: '非当月入库当月核销量',
+                            name: '非当月入库当月核销量（万台）',
                             type: 'bar',
                             stack: true,
                             barWidth: 22,
@@ -491,7 +491,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             textStyle: {
                                 color: '#fff'
                             },
-                            data: ['有销门店', '环比']
+                            data: ['有销门店（个）', '环比']
                         },
                         xAxis: [
                             {
@@ -568,7 +568,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             }
                         ],
                         series: [{
-                            name: '有销门店',
+                            name: '有销门店（个）',
                             type: 'bar',
                             stack: false,
                             barWidth: 22,
@@ -631,7 +631,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             textStyle: {
                                 color: '#fff'
                             },
-                            data: ['单店月销量', '环比']
+                            data: ['单店月销量（万台）', '环比']
                         },
                         xAxis: [
                             {
@@ -708,7 +708,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             }
                         ],
                         series: [{
-                            name: '单店月销量',
+                            name: '单店月销量（万台）',
                             type: 'bar',
                             stack: false,
                             barWidth: 22,
@@ -772,7 +772,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             textStyle: {
                                 color: '#fff'
                             },
-                            data: ['核销量', '激活量', '拉新用户']
+                            data: ['核销量（万台）', '激活量（万台）', '拉新用户（万台）']
                         },
                         xAxis: [
                             {
@@ -832,7 +832,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             }
                         ],
                         series: [{
-                            name: '核销量',
+                            name: '核销量（万台）',
                             type: 'bar',
                             stack: true,
                             barWidth: 22,
@@ -845,7 +845,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             },
                             data: allSaleCount
                         }, {
-                            name: '激活量',
+                            name: '激活量（万台）',
                             type: 'bar',
                             stack: true,
                             barWidth: 22,
@@ -858,7 +858,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             },
                             data: JihuoCount
                         }, {
-                            name: '拉新用户',
+                            name: '拉新用户（万台）',
                             type: 'bar',
                             stack: true,
                             barWidth: 22,
