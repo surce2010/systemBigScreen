@@ -246,7 +246,18 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                     $scope.shopSalesInfoLast6Months = {
                         tooltip: {
                             show: true,
-                            trigger: 'axis'
+                            trigger: 'axis',
+                            formatter:function(params) {
+                                var relVal = params[0].name;
+                                for (var i = 0, l = params.length; i < l; i++) {
+                                    if(params[i].seriesName === '合约销量占比' || params[i].seriesName === '裸机销量占比'){
+                                        relVal += '<br/>' + params[i].marker + params[i].seriesName + ' : ' + params[i].value+"%";
+                                    }else{
+                                        relVal += '<br/>' + params[i].marker + params[i].seriesName + ' : ' + params[i].value;
+                                    }
+                                }
+                                return relVal;
+                            }
                         },
                         grid: {
                             left: '0',
@@ -1480,15 +1491,15 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
 
             $scope.todoChecked = {}; //待确认的选项
             //单选框选择
-            $scope.check = function (val, chk) {
-                if (chk) {
-                    $scope.todoChecked = val;
+            $scope.check = function (item) {
+                if (!item.checked) {
                     _.map($scope.shopByCondsList, function (item) {
-                        if (val.CHANNEL_ID != item.CHANNEL_ID) {
-                            item.checked = false;
-                        }
-                    })
+                        item.checked = false;
+                    });
+                    $scope.todoChecked = item;
+                    item.checked = true;
                 } else {
+                    item.checked = false;
                     $scope.todoChecked = {};
                 }
             };

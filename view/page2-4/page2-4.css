@@ -70,7 +70,7 @@
 }
 .card {
     position: relative;
-    text-align: center;
+    /*text-align: center;*/
 }
 
 .card .title {
@@ -221,7 +221,8 @@
     background: none;
 }
 .none-img{
-    margin-top: 34px;
+    display: block;
+    margin: 34px auto;
 }
 .ul-two-line .none-img{
     margin-top: 96px;
@@ -302,6 +303,7 @@
     border-bottom: 1px solid #3c77d8;
     color: #fff;
     font-size: 14px;
+    cursor: pointer;
 }
 .table thead tr{
     height: 36px;
@@ -320,6 +322,9 @@
     background: rgba(28, 50, 101, 0.66);
 }
 .table tbody tr:hover{
+    background: rgba(57, 154, 186, 0.8);
+}
+.table tbody tr.hover{
     background: rgba(57, 154, 186, 0.8);
 }
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{
@@ -349,4 +354,14 @@
     background: #2d5aa5;
     border: 1px solid #3050a0;
     color: #fff;
+}
+.nocheck{
+    display: block;
+    width: 19px;
+    height: 19px;
+    margin: auto;
+    background: url("../../resources/images/icon-nocheck.png") no-repeat;
+}
+.checked{
+    background: url("../../resources/images/icon-checked.png") no-repeat;
 }
