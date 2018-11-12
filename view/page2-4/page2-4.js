@@ -1415,6 +1415,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                     channelId: _.get($rootScope, 'targetStore.CHANNEL_ID')
                 };
                 httpMethod.qryShopStockModelTop5(params).then(function (rsp) {
+                    $scope.shopStockModelTop5List = rsp.data;
                     var businessIndexList = [];
                     _.forEach(rsp.data, function (item, index) {
                         if (index < 5) {
