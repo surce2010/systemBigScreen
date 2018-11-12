@@ -1382,7 +1382,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                     text: ''
                 },
                 tooltip: {
-                    pointFormat: '<b>{point.name}<br/>{point.y}万台<br/>{point.percentage:.1f}%</b>'
+                    pointFormat: '<b>{point.name}<br/>{point.y}台<br/>{point.percentage:.1f}%</b>'
                 },
                 colors: ['#00a3ff', '#00c7dc', '#08b051', '#e45800', '#944cde'],
                 plotOptions: {
@@ -1396,7 +1396,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             style: {
                                 color: '#181818'
                             },
-                            format: '<b>{point.name}<br/>{point.y}万台<br/>{point.percentage:.1f}%</b>'
+                            format: '<b>{point.name}<br/>{point.y}台<br/>{point.percentage:.1f}%</b>'
                         },
                         showInLegend: false
                     }
