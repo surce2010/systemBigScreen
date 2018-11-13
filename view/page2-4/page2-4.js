@@ -1503,9 +1503,19 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                     $scope.todoChecked = {};
                 }
             };
-            $ctrl.ok = function () {
-                $rootScope.targetStore = $scope.todoChecked;
+
+            //双击操作
+            $scope.doubleClick = function (item) {
+                $rootScope.targetStore = item;
                 $scope.todoChecked = {}; // 置空
+                $uibModalInstance.close();
+            };
+
+            $ctrl.ok = function () {
+                if (_.get($scope.todoChecked, 'CHANNEL_ID')) {
+                    $rootScope.targetStore = $scope.todoChecked;
+                    $scope.todoChecked = {}; // 置空
+                }
                 $uibModalInstance.close();
             };
             $ctrl.cancel = function () {
