@@ -1441,6 +1441,21 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                 });
             };
 
+
+            $rootScope.$watch('month.key', function(newVal){
+                if($rootScope.targetStore){
+                    var params = {
+                        queryDate: newVal,
+                        channelNbr: _.get($rootScope.targetStore, 'CHANNEL_NBR')
+                    };
+                    httpMethod.qryShopByConds(params).then(function (rsp) {
+                        if (rsp.success) {
+                            $rootScope.targetStore = rsp.data.list[0];
+                        }
+                    });
+                }
+            });
+
             $rootScope.$watchGroup(['month.key', 'targetStore.CHANNEL_ID'], function (newVal) {
                 if (newVal) {
                     if (_.get($rootScope.targetStore, 'CHANNEL_ID')) {
@@ -1461,6 +1476,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                     }
                 }
             }, true);
+
         }])
         .controller('chooseServiceHallModalCtrl', function ($uibModalInstance, $scope, $rootScope, items, httpMethod) {
             var $ctrl = this;
