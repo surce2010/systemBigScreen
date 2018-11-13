@@ -1445,6 +1445,8 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
             $rootScope.$watch('month.key', function(newVal){
                 if($rootScope.targetStore){
                     var params = {
+                        curPage: 1, //当前页
+                        pageSize: 1, //每页条数
                         queryDate: newVal,
                         channelNbr: _.get($rootScope.targetStore, 'CHANNEL_NBR')
                     };
