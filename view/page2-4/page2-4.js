@@ -1387,15 +1387,38 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
             $scope.shopStockModelTop5 = {
                 chart: {
                     type: 'pie',
-                    backgroundColor: 'rgba(0,0,0,0)'
+                    backgroundColor: 'rgba(0,0,0,0)',
+                    options3d: {
+                        enabled: true,
+                        alpha: 45,
+                        beta: 0
+                    }
                 },
                 title: {
                     text: ''
                 },
+                legend: {
+                    itemStyle: {
+                        color: '#fff',
+                        fontSize: '12px'
+                    },
+                    itemHoverStyle: {
+                        color: '#ccc'
+                    },
+                    // layout: 'vertical',
+                    // align: 'right',
+                    verticalAlign: 'top',
+                    itemMarginTop: 2,
+                    symbolHeight: 10,
+                    symbolWidth: 10,
+                    symbolRadius: 2,
+                    x: 5,
+                    y: -30
+                },
                 tooltip: {
                     pointFormat: '<b>{point.name}<br/>{point.y}台<br/>{point.percentage:.1f}%</b>'
                 },
-                colors: ['#00a3ff', '#00c7dc', '#08b051', '#e45800', '#944cde'],
+                colors: ['#00b4ff', '#e2bb5e', '#28bcbe', '#7aca69', '#887dff'],
                 plotOptions: {
                     pie: {
                         allowPointSelect: true,
@@ -1403,13 +1426,12 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                         depth: 15,
                         dataLabels: {
                             enabled: true,
-                            distance: -40,
                             style: {
-                                color: '#181818'
+                                color: '#fff'
                             },
-                            format: '<b>{point.name}<br/>{point.y}台<br/>{point.percentage:.1f}%</b>'
+                            format: '<b>{point.y}<br/>{point.percentage:.1f}%</b>'
                         },
-                        showInLegend: false
+                        showInLegend: true
                     }
                 },
                 series: [{
