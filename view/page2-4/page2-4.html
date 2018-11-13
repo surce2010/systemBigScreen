@@ -252,7 +252,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="item in shopByCondsList" ng-class="{'hover':item.checked}" ng-click="check(item)">
+            <tr ng-repeat="item in shopByCondsList" ng-class="{'hover':item.checked}" ng-click="check(item)" ng-dblclick="doubleClick(item)">
                 <td>
                     <span class="nocheck" ng-class="{'checked': item.checked}"></span>
                 </td>
