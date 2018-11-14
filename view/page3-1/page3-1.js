@@ -9,9 +9,9 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'httpMethod'], function (a
         }])
         .controller('pageCtrl', ['$rootScope', '$scope', '$log', 'httpMethod', function ($rootScope, $scope, $log, httpMethod) {
 
-        	var id = window.frameElement && window.frameElement.id || '',
-            obj = parent.$('#' + id).attr('data');
-        	$scope.dataReportInfo = obj ? JSON.parse(obj) : {};
+            var id = window.frameElement && window.frameElement.id || '',
+                obj = parent.$('#' + id).attr('data');
+            $scope.dataReportInfo = obj ? JSON.parse(obj) : {};
 
             $scope.link = function (title, view, id, data) {
                 parent.angular.element(parent.$('#tabs')).scope().addTab(title, view, id, data);

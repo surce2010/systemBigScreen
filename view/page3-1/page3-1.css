@@ -2,30 +2,31 @@
     height: 100%;
     padding: 10px;
 }
-.header{
+
+.header {
     height: 30px;
-    line-height: 30px;
     margin: -4px 0 6px 0;
+    line-height: 30px;
 }
-.header .wrds{
-    font-size: 14px;
+
+.header .wrds {
     color: #84d8ff;
+    font-size: 14px;
     cursor: pointer;
 }
-.header .wrds img{
-    /*margin-right: 2px;*/
-}
-.header .wrds:hover span{
+
+.header .wrds:hover span {
     color: #73c2e6;
 }
-.header .wrds span{
+
+.header .wrds span {
     margin: 0 5px;
 }
 
-.report{
-    min-height: 200px;
+.report {
     width: 100%;
     height: auto;
+    min-height: 200px;
     margin-bottom: 11px;
     padding: 0;
     border: 1px solid #5f70d0;
@@ -33,14 +34,14 @@
     box-shadow: 0 0 16px #7b8bf7 inset;
 }
 
-.report-content{
+.report-content {
     padding: 2px 0 13px 0;
 }
 
-.iframe-box{
+.iframe-box {
     width: 100%;
-    max-height: 585px;
     height: auto;
+    max-height: 585px;
     background: #fff;
     border-radius: 10px 10px 0 0;
 }

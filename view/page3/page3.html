@@ -25,7 +25,8 @@
             <span ng-bind="item.name"></span>
         </div>
         <ul class="ul-item fn-clear">
-            <li ng-repeat="opt in item.submenu" class="fn-left" ng-click="link(opt.name, '../page3-1/page3-1.html', opt.id, opt)">
+            <li ng-repeat="opt in item.submenu" class="fn-left"
+                ng-click="link(opt.name, '../page3-1/page3-1.html', opt.id, opt)">
                 <img src="../../resources/images/page-icon5.png">
                 <p class="word" ng-bind="opt.name"></p>
             </li>
