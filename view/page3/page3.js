@@ -13,8 +13,8 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'httpMethod'], function (a
                 parent.angular.element(parent.$('#tabs')).scope().addTab(title, view, id, JSON.stringify(data));
             };
 
-            httpMethod.index().then(function(rsp){
-            	$scope.menuInfoList = rsp.data.menuInfo;
+            httpMethod.index().then(function (rsp) {
+                $scope.menuInfoList = rsp.data.menuInfo;
             })
 
         }])
