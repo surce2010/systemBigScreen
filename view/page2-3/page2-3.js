@@ -61,7 +61,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
 
                     var chartData = rsp.data.slice(0, 5);
                     var xaxis = [], retailShopCount = [], singleShopMonthSaleCount = [], allSaleCout = [],
-                        allZccCount = [], allLxCount = [], allStockCount = [], stockDuring = [];
+                        allZccCount = [], allLxCount = [], allStockCount = [], stockDuring = [], jhRate = [], lxRate = [];
                     _.map(chartData, function (item) {
                         xaxis.push(item.modelName);
                         retailShopCount.push(item.retailShopCount); //有销门店数
@@ -71,6 +71,8 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                         allLxCount.push(item.allLxCount); //拉新用户
                         allStockCount.push(item.allStockCount); //库存量
                         stockDuring.push(item.stockDuring); //库存周转周数
+                        jhRate.push(item.jhRate);//激活率
+                        lxRate.push(item.lxRate);//拉新率
                     });
 
                     //TOP5销量机型有销门店单店月销量
@@ -83,7 +85,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             left: '0',
                             top: '40',
                             right: '0',
-                            bottom: '32'
+                            bottom: '22'
                         },
                         color: ['#1DA1DD', '#FCCC0E'],
                         legend: {
@@ -95,7 +97,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             textStyle: {
                                 color: '#fff'
                             },
-                            data: ['有销门店数', '有销门店单店月销量（台/月）']
+                            data: ['有销门店数（个）', '有销门店单店月销量（台/月）']
                         },
                         xAxis: [
                             {
@@ -120,36 +122,9 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                                     textStyle: {
                                         color: '#fff'
                                     },
-                                    formatter: function(params) {var newParamsName = "";// 最终拼接成的字符串
-                                        var paramsNameNumber = params.length;// 实际标签的个数
-                                        var provideNumber = 6;// 每行能显示的字的个数
-                                        var rowNumber = Math.ceil(paramsNameNumber / provideNumber);// 换行的话，需要显示几行，向上取整
-                                        /**
-                                         * 判断标签的个数是否大于规定的个数， 如果大于，则进行换行处理 如果不大于，即等于或小于，就返回原标签
-                                         */
-                                        // 条件等同于rowNumber>1
-                                        if (paramsNameNumber > provideNumber) {
-                                            /** 循环每一行,p表示行 */
-                                            for (var p = 0; p < rowNumber; p++) {
-                                                var tempStr = "";// 表示每一次截取的字符串
-                                                var start = p * provideNumber;// 开始截取的位置
-                                                var end = start + provideNumber;// 结束截取的位置
-                                                // 此处特殊处理最后一行的索引值
-                                                if (p == rowNumber - 1) {
-                                                    // 最后一次不换行
-                                                    tempStr = params.substring(start, paramsNameNumber);
-                                                } else {
-                                                    // 每一次拼接字符串并换行
-                                                    tempStr = params.substring(start, end) + "\n";
-                                                }
-                                                newParamsName += tempStr;// 最终拼成的字符串
-                                            }
-                                        } else {
-                                            // 将旧标签的值赋给新标签
-                                            newParamsName = params;
-                                        }
-                                        //将最终的字符串返回
-                                        return newParamsName;
+                                    formatter:function(val){
+                                        var reg = /(.{8}).*/;
+                                        return val.replace(reg, "$1...");
                                     }
                                 },
                                 axisLine: {
@@ -200,12 +175,12 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             }
                         ],
                         series: [{
-                            name: '有销门店数',
+                            name: '有销门店数（个）',
                             type: 'bar',
                             stack: false,
-                            barWidth: 30,
+                            barWidth: 70,
                             label: {
-                                show: true,
+                                show: false,
                                 fontSize: '12'
                             },
                             itemStyle: {
@@ -224,9 +199,8 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             data: singleShopMonthSaleCount
                         }]
                     };
-
-                    //TOP5销量机型核销激活拉新
-                    $scope.top5SaleConfig = {
+                    //TOP5销量机型核销量
+                    $scope.top5ModelConfig = {
                         tooltip: {
                             show: true,
                             trigger: 'axis'
@@ -235,7 +209,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             left: '0',
                             top: '40',
                             right: '0',
-                            bottom: '32'
+                            bottom: '22'
                         },
                         color: ['#1DA1DD', '#E2BB5D', '#51B674'],
                         legend: {
@@ -247,7 +221,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             textStyle: {
                                 color: '#fff'
                             },
-                            data: ['核销量（台）', '激活量（台）', '拉新用户（台）']
+                            data: ['核销量（台）']
                         },
                         xAxis: [
                             {
@@ -272,36 +246,9 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                                     textStyle: {
                                         color: '#fff'
                                     },
-                                    formatter: function(params) {var newParamsName = "";// 最终拼接成的字符串
-                                        var paramsNameNumber = params.length;// 实际标签的个数
-                                        var provideNumber = 6;// 每行能显示的字的个数
-                                        var rowNumber = Math.ceil(paramsNameNumber / provideNumber);// 换行的话，需要显示几行，向上取整
-                                        /**
-                                         * 判断标签的个数是否大于规定的个数， 如果大于，则进行换行处理 如果不大于，即等于或小于，就返回原标签
-                                         */
-                                        // 条件等同于rowNumber>1
-                                        if (paramsNameNumber > provideNumber) {
-                                            /** 循环每一行,p表示行 */
-                                            for (var p = 0; p < rowNumber; p++) {
-                                                var tempStr = "";// 表示每一次截取的字符串
-                                                var start = p * provideNumber;// 开始截取的位置
-                                                var end = start + provideNumber;// 结束截取的位置
-                                                // 此处特殊处理最后一行的索引值
-                                                if (p == rowNumber - 1) {
-                                                    // 最后一次不换行
-                                                    tempStr = params.substring(start, paramsNameNumber);
-                                                } else {
-                                                    // 每一次拼接字符串并换行
-                                                    tempStr = params.substring(start, end) + "\n";
-                                                }
-                                                newParamsName += tempStr;// 最终拼成的字符串
-                                            }
-                                        } else {
-                                            // 将旧标签的值赋给新标签
-                                            newParamsName = params;
-                                        }
-                                        //将最终的字符串返回
-                                        return newParamsName;
+                                    formatter:function(val){
+                                        var reg = /(.{8}).*/;
+                                        return val.replace(reg, "$1...");
                                     }
                                 },
                                 axisLine: {
@@ -338,7 +285,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             name: '核销量（台）',
                             type: 'bar',
                             stack: true,
-                            barWidth: 42,
+                            barWidth: 70,
                             label: {
                                 show: true,
                                 fontSize: '12'
@@ -347,37 +294,11 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                                 barBorderRadius: 0
                             },
                             data: allSaleCout
-                        }, {
-                            name: '激活量（台）',
-                            type: 'bar',
-                            stack: true,
-                            barWidth: 42,
-                            label: {
-                                show: true,
-                                fontSize: '12'
-                            },
-                            itemStyle: {
-                                barBorderRadius: 0
-                            },
-                            data: allZccCount
-                        }, {
-                            name: '拉新用户（台）',
-                            type: 'bar',
-                            stack: true,
-                            barWidth: 42,
-                            label: {
-                                show: true,
-                                fontSize: '12'
-                            },
-                            itemStyle: {
-                                barBorderRadius: 0
-                            },
-                            data: allLxCount
                         }]
                     };
 
-                    //TOP5销量机型库存周转
-                    $scope.top5StockConfig = {
+                    //TOP5销量机型激活拉新
+                    $scope.top5SaleConfig = {
                         tooltip: {
                             show: true,
                             trigger: 'axis'
@@ -386,19 +307,19 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             left: '0',
                             top: '40',
                             right: '0',
-                            bottom: '32'
+                            bottom: '22'
                         },
-                        color: ['#1DA1DD', '#FCCC0E'],
+                        color: ['#1DA1DD', '#E2BB5D'],
                         legend: {
                             show: true,
                             left: 'center',
                             top: 0,
-                            itemWidth: 20,
+                            itemWidth: 10,
                             itemHeight: 10,
                             textStyle: {
                                 color: '#fff'
                             },
-                            data: ['库存量', '库存周转周数']
+                            data: ['激活量（台）', '拉新用户（户）']
                         },
                         xAxis: [
                             {
@@ -423,36 +344,230 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                                     textStyle: {
                                         color: '#fff'
                                     },
-                                    formatter: function(params) {var newParamsName = "";// 最终拼接成的字符串
-                                        var paramsNameNumber = params.length;// 实际标签的个数
-                                        var provideNumber = 6;// 每行能显示的字的个数
-                                        var rowNumber = Math.ceil(paramsNameNumber / provideNumber);// 换行的话，需要显示几行，向上取整
-                                        /**
-                                         * 判断标签的个数是否大于规定的个数， 如果大于，则进行换行处理 如果不大于，即等于或小于，就返回原标签
-                                         */
-                                        // 条件等同于rowNumber>1
-                                        if (paramsNameNumber > provideNumber) {
-                                            /** 循环每一行,p表示行 */
-                                            for (var p = 0; p < rowNumber; p++) {
-                                                var tempStr = "";// 表示每一次截取的字符串
-                                                var start = p * provideNumber;// 开始截取的位置
-                                                var end = start + provideNumber;// 结束截取的位置
-                                                // 此处特殊处理最后一行的索引值
-                                                if (p == rowNumber - 1) {
-                                                    // 最后一次不换行
-                                                    tempStr = params.substring(start, paramsNameNumber);
-                                                } else {
-                                                    // 每一次拼接字符串并换行
-                                                    tempStr = params.substring(start, end) + "\n";
-                                                }
-                                                newParamsName += tempStr;// 最终拼成的字符串
-                                            }
-                                        } else {
-                                            // 将旧标签的值赋给新标签
-                                            newParamsName = params;
-                                        }
-                                        //将最终的字符串返回
-                                        return newParamsName;
+                                    formatter:function(val){
+                                        var reg = /(.{8}).*/;
+                                        return val.replace(reg, "$1...");
+                                    }
+                                },
+                                axisLine: {
+                                    show: true,
+                                    lineStyle: {
+                                        color: '#2f76a5',
+                                        width: 1
+                                    }
+                                },
+                                data: xaxis
+                            }
+                        ],
+                        yAxis: [
+                            {
+                                type: 'value',
+                                splitLine: {
+                                    show: false,
+                                    lineStyle: {
+                                        color: 'rgba(255, 255, 255, 0.1)'
+                                    }
+                                },
+                                axisLabel: {
+                                    show: false,
+                                    textStyle: {
+                                        color: '#fff'
+                                    }
+                                },
+                                axisLine: {
+                                    show: false
+                                }
+                            }
+                        ],
+                        series: [{
+                            name: '激活量（台）',
+                            type: 'bar',
+                            stack: true,
+                            barWidth: 70,
+                            label: {
+                                show: false,
+                                fontSize: '12'
+                            },
+                            itemStyle: {
+                                barBorderRadius: 0
+                            },
+                            data: allZccCount
+                        }, {
+                            name: '拉新用户（户）',
+                            type: 'line',
+                            smooth: false,
+                            label: {
+                                show: true,
+                                fontSize: '12'
+                            },
+                            itemStyle: {
+                                barBorderRadius: 0
+                            },
+                            data: allLxCount
+                        }]
+                    };
+
+                    //TOP5销量机型激活率、拉新率
+                    $scope.top5ActivatyConfig = {
+                        tooltip: {
+                            show: true,
+                            trigger: 'axis'
+                        },
+                        grid: {
+                            left: '0',
+                            top: '40',
+                            right: '0',
+                            bottom: '22'
+                        },
+                        color: ['#1da1dd', '#cea963'],
+                        legend: {
+                            show: true,
+                            left: 'center',
+                            top: 0,
+                            itemWidth: 10,
+                            itemHeight: 10,
+                            textStyle: {
+                                color: '#fff'
+                            },
+                            data: ['激活率', '拉新率']
+                        },
+                        xAxis: [
+                            {
+                                type: 'category',
+                                boundaryGap: true,
+                                axisTick: {
+                                    show: true,
+                                    lineStyle: {
+                                        color: '#2f76a5',
+                                        type: 'solid'
+                                    }
+                                },
+                                splitLine: {
+                                    show: false,
+                                    lineStyle: {
+                                        color: 'rgba(255, 255, 255, 0.1)'
+                                    }
+                                },
+                                axisLabel: {
+                                    show: true,
+                                    interval: 0,
+                                    textStyle: {
+                                        color: '#fff'
+                                    },
+                                    formatter:function(val){
+                                        var reg = /(.{8}).*/;
+                                        return val.replace(reg, "$1...");
+                                    }
+                                },
+                                axisLine: {
+                                    show: true,
+                                    lineStyle: {
+                                        color: '#2f76a5',
+                                        width: 1
+                                    }
+                                },
+                                data: xaxis
+                            }
+                        ],
+                        yAxis: [
+                            {
+                                type: 'value',
+                                splitLine: {
+                                    show: false,
+                                    lineStyle: {
+                                        color: 'rgba(255, 255, 255, 0.1)'
+                                    }
+                                },
+                                axisLabel: {
+                                    show: false,
+                                    textStyle: {
+                                        color: '#fff'
+                                    }
+                                },
+                                axisLine: {
+                                    show: false
+                                }
+                            }
+                        ],
+                        series: [{
+                            name: '激活率',
+                            type: 'bar',
+                            stack: true,
+                            barWidth: 70,
+                            label: {
+                                show: true,
+                                fontSize: '12'
+                            },
+                            itemStyle: {
+                                barBorderRadius: 0
+                            },
+                            data: jhRate
+                        }, {
+                            name: '拉新率',
+                            type: 'bar',
+                            stack: true,
+                            barWidth: 70,
+                            label: {
+                                show: true,
+                                fontSize: '12'
+                            },
+                            itemStyle: {
+                                barBorderRadius: 0
+                            },
+                            data: lxRate
+                        }]
+                    };
+
+                    //TOP5销量机型库存周转
+                    $scope.top5StockConfig = {
+                        tooltip: {
+                            show: true,
+                            trigger: 'axis'
+                        },
+                        grid: {
+                            left: '0',
+                            top: '40',
+                            right: '0',
+                            bottom: '22'
+                        },
+                        color: ['#1DA1DD', '#FCCC0E'],
+                        legend: {
+                            show: true,
+                            left: 'center',
+                            top: 0,
+                            itemWidth: 20,
+                            itemHeight: 10,
+                            textStyle: {
+                                color: '#fff'
+                            },
+                            data: ['库存量（台）', '库存周转周数']
+                        },
+                        xAxis: [
+                            {
+                                type: 'category',
+                                boundaryGap: true,
+                                axisTick: {
+                                    show: true,
+                                    lineStyle: {
+                                        color: '#2f76a5',
+                                        type: 'solid'
+                                    }
+                                },
+                                splitLine: {
+                                    show: false,
+                                    lineStyle: {
+                                        color: 'rgba(255, 255, 255, 0.1)'
+                                    }
+                                },
+                                axisLabel: {
+                                    show: true,
+                                    interval: 0,
+                                    textStyle: {
+                                        color: '#fff'
+                                    },
+                                    formatter:function(val){
+                                        var reg = /(.{10}).*/;
+                                        return val.replace(reg, "$1...");
                                     }
                                 },
                                 axisLine: {
@@ -503,12 +618,12 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             }
                         ],
                         series: [{
-                            name: '库存量',
+                            name: '库存量（台）',
                             type: 'bar',
                             stack: false,
-                            barWidth: 30,
+                            barWidth: 70,
                             label: {
-                                show: true,
+                                show: false,
                                 fontSize: '12'
                             },
                             itemStyle: {
@@ -568,7 +683,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             textStyle: {
                                 color: '#fff'
                             },
-                            data: ['有销门店数', '有销门店占比']
+                            data: ['有销门店数（个）', '有销门店占比']
                         },
                         xAxis: [
                             {
@@ -645,12 +760,12 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             }
                         ],
                         series: [{
-                            name: '有销门店数',
+                            name: '有销门店数（个）',
                             type: 'bar',
                             stack: false,
                             barWidth: 22,
                             label: {
-                                show: true,
+                                show: false,
                                 fontSize: '12'
                             },
                             itemStyle: {
@@ -713,7 +828,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             textStyle: {
                                 color: '#fff'
                             },
-                            data: ['总核销量', '单店月销量']
+                            data: ['总核销量（台）', '单店月销量']
                         },
                         xAxis: [
                             {
@@ -790,12 +905,12 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             }
                         ],
                         series: [{
-                            name: '总核销量',
+                            name: '总核销量（台）',
                             type: 'bar',
                             stack: false,
                             barWidth: 22,
                             label: {
-                                show: true,
+                                show: false,
                                 fontSize: '12'
                             },
                             itemStyle: {
@@ -829,7 +944,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                     var xaxis = [], nowStockCount = [], stockDring = [];
                     _.map(rsp.data, function (item) {
                         xaxis.push(item.regionName);
-                        nowStockCount.push(item.nowStockCount); //库存量（万台）
+                        nowStockCount.push(item.nowStockCount); //库存量（台）
                         stockDring.push(item.stockDring); //库存周转周数
                     });
 
@@ -855,7 +970,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             textStyle: {
                                 color: '#fff'
                             },
-                            data: ['库存量（万台）', '库存周转周数']
+                            data: ['库存量（台）', '库存周转周数（周）']
                         },
                         xAxis: [
                             {
@@ -932,12 +1047,12 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             }
                         ],
                         series: [{
-                            name: '库存量（万台）',
+                            name: '库存量（台）',
                             type: 'bar',
                             stack: false,
                             barWidth: 22,
                             label: {
-                                show: true,
+                                show: false,
                                 fontSize: '12'
                             },
                             itemStyle: {
@@ -945,7 +1060,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             },
                             data: nowStockCount
                         }, {
-                            name: '库存周转周数',
+                            name: '库存周转周数（周）',
                             type: 'line',
                             smooth: false,
                             label: {
@@ -975,14 +1090,14 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                     var xaxis = [], allSaleCount = [], allJhCount = [], allLxCount = [], jhRate = [], lxRate = [];
                     _.map(rsp.data.list, function (item) {
                         xaxis.push(item.regionName);
-                        allSaleCount.push(item.allSaleCount); //总核销量（万台）
+                        // allSaleCount.push(item.allSaleCount); //总核销量（万台）
                         allJhCount.push(item.allJhCount); //激活量（万台）
                         allLxCount.push(item.allLxCount); //拉新用户（万台）
                         jhRate.push(item.jhRate); //激活率
                         lxRate.push(item.lxRate); //拉新率
                     });
 
-                    //总核销量激活量拉新用户数据
+                    //激活量拉新用户数据
                     $scope.regionDataConfig = {
                         tooltip: {
                             show: true,
@@ -1004,7 +1119,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             textStyle: {
                                 color: '#fff'
                             },
-                            data: ['总核销量（万台）', '激活量（万台）', '拉新用户（万台）']
+                            data: ['激活量（台）', '拉新用户（户）']
                         },
                         xAxis: [
                             {
@@ -1064,25 +1179,12 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             }
                         ],
                         series: [{
-                            name: '总核销量（万台）',
+                            name: '激活量（台）',
                             type: 'bar',
                             stack: true,
                             barWidth: 22,
                             label: {
-                                show: true,
-                                fontSize: '12'
-                            },
-                            itemStyle: {
-                                barBorderRadius: 0
-                            },
-                            data: allSaleCount
-                        }, {
-                            name: '激活量（万台）',
-                            type: 'bar',
-                            stack: true,
-                            barWidth: 22,
-                            label: {
-                                show: true,
+                                show: false,
                                 fontSize: '12'
                             },
                             itemStyle: {
@@ -1090,10 +1192,9 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             },
                             data: allJhCount
                         }, {
-                            name: '拉新用户（万台）',
-                            type: 'bar',
-                            stack: true,
-                            barWidth: 22,
+                            name: '拉新用户（户）',
+                            type: 'line',
+                            smooth: false,
                             label: {
                                 show: true,
                                 fontSize: '12'

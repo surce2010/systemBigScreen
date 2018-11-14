@@ -61,17 +61,17 @@
             </div>
             <div class="wrap-l-box">
                 <div class="card">
-                    <p class="title">TOP5销量机型核销激活拉新</p>
+                    <p class="title">TOP5销量机型核销量</p>
                     <div class="wrap-l-chart">
-                        <div e-chart options="top5SaleConfig"></div>
+                        <div e-chart options="top5ModelConfig"></div>
                     </div>
                 </div>
             </div>
             <div class="wrap-l-box">
                 <div class="card">
-                    <p class="title">TOP5销量机型库存周转</p>
+                    <p class="title">TOP5销量机型激活量及拉新用户</p>
                     <div class="wrap-l-chart">
-                        <div e-chart options="top5StockConfig"></div>
+                        <div e-chart options="top5SaleConfig"></div>
                     </div>
                 </div>
             </div>
@@ -81,15 +81,15 @@
                 <div class="rank-thead">
                     <div class="rank-th">
                         <div class="rank-th-td">机型名称</div>
-                        <div class="rank-th-td" style="width: 85px">有销门店数</div>
-                        <div class="rank-th-td" style="width: 80px">核销量</div>
-                        <div class="rank-th-td" style="width: 80px">自注册激活量</div>
-                        <div class="rank-th-td" style="width: 75px">拉新用户</div>
-                        <div class="rank-th-td" style="width: 75px">库存量</div>
+                        <div class="rank-th-td" style="width: 58px">有销门店数</div>
+                        <div class="rank-th-td" style="width: 58px">核销量</div>
+                        <div class="rank-th-td" style="width: 58px">自注册激活量</div>
+                        <div class="rank-th-td" style="width: 58px">拉新用户</div>
+                        <div class="rank-th-td" style="width: 58px">库存量</div>
                         <div class="rank-th-td" style="width: 80px">有销门店单店月销量</div>
-                        <div class="rank-th-td" style="width: 75px">库存周转周数</div>
-                        <div class="rank-th-td" style="width: 70px">激活率</div>
-                        <div class="rank-th-td" style="width: 70px">拉新率</div>
+                        <div class="rank-th-td" style="width: 64px">库存周转周数</div>
+                        <div class="rank-th-td" style="width: 56px">激活率</div>
+                        <div class="rank-th-td" style="width: 56px">拉新率</div>
                     </div>
                 </div>
                 <div class="top-rank-result" ng-scroll-bar>
@@ -97,15 +97,15 @@
                         <div class="scroll-content rank-tbody">
                             <div class="rank-tr" ng-repeat="item in dataForStarModelList track by $index" ng-cloak>
                                 <div class="rank-tr-td" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{item.modelName}}">{{item.modelName}}</div>
-                                <div class="rank-tr-td" style="width: 85px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{item.retailShopCount}}">{{item.retailShopCount}}</div>
-                                <div class="rank-tr-td" style="width: 80px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{item.allSaleCout}}">{{item.allSaleCout}}</div>
-                                <div class="rank-tr-td" style="width: 80px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{item.allZccCount}}">{{item.allZccCount}}</div>
-                                <div class="rank-tr-td" style="width: 75px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{item.allLxCount}}">{{item.allLxCount}}</div>
-                                <div class="rank-tr-td" style="width: 75px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{item.allStockCount}}">{{item.allStockCount}}</div>
+                                <div class="rank-tr-td" style="width: 58px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{item.retailShopCount}}">{{item.retailShopCount}}</div>
+                                <div class="rank-tr-td" style="width: 58px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{item.allSaleCout}}">{{item.allSaleCout}}</div>
+                                <div class="rank-tr-td" style="width: 58px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{item.allZccCount}}">{{item.allZccCount}}</div>
+                                <div class="rank-tr-td" style="width: 58px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{item.allLxCount}}">{{item.allLxCount}}</div>
+                                <div class="rank-tr-td" style="width: 58px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{item.allStockCount}}">{{item.allStockCount}}</div>
                                 <div class="rank-tr-td" style="width: 80px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{item.singleShopMonthSaleCount}}">{{item.singleShopMonthSaleCount}}</div>
-                                <div class="rank-tr-td" style="width: 75px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{item.stockDuring}}">{{item.stockDuring}}</div>
-                                <div class="rank-tr-td" style="width: 70px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{item.jhRate + '%'}}">{{item.jhRate + '%'}}</div>
-                                <div class="rank-tr-td" style="width: 70px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{item.lxRate + '%'}}">{{item.lxRate + '%'}}</div>
+                                <div class="rank-tr-td" style="width: 64px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{item.stockDuring}}">{{item.stockDuring}}</div>
+                                <div class="rank-tr-td" style="width: 56px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{item.jhRate + '%'}}">{{item.jhRate + '%'}}</div>
+                                <div class="rank-tr-td" style="width: 56px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{item.lxRate + '%'}}">{{item.lxRate + '%'}}</div>
                             </div>
                         </div>
                         <div class="track">
@@ -116,10 +116,27 @@
             </div>
         </div>
     </div>
-
+    <div class="wrap-content fn-clear">
+        <div class="wrap-l fn-left">
+            <div class="card">
+                <p class="title">TOP5销量机型激活率、拉新率</p>
+                <div class="wrap-l-chart">
+                    <div e-chart options="top5ActivatyConfig"></div>
+                </div>
+            </div>
+        </div>
+        <div class="wrap-rgt-box fn-right">
+            <div class="card">
+                <p class="title">TOP5销量机型库存周转</p>
+                <div class="wrap-l-chart">
+                    <div e-chart options="top5StockConfig"></div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="wrap-content">
         <div class="card">
-            <p class="title">有销门店及有销门店占比</p>
+            <p class="title"><span ng-bind="currentMonth"></span>月<span ng-bind="modelName"></span>机型有销门店及有销门店占比</p>
             <div class="sale-shop-chart">
                 <div e-chart options="saleShopConfig"></div>
             </div>
@@ -128,7 +145,7 @@
 
     <div class="wrap-content">
         <div class="card">
-            <p class="title">核销量及单店月销量</p>
+            <p class="title"><span ng-bind="currentMonth"></span>月<span ng-bind="modelName"></span>机型核销量及单店月销量</p>
             <div class="sale-shop-chart">
                 <div e-chart options="saleCountConfig"></div>
             </div>
@@ -137,16 +154,7 @@
 
     <div class="wrap-content">
         <div class="card">
-            <p class="title">库存量及库存周转周数</p>
-            <div class="sale-shop-chart">
-                <div e-chart options="stockCountConfig"></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="wrap-content">
-        <div class="card">
-            <p class="title"><span ng-bind="currentMonth"></span>月<span ng-bind="brandName"></span>品牌<span ng-bind="modelName"></span>机型核销量、激活量、拉新用户</p>
+            <p class="title"><span ng-bind="currentMonth"></span>月<span ng-bind="modelName"></span>激活量、拉新用户</p>
             <div class="sale-shop-chart">
                 <div e-chart options="regionDataConfig"></div>
             </div>
@@ -155,13 +163,20 @@
 
     <div class="wrap-content">
         <div class="card">
-            <p class="title"><span ng-bind="currentMonth"></span>月<span ng-bind="brandName"></span>品牌<span ng-bind="modelName"></span>机型激活率、拉新率</p>
+            <p class="title"><span ng-bind="currentMonth"></span>月<span ng-bind="modelName"></span>机型激活率、拉新率</p>
             <div class="sale-shop-chart">
                 <div e-chart options="regionRateConfig"></div>
             </div>
         </div>
     </div>
-
+    <div class="wrap-content">
+        <div class="card">
+            <p class="title"><span ng-bind="currentMonth"></span>月<span ng-bind="modelName"></span>机型库存量及库存周转周数</p>
+            <div class="sale-shop-chart">
+                <div e-chart options="stockCountConfig"></div>
+            </div>
+        </div>
+    </div>
     <script id="page" src="../../resources/js/require.js" data-main="../../resources/js/requireConfig.js"
             current-page="./page2-3.js" target-module="pageModule"></script>
 </body>

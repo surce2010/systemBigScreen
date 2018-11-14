@@ -901,7 +901,7 @@
         'data|20': [{
             'modelRank|1-100': 1, //销量排名
             'offerModelId': '@id', //机型id
-            'modelName': '@cword(4, 6)', //机型名称
+            'modelName': '@cword(10, 12)', //机型名称
             'retailShopCount|1-100': 1, //有销门店数
             'allSaleCout|1-100': 1, //核销量
             'allZccCount|1-100': 1, //自注册激活量
@@ -969,7 +969,7 @@
         msg: null, //失败信息
         error: null,
         'data': {
-            'month': '@date()', //月份
+            'month': '@date(yyyy-MM)', //月份
             'brandCd': '@id', //品牌cd
             'brandName': '@cword(4, 6)', //品牌名称
             'offerModelId|1-100': 1, //型号id

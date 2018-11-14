@@ -95,7 +95,7 @@
 }
 
 .wrap-l {
-    width: 452px;
+    width: 604px;
 }
 
 .wrap-l-box {
@@ -124,7 +124,7 @@
 }
 
 .wrap-r {
-    width: 858px;
+    width: 710px;
     height: 665px;
 }
 
@@ -189,4 +189,8 @@
 
 .sale-shop-chart {
     height: 280px;
+}
+.wrap-rgt-box{
+    width: 710px;
+    height: 215px;
 }
