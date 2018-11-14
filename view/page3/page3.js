@@ -12,9 +12,13 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'httpMethod'], function (a
             $scope.link = function (title, view, id, data) {
                 parent.angular.element(parent.$('#tabs')).scope().addTab(title, view, id, JSON.stringify(data));
             };
-
-            httpMethod.index().then(function (rsp) {
+            
+            httpMethod.loadUserInfo(param).then(function(rsp){
                 $scope.menuInfoList = rsp.data.menuInfo;
+                var menuInfo = $scope.menuInfoList.sort(function (a, b) {
+                    return a.orderSeq - b.orderSeq;
+                });
+                $scope.menuInfoList = menuInfo;
             })
 
         }])
