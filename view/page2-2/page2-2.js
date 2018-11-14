@@ -180,7 +180,10 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             smooth: false,
                             label: {
                                 show: true,
-                                fontSize: '12'
+                                fontSize: '12',
+                                formatter: function (params) {
+                                    return params.value + '%';
+                                }
                             },
                             yAxisIndex: 1,
                             data: monthRatio
@@ -320,7 +323,10 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             smooth: false,
                             label: {
                                 show: true,
-                                fontSize: '12'
+                                fontSize: '12',
+                                formatter: function (params) {
+                                    return params.value + '%';
+                                }
                             },
                             yAxisIndex: 1,
                             data: monthRatio
@@ -977,7 +983,10 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             barWidth: 22,
                             label: {
                                 show: true,
-                                fontSize: '12'
+                                fontSize: '12',
+                                formatter: function (params) {
+                                    return params.value + '%';
+                                }
                             },
                             itemStyle: {
                                 barBorderRadius: 0
@@ -990,7 +999,10 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             barWidth: 22,
                             label: {
                                 show: true,
-                                fontSize: '12'
+                                fontSize: '12',
+                                formatter: function (params) {
+                                    return params.value + '%';
+                                }
                             },
                             itemStyle: {
                                 barBorderRadius: 0
