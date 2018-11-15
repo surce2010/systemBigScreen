@@ -924,7 +924,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                 colors: ['#74bd73', '#09a9f7', '#d0b069', '#8178f7'],
                 plotOptions: {
                     pie: {
-                        allowPointSelect: true,
+                        allowPointSelect: false,
                         cursor: 'pointer',
                         depth: 15,
                         dataLabels: {
@@ -934,19 +934,26 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             },
                             format: '{point.y}<br/>{point.percentage:.1f}%'
                         },
-                        showInLegend: true
+                        showInLegend: true,
+
                     },
-                    point: {
-                        events: {
-                            legendItemClick: function () {
-                                return false; // <== returning false will cancel the default action
+                    series: {
+                        cursor: 'pointer',
+                        point: {
+                            events: {
+                                click: function () {
+                                    $scope.state1 = 'bar';
+                                    $scope.paymentDayDuring = this.name;
+                                    $scope.dayDuringRage = this.r;
+                                    $scope.qryTimeTop5ModelByConds();
+                                }
                             }
                         }
-                    },
-                    allowPointSelect: false,
+                    }
                 },
                 series: [{
                     type: 'pie',
+                    keys: ['name', 'y', 'r'],
                     data: []
                 }],
                 credits: {
@@ -965,12 +972,118 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                         if (index < 4) {
                             var obj = {
                                 name: item.paymentDayDuring,
-                                y: item.stockCount
+                                y: item.stockCount,
+                                r: item.dayDuringRage
                             };
                             businessIndexList.push(obj);
                         }
                     });
                     $scope.inStockTimeByConds.series[0].data = businessIndexList;
+                });
+            };
+            //圆变柱状图
+            $scope.qryTimeTop5ModelByConds = function () {
+                var params = {
+                    queryDate: _.get($scope, 'month.key'),
+                    channelType: _.get($scope, 'channelType.channelTypeCd'),
+                    commonRegionId: _.get($scope, 'checkedCity.commonRegionId'),
+                    dayDuringRage: $scope.dayDuringRage,
+                    unit: ''//后期加上
+                };
+                httpMethod.qryTimeTop5ModelByConds(params).then(function (rsp) {
+                    var xaxis = [], arr1 = [];
+                    _.map(rsp.data, function (item) {
+                        xaxis.push(item.modelName);
+                        arr1.push(item.stockCount);
+                    });
+                    $scope.inStockTimeInBar = {
+                        tooltip: {
+                            show: true,
+                            trigger: 'axis'
+                        },
+                        grid: {
+                            left: '150',
+                            top: '20',
+                            right: '50',
+                            bottom: '25'
+                        },
+                        color: ['#1da1dd'],
+                        legend: {
+                            show: false
+                        },
+                        xAxis: [
+                            {
+                                type: 'value',
+                                splitLine: {
+                                    show: false,
+                                    lineStyle: {
+                                        color: 'rgba(255, 255, 255, 0.1)'
+                                    }
+                                },
+                                axisLabel: {
+                                    show: false,
+                                    textStyle: {
+                                        color: '#fff'
+                                    }
+                                },
+                                axisLine: {
+                                    show: false
+                                }
+                            }
+                        ],
+                        yAxis: [
+                            {
+                                type: 'category',
+                                boundaryGap: true,
+                                axisTick: {
+                                    show: true,
+                                    lineStyle: {
+                                        color: '#2f76a5',
+                                        type: 'solid'
+                                    }
+                                },
+                                splitLine: {
+                                    show: false,
+                                    lineStyle: {
+                                        color: 'rgba(255, 255, 255, 0.1)'
+                                    }
+                                },
+                                axisLabel: {
+                                    show: true,
+                                    interval: 0,
+                                    textStyle: {
+                                        color: '#fff'
+                                    },
+                                    formatter:function(val){
+                                        var reg = /(.{11}).*/;
+                                        return val.replace(reg, "$1...");
+                                    }
+                                },
+                                axisLine: {
+                                    show: true,
+                                    lineStyle: {
+                                        color: '#2f76a5',
+                                        width: 1
+                                    }
+                                },
+                                data: xaxis
+                            }
+                        ],
+                        series: [{
+                            name: 'TOP5库存机型',
+                            type: 'bar',
+                            barWidth: 20,
+                            label: {
+                                show: true,
+                                fontSize: '12',
+                                position: 'insideRight'
+                            },
+                            itemStyle: {
+                                barBorderRadius: 0
+                            },
+                            data: arr1
+                        }]
+                    };
                 });
             };
 
@@ -1011,7 +1124,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                 colors: ['#74bd73', '#09a9f7', '#2db1be', '#8178f7', '#cd6470', '#d0b069'],
                 plotOptions: {
                     pie: {
-                        allowPointSelect: true,
+                        allowPointSelect: false,
                         cursor: 'pointer',
                         depth: 15,
                         dataLabels: {
@@ -1022,6 +1135,19 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             format: '{point.y}<br/>{point.percentage:.1f}%'
                         },
                         showInLegend: true
+                    },
+                    series: {
+                        cursor: 'pointer',
+                        point: {
+                            events: {
+                                click: function () {
+                                    $scope.state2 = 'bar';
+                                    $scope.priceRangeName = this.name;
+                                    $scope.priceRange = this.r;
+                                    $scope.qryPriceTop5ModelByCond();
+                                }
+                            }
+                        }
                     }
                 },
                 series: [{
@@ -1035,6 +1161,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
             $scope.qryInStockByPriceRange = function () {
                 var params = {
                     queryDate: _.get($scope, 'month.key'),
+                    channelTypeCd: _.get($scope, 'channelType.channelTypeCd'),
                     commonRegionId: _.get($scope, 'checkedCity.commonRegionId')
                 };
                 httpMethod.qryInStockByPriceRange(params).then(function (rsp) {
@@ -1043,12 +1170,118 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                         if (index < 6) {
                             var obj = {
                                 name: item.priceRangeName,
-                                y: item.stockCount
+                                y: item.stockCount,
+                                r: item.priceRange
                             };
                             businessIndexList.push(obj);
                         }
                     });
                     $scope.inStockByPriceRange.series[0].data = businessIndexList;
+                });
+            };
+            //圆变柱状图
+            $scope.qryPriceTop5ModelByCond = function () {
+                var params = {
+                    queryDate: _.get($scope, 'month.key'),
+                    channelType: _.get($scope, 'channelType.channelTypeCd'),
+                    commonRegionId: _.get($scope, 'checkedCity.commonRegionId'),
+                    priceRange: $scope.priceRange,
+                    unit: ''//后期加上
+                };
+                httpMethod.qryPriceTop5ModelByCond(params).then(function (rsp) {
+                    var xaxis = [], arr1 = [];
+                    _.map(rsp.data, function (item) {
+                        xaxis.push(item.modelName);
+                        arr1.push(item.stockCount);
+                    });
+                    $scope.priceTop5ModelByCond = {
+                        tooltip: {
+                            show: true,
+                            trigger: 'axis'
+                        },
+                        grid: {
+                            left: '150',
+                            top: '20',
+                            right: '50',
+                            bottom: '25'
+                        },
+                        color: ['#1da1dd'],
+                        legend: {
+                            show: false
+                        },
+                        xAxis: [
+                            {
+                                type: 'value',
+                                splitLine: {
+                                    show: false,
+                                    lineStyle: {
+                                        color: 'rgba(255, 255, 255, 0.1)'
+                                    }
+                                },
+                                axisLabel: {
+                                    show: false,
+                                    textStyle: {
+                                        color: '#fff'
+                                    }
+                                },
+                                axisLine: {
+                                    show: false
+                                }
+                            }
+                        ],
+                        yAxis: [
+                            {
+                                type: 'category',
+                                boundaryGap: true,
+                                axisTick: {
+                                    show: true,
+                                    lineStyle: {
+                                        color: '#2f76a5',
+                                        type: 'solid'
+                                    }
+                                },
+                                splitLine: {
+                                    show: false,
+                                    lineStyle: {
+                                        color: 'rgba(255, 255, 255, 0.1)'
+                                    }
+                                },
+                                axisLabel: {
+                                    show: true,
+                                    interval: 0,
+                                    textStyle: {
+                                        color: '#fff'
+                                    },
+                                    formatter:function(val){
+                                        var reg = /(.{11}).*/;
+                                        return val.replace(reg, "$1...");
+                                    }
+                                },
+                                axisLine: {
+                                    show: true,
+                                    lineStyle: {
+                                        color: '#2f76a5',
+                                        width: 1
+                                    }
+                                },
+                                data: xaxis
+                            }
+                        ],
+                        series: [{
+                            name: 'TOP5库存机型',
+                            type: 'bar',
+                            barWidth: 20,
+                            label: {
+                                show: true,
+                                fontSize: '12',
+                                position: 'insideRight'
+                            },
+                            itemStyle: {
+                                barBorderRadius: 0
+                            },
+                            data: arr1
+                        }]
+                    };
                 });
             };
 
@@ -1089,7 +1322,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                 colors: ['#74bd73', '#d0b069', '#8178f7', '#09a9f7', '#cd6470'],
                 plotOptions: {
                     pie: {
-                        allowPointSelect: true,
+                        allowPointSelect: false,
                         cursor: 'pointer',
                         depth: 15,
                         dataLabels: {
@@ -1100,6 +1333,19 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             format: '{point.y}<br/>{point.percentage:.1f}%'
                         },
                         showInLegend: true
+                    },
+                    series: {
+                        cursor: 'pointer',
+                        point: {
+                            events: {
+                                click: function () {
+                                    $scope.state3 = 'bar';
+                                    $scope.brandName = this.name;
+                                    $scope.stockRange = this.r;
+                                    $scope.qryBrandTop5ModelByConds();
+                                }
+                            }
+                        }
                     }
                 },
                 series: [{
@@ -1121,12 +1367,118 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                         if (index < 6) {
                             var obj = {
                                 name: item.brandName,
-                                y: item.stockCount
+                                y: item.stockCount,
+                                r: item.stockRange
                             };
                             businessIndexList.push(obj);
                         }
                     });
                     $scope.inStockTopBrand.series[0].data = businessIndexList;
+                });
+            };
+            //圆变柱状图
+            $scope.qryBrandTop5ModelByConds = function () {
+                var params = {
+                    queryDate: _.get($scope, 'month.key'),
+                    channelType: _.get($scope, 'channelType.channelTypeCd'),
+                    commonRegionId: _.get($scope, 'checkedCity.commonRegionId'),
+                    stockRange: $scope.stockRange,
+                    unit: ''//后期加上
+                };
+                httpMethod.qryBrandTop5ModelByConds(params).then(function (rsp) {
+                    var xaxis = [], arr1 = [];
+                    _.map(rsp.data, function (item) {
+                        xaxis.push(item.modelName);
+                        arr1.push(item.stockCount);
+                    });
+                    $scope.brandTop5ModelByConds = {
+                        tooltip: {
+                            show: true,
+                            trigger: 'axis'
+                        },
+                        grid: {
+                            left: '150',
+                            top: '20',
+                            right: '50',
+                            bottom: '25'
+                        },
+                        color: ['#1da1dd'],
+                        legend: {
+                            show: false
+                        },
+                        xAxis: [
+                            {
+                                type: 'value',
+                                splitLine: {
+                                    show: false,
+                                    lineStyle: {
+                                        color: 'rgba(255, 255, 255, 0.1)'
+                                    }
+                                },
+                                axisLabel: {
+                                    show: false,
+                                    textStyle: {
+                                        color: '#fff'
+                                    }
+                                },
+                                axisLine: {
+                                    show: false
+                                }
+                            }
+                        ],
+                        yAxis: [
+                            {
+                                type: 'category',
+                                boundaryGap: true,
+                                axisTick: {
+                                    show: true,
+                                    lineStyle: {
+                                        color: '#2f76a5',
+                                        type: 'solid'
+                                    }
+                                },
+                                splitLine: {
+                                    show: false,
+                                    lineStyle: {
+                                        color: 'rgba(255, 255, 255, 0.1)'
+                                    }
+                                },
+                                axisLabel: {
+                                    show: true,
+                                    interval: 0,
+                                    textStyle: {
+                                        color: '#fff'
+                                    },
+                                    formatter:function(val){
+                                        var reg = /(.{11}).*/;
+                                        return val.replace(reg, "$1...");
+                                    }
+                                },
+                                axisLine: {
+                                    show: true,
+                                    lineStyle: {
+                                        color: '#2f76a5',
+                                        width: 1
+                                    }
+                                },
+                                data: xaxis
+                            }
+                        ],
+                        series: [{
+                            name: 'TOP5库存机型',
+                            type: 'bar',
+                            barWidth: 20,
+                            label: {
+                                show: true,
+                                fontSize: '12',
+                                position: 'insideRight'
+                            },
+                            itemStyle: {
+                                barBorderRadius: 0
+                            },
+                            data: arr1
+                        }]
+                    };
                 });
             };
 
@@ -1267,7 +1619,8 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                                     textStyle: {
                                         color: '#fff'
                                     },
-                                    formatter: function(params) {var newParamsName = "";// 最终拼接成的字符串
+                                    formatter: function (params) {
+                                        var newParamsName = "";// 最终拼接成的字符串
                                         var paramsNameNumber = params.length;// 实际标签的个数
                                         var provideNumber = 6;// 每行能显示的字的个数
                                         var rowNumber = Math.ceil(paramsNameNumber / provideNumber);// 换行的话，需要显示几行，向上取整
@@ -1433,7 +1786,8 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                                     textStyle: {
                                         color: '#fff'
                                     },
-                                    formatter: function(params) {var newParamsName = "";// 最终拼接成的字符串
+                                    formatter: function (params) {
+                                        var newParamsName = "";// 最终拼接成的字符串
                                         var paramsNameNumber = params.length;// 实际标签的个数
                                         var provideNumber = 6;// 每行能显示的字的个数
                                         var rowNumber = Math.ceil(paramsNameNumber / provideNumber);// 换行的话，需要显示几行，向上取整
@@ -1645,7 +1999,8 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                                     textStyle: {
                                         color: '#fff'
                                     },
-                                    formatter: function(params) {var newParamsName = "";// 最终拼接成的字符串
+                                    formatter: function (params) {
+                                        var newParamsName = "";// 最终拼接成的字符串
                                         var paramsNameNumber = params.length;// 实际标签的个数
                                         var provideNumber = 6;// 每行能显示的字的个数
                                         var rowNumber = Math.ceil(paramsNameNumber / provideNumber);// 换行的话，需要显示几行，向上取整
@@ -1769,7 +2124,8 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                                     textStyle: {
                                         color: '#fff'
                                     },
-                                    formatter: function(params) {var newParamsName = "";// 最终拼接成的字符串
+                                    formatter: function (params) {
+                                        var newParamsName = "";// 最终拼接成的字符串
                                         var paramsNameNumber = params.length;// 实际标签的个数
                                         var provideNumber = 6;// 每行能显示的字的个数
                                         var rowNumber = Math.ceil(paramsNameNumber / provideNumber);// 换行的话，需要显示几行，向上取整
@@ -1902,8 +2258,16 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
             });
 
             $scope.state1 = 'circle';
-            $scope.changeTarget = function(val){
+            $scope.changeTarget1 = function (val) {
                 $scope.state1 = val;
+            }
+            $scope.state2 = 'circle';
+            $scope.changeTarget2 = function (val) {
+                $scope.state2 = val;
+            }
+            $scope.state3 = 'circle';
+            $scope.changeTarget3 = function (val) {
+                $scope.state3 = val;
             }
         }])
 });

@@ -86,10 +86,6 @@ angular
         httpMethod.qryPriceSalesRatioLast12Months = function (params) {
             return httpServer(httpConfig.siteUrl + '/visual/q/qryPriceSalesRatioLast12Months', params, 'POST');
         };
-        //20、查询库存量—在库时间分布
-        httpMethod.qryInStockTimeByConds = function (params) {
-            return httpServer(httpConfig.siteUrl + '/visual/q/qryInStockTimeByConds', params, 'POST');
-        };
         //21、查询库存量—分价位段分布
         httpMethod.qryInStockByPriceRange = function (params) {
             return httpServer(httpConfig.siteUrl + '/visual/q/qryInStockByPriceRange', params, 'POST');
@@ -168,13 +164,25 @@ angular
         httpMethod.qryInStockTimeByConds = function (params) {
             return httpServer(httpConfig.siteUrl + '/visual/q/qryInStockTimeByConds', params, 'POST');
         };
+        //获取库存量在库时间分布top机型库存量接口
+        httpMethod.qryTimeTop5ModelByConds = function (params) {
+            return httpServer(httpConfig.siteUrl + '/visual/q/qryTimeTop5ModelByConds', params, 'POST');
+        };
         //10.根据账期、渠道类型、地区获取库存量分价位段分布接口
         httpMethod.qryInStockByPriceRange = function (params) {
             return httpServer(httpConfig.siteUrl + '/visual/q/qryInStockByPriceRange', params, 'POST');
         };
+        //获取库存量分价位分布top5机型库存量接口
+        httpMethod.qryPriceTop5ModelByCond = function (params) {
+            return httpServer(httpConfig.siteUrl + '/visual/q/qryPriceTop5ModelByCond', params, 'POST');
+        };
         //11.根据账期、渠道类型、地区获取库存量TOP5品牌分布接口
         httpMethod.qryInStockTopBrand = function (params) {
             return httpServer(httpConfig.siteUrl + '/visual/q/qryInStockTopBrand', params, 'POST');
+        };
+        //获取库存量品牌分布top机型库存量接口
+        httpMethod.qryBrandTop5ModelByConds = function (params) {
+            return httpServer(httpConfig.siteUrl + '/visual/q/qryBrandTop5ModelByConds', params, 'POST');
         };
         //12.根据账期、渠道类型、地区获取库存量TOP5机型分布接口
         httpMethod.qryInStockTopModel = function (params) {

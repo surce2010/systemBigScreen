@@ -87,30 +87,56 @@
         <ul class="ul-two-line fn-clear">
             <li class="card fn-left">
                 <p class="title">库存量--在库时间分布</p>
-                <div ng-show="state1 === 'circle'" ng-click="changeTarget('bar')">
+                <div ng-show="state1 === 'circle'">
                     <div class="legend">单位：万台</div>
                     <div style="width: 100%; height: 280px;" high-charts config="inStockTimeByConds"></div>
                 </div>
-                <div ng-show="state1 === 'bar'">
+                <div class="stock-time" ng-show="state1 === 'bar'">
                     <div class="target-title fn-clear">
-                        <p class="p-line fn-left"><span>[ 0-30 ] </span>天的TOP5库存机型</p>
+                        <p class="p-line fn-left"><span ng-cloak>[{{paymentDayDuring}}] </span>天的TOP5库存机型</p>
                         <div class="legend2 fn-left">单位：万台</div>
-                        <button class="back fn-right" ng-click="changeTarget('circle')">< 返回</button>
+                        <button class="back fn-right" ng-click="changeTarget1('circle')">< 返回</button>
                     </div>
-                    <!--<div style="width: 100%; height: 280px;" high-charts config="inStockTimeByConds"></div>-->
+                    <div class="chart-one">
+                        <div class="chart" e-chart options="inStockTimeInBar"></div>
+                    </div>
                 </div>
             </li>
             <li class="card fn-left">
                 <p class="title">库存量--分价位段分布</p>
-                <div class="legend" style="right: 127px">单位：万台</div>
-                <div style="width: 100%; height: 280px;" high-charts config="inStockByPriceRange"></div>
+                <div ng-show="state2 === 'circle'">
+                    <div class="legend" style="right: 127px">单位：万台</div>
+                    <div style="width: 100%; height: 280px;" high-charts config="inStockByPriceRange"></div>
+                </div>
+                <div class="stock-time" ng-show="state2 === 'bar'">
+                    <div class="target-title fn-clear">
+                        <p class="p-line fn-left"><span ng-cloak>[{{priceRangeName}}] </span>元的TOP5库存机型</p>
+                        <div class="legend2 fn-left">单位：万台</div>
+                        <button class="back fn-right" ng-click="changeTarget2('circle')">< 返回</button>
+                    </div>
+                    <div class="chart-one">
+                        <div class="chart" e-chart options="priceTop5ModelByCond"></div>
+                    </div>
+                </div>
             </li>
         </ul>
         <ul class="ul-two-line fn-clear">
             <li class="card fn-left">
                 <p class="title">库存量--TOP5品牌分布</p>
-                <div class="legend" style="right: 83px;">单位：万台</div>
-                <div style="width: 100%; height: 280px;" high-charts config="inStockTopBrand"></div>
+                <div ng-show="state3 === 'circle'">
+                    <div class="legend" style="right: 83px;">单位：万台</div>
+                    <div style="width: 100%; height: 280px;" high-charts config="inStockTopBrand"></div>
+                </div>
+                <div class="stock-time" ng-show="state3 === 'bar'">
+                    <div class="target-title fn-clear">
+                        <p class="p-line fn-left"><span ng-cloak>[{{brandName}}] </span>品牌的TOP5库存机型</p>
+                        <div class="legend2 fn-left">单位：万台</div>
+                        <button class="back fn-right" ng-click="changeTarget3('circle')">< 返回</button>
+                    </div>
+                    <div class="chart-one">
+                        <div class="chart" e-chart options="brandTop5ModelByConds"></div>
+                    </div>
+                </div>
             </li>
             <li class="card fn-left">
                 <p class="title">库存量--TOP5机型分布</p>

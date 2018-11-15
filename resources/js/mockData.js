@@ -672,6 +672,19 @@
             'dayDuringRage|1-100': 1//时间跨度排行
         }]
     });
+    //获取库存量在库时间分布top机型库存量接口
+    Mock.mock(new RegExp('/visual/q/qryTimeTop5ModelByConds'), {
+        rsphead: 's',
+        success: 'true', //是否成功true/失败false
+        code: null,
+        msg: null, //失败信息
+        error: null,
+        'data|5': [{
+            "modelCd": "@id",
+            "modelName": '@cword(10,20)',
+            "stockCount|1-100": 1
+        }]
+    });
     //10.根据账期、渠道类型、地区获取  库存量分价位段分布接口
     Mock.mock(new RegExp('/visual/q/qryInStockByPriceRange'), {
         rsphead: 's',
@@ -684,6 +697,19 @@
             'stockCount|100-10000': 100, //库存量
             'stockCount|100-5000': 1350,//库存量(万台)
             'stockPercent|1-100': 1//库存占比
+        }]
+    });
+    //获取库存量分价位分布top5机型库存量接口
+    Mock.mock(new RegExp('/visual/q/qryPriceTop5ModelByCond'), {
+        rsphead: 's',
+        success: 'true', //是否成功true/失败false
+        code: null,
+        msg: null, //失败信息
+        error: null,
+        'data|5': [{
+            "modelCd": "@id",
+            "modelName": '@cword(10,20)',
+            "stockCount|1-100": 1
         }]
     });
     //11.根据账期、渠道类型、地区获取  库存量TOP5品牌分布接口
@@ -701,6 +727,19 @@
             'stockRange|1-100': 1//库存量排名
         }]
     });
+    //获取库存量品牌分布top机型库存量接口
+    Mock.mock(new RegExp('/visual/q/qryBrandTop5ModelByConds'), {
+        rsphead: 's',
+        success: 'true', //是否成功true/失败false
+        code: null,
+        msg: null, //失败信息
+        error: null,
+        'data|5': [{
+            "modelCd": "@id",
+            "modelName": '@cword(10,20)',
+            "stockCount|1-100": 1
+        }]
+    });
     //12.根据账期、渠道类型、地区获取  库存量TOP5机型分布接口
     Mock.mock(new RegExp('/visual/q/qryInStockTopModel'), {
         rsphead: 's',
@@ -716,6 +755,7 @@
             'stockRange|1-100': 1//排行
         }]
     });
+
     //13.根据账期、渠道类型、地区获取 TOP10销量品牌有销门店及占比
     Mock.mock(new RegExp('/visual/q/qryRetailShopTopBrand'), {
         rsphead: 's',
