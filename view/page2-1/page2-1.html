@@ -87,8 +87,10 @@
         <ul class="ul-two-line fn-clear">
             <li class="card fn-left">
                 <p class="title">库存量--在库时间分布</p>
-                <div class="legend">单位：万台</div>
-                <div style="width: 100%; height: 280px;" high-charts config="inStockTimeByConds"></div>
+                <div ng-show="state1 === 'circle'" ng-click="changeTarget()">
+                    <div class="legend">单位：万台</div>
+                    <div style="width: 100%; height: 280px;" high-charts config="inStockTimeByConds"></div>
+                </div>
             </li>
             <li class="card fn-left">
                 <p class="title">库存量--分价位段分布</p>
@@ -134,7 +136,7 @@
             </li>
             <li class="card fn-left">
                 <p class="title">TOP10销量机型销量及销量占比</p>
-                <p class="info">销量占比=筛选条件下品牌核销量/筛选条件下总核销量</p>
+                <p class="info">销量占比=筛选条件下该机型核销量/筛选条件下总核销量</p>
                 <div class="chart-one">
                     <div class="chart" e-chart options="retailTopModel"></div>
                 </div>

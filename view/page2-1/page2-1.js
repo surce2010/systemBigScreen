@@ -1882,7 +1882,6 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                     $scope.qryInStockByPriceRange();
                 }
             });
-
             $scope.$watchGroup(['month.key', 'checkedCity.commonRegionId'], function (newVal) {
                 if (newVal) {
                     $scope.qryInStockTopBrand();
@@ -1893,5 +1892,9 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                     $scope.qryRetailTopModel();
                 }
             });
+
+            $scope.changeTarget = function(){
+
+            }
         }])
 });

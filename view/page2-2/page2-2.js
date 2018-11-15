@@ -180,10 +180,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             smooth: false,
                             label: {
                                 show: true,
-                                fontSize: '12',
-                                formatter: function (params) {
-                                    return params.value + '%';
-                                }
+                                fontSize: '12'
                             },
                             yAxisIndex: 1,
                             data: monthRatio
@@ -323,10 +320,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             smooth: false,
                             label: {
                                 show: true,
-                                fontSize: '12',
-                                formatter: function (params) {
-                                    return params.value + '%';
-                                }
+                                fontSize: '12'
                             },
                             yAxisIndex: 1,
                             data: monthRatio
