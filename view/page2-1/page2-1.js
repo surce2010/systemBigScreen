@@ -935,7 +935,15 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             format: '{point.y}<br/>{point.percentage:.1f}%'
                         },
                         showInLegend: true
-                    }
+                    },
+                    point: {
+                        events: {
+                            legendItemClick: function () {
+                                return false; // <== returning false will cancel the default action
+                            }
+                        }
+                    },
+                    allowPointSelect: false,
                 },
                 series: [{
                     type: 'pie',
@@ -1893,8 +1901,9 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                 }
             });
 
-            $scope.changeTarget = function(){
-
+            $scope.state1 = 'circle';
+            $scope.changeTarget = function(val){
+                $scope.state1 = val;
             }
         }])
 });

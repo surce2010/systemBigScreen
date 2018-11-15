@@ -122,6 +122,10 @@ angular
         httpMethod.initCommonRegionInfo = function (params) {
             return httpServer(httpConfig.siteUrl + '/visual/q/initCommonRegionInfo', params, 'POST');
         };
+        //为分省终端进销存准备的所在地区查询接口
+        httpMethod.initCommonRegionInfo4VisualRegionInvoicing = function (params) {
+            return httpServer(httpConfig.siteUrl + '/visual/q/initCommonRegionInfo4VisualRegionInvoicing', params, 'POST');
+        };
         //渠道类型查询接口
         httpMethod.loadChannelType = function (params) {
             return httpServer(httpConfig.siteUrl + '/visual/q/loadChannelType', params, 'POST');

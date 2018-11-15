@@ -111,3 +111,35 @@
     font-size: 12px;
     font-weight: bold;
 }
+.target-title{
+    position: relative;
+    margin-top: 12px;
+}
+.target-title .p-line{
+    width: 246px;
+    height: 24px;
+    margin-left: 20px;
+    padding: 0 10px;
+    line-height: 24px;
+    background: #1b326b;
+    font-size: 14px;
+    color: #fff;
+    font-weight: bold;
+}
+.target-title .p-line span{
+    color: #fcfb0e;
+}
+.legend2{
+    margin-left: 20px;
+    line-height: 24px;
+}
+.target-title .back{
+    width: 54px;
+    height: 24px;
+    margin-right: 14px;
+    background: #dbb354;
+    font-size: 12px;
+    color: #000;
+    border:0;
+    border-radius: 24px;
+}

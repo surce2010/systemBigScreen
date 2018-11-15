@@ -33,15 +33,14 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
             }
 
             getMonthList();
-
+            
             //查询地区
-            httpMethod.initCommonRegionInfo().then(function (rsp) {
+            httpMethod.initCommonRegionInfo4VisualRegionInvoicing().then(function (rsp) {
                 if (rsp.success) {
                     $scope.nameList = rsp.data.areaLevelNames;
                     $scope.commonRegionList = rsp.data.commonRegion;
                 }
             });
-
             //查询渠道类型
             httpMethod.loadChannelType().then(function (rsp) {
                 if (rsp.success) {
