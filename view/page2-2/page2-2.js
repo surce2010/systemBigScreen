@@ -33,7 +33,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
             }
 
             getMonthList();
-            
+
             //查询地区
             httpMethod.initCommonRegionInfo4VisualRegionInvoicing().then(function (rsp) {
                 if (rsp.success) {
@@ -51,7 +51,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
             $scope.qryInStockAndMonthRatio = function () {
                 var params = {
                     queryDate: _.get($scope, 'month.key'),
-                    channelType: _.get($scope, 'channelType.channelTypeCd'),
+                    channelTypeCd: _.get($scope, 'channelType.channelTypeCd'),
                     commonRegionId: _.get($scope, 'checkedCity.commonRegionId')
                 };
                 httpMethod.qryInStockAndMonthRatio(params).then(function (rsp) {
@@ -191,7 +191,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
             $scope.qryAllSaleCountAndMonthRatio = function () {
                 var params = {
                     queryDate: _.get($scope, 'month.key'),
-                    channelType: _.get($scope, 'channelType.channelTypeCd'),
+                    channelTypeCd: _.get($scope, 'channelType.channelTypeCd'),
                     commonRegionId: _.get($scope, 'checkedCity.commonRegionId')
                 };
                 httpMethod.qryAllSaleCountAndMonthRatio(params).then(function (rsp) {
@@ -331,7 +331,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
             $scope.qryMonthStockSaleProportion = function () {
                 var params = {
                     queryDate: _.get($scope, 'month.key'),
-                    channelType: _.get($scope, 'channelType.channelTypeCd'),
+                    channelTypeCd: _.get($scope, 'channelType.channelTypeCd'),
                     commonRegionId: _.get($scope, 'checkedCity.commonRegionId')
                 };
                 httpMethod.qryMonthStockSaleProportion(params).then(function (rsp) {
@@ -457,7 +457,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
             $scope.qrySaleShopCountAndMonthRatio = function () {
                 var params = {
                     queryDate: _.get($scope, 'month.key'),
-                    channelType: _.get($scope, 'channelType.channelTypeCd'),
+                    channelTypeCd: _.get($scope, 'channelType.channelTypeCd'),
                     commonRegionId: _.get($scope, 'checkedCity.commonRegionId')
                 };
                 httpMethod.qrySaleShopCountAndMonthRatio(params).then(function (rsp) {
@@ -597,7 +597,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
             $scope.qryShopMonthSaleAndMonthRatio = function () {
                 var params = {
                     queryDate: _.get($scope, 'month.key'),
-                    channelType: _.get($scope, 'channelType.channelTypeCd'),
+                    channelTypeCd: _.get($scope, 'channelType.channelTypeCd'),
                     commonRegionId: _.get($scope, 'checkedCity.commonRegionId')
                 };
                 httpMethod.qryShopMonthSaleAndMonthRatio(params).then(function (rsp) {
@@ -737,7 +737,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
             $scope.qryJihuoLaxinAndAllSaleCount = function () {
                 var params = {
                     queryDate: _.get($scope, 'month.key'),
-                    channelType: _.get($scope, 'channelType.channelTypeCd'),
+                    channelTypeCd: _.get($scope, 'channelType.channelTypeCd'),
                     commonRegionId: _.get($scope, 'checkedCity.commonRegionId')
                 };
                 httpMethod.qryJihuoLaxinAndAllSaleCount(params).then(function (rsp) {
@@ -877,7 +877,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
             $scope.qryMonthJihuoAndLaxinRatio = function () {
                 var params = {
                     queryDate: _.get($scope, 'month.key'),
-                    channelType: _.get($scope, 'channelType.channelTypeCd'),
+                    channelTypeCd: _.get($scope, 'channelType.channelTypeCd'),
                     commonRegionId: _.get($scope, 'checkedCity.commonRegionId')
                 };
                 httpMethod.qryMonthJihuoAndLaxinRatio(params).then(function (rsp) {
