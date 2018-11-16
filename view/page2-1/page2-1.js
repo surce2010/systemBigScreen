@@ -2178,17 +2178,89 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                     $scope.qrySalesAmountPerSaleShopLast6Months();
                     $scope.qryZzcInfoLast6Months();
                     $scope.qryInStockTimeByConds();
+                    $scope.qryTimeTop5ModelByConds();
                     $scope.qryInStockByPriceRange();
+                    $scope.qryPriceTop5ModelByCond();
                 }
             });
 
             $scope.$watchGroup(['month.key', 'checkedCity.commonRegionId'], function (newVal) {
                 if (newVal) {
                     $scope.qryInStockTopBrand();
+                    $scope.qryBrandTop5ModelByConds();
                     $scope.qryInStockTopModel();
                     $scope.qryRetailShopTopBrand();
                     $scope.qryRetailShopTopModel();
                     $scope.qryRetailTopBrand();
+                    $scope.qryRetailTopModel();
+                }
+            });
+
+            $scope.$watch('checkedPurchaseUnit.unitId', function (newVal) { //1
+                if (newVal) {
+                    $scope.qryPurchaseInAmountLast6Months();
+                }
+            });
+            $scope.$watch('checkedSalesAmountUnit.unitId', function (newVal) {//2
+                if (newVal) {
+                    $scope.qrySalesAmountLast6Months();
+                }
+            });
+            $scope.$watch('checkedStructureUnit.unitId', function (newVal) {//3
+                if (newVal) {
+                    $scope.qrySalesAmountStructureLast6Months();
+                }
+            });
+            $scope.$watch('checkedSaleUnit.unitId', function (newVal) {//5
+                if (newVal) {
+                    $scope.qrySalesAmountPerSaleShopLast6Months();
+                }
+            });
+            $scope.$watch('checkedZzcInfoUnit.unitId', function (newVal) {//6
+                if (newVal) {
+                    $scope.qryZzcInfoLast6Months();
+                }
+            });
+            $scope.$watch('checkedInStockTimeUnit.unitId', function (newVal) {//7
+                if (newVal) {
+                    $scope.qryInStockTimeByConds();
+                    $scope.qryTimeTop5ModelByConds();
+                }
+            });
+            $scope.$watch('checkedInStockPriceUnit.unitId', function (newVal) {//8
+                if (newVal) {
+                    $scope.qryInStockByPriceRange();
+                    $scope.qryPriceTop5ModelByCond();
+                }
+            });
+            $scope.$watch('checkedStockBrandUnit.unitId', function (newVal) {//9
+                if (newVal) {
+                    $scope.qryInStockTopBrand();
+                    $scope.qryBrandTop5ModelByConds();
+                }
+            });
+            $scope.$watch('checkedStockModelUnit.unitId', function (newVal) {//10
+                if (newVal) {
+                    $scope.qryInStockTopModel();
+                }
+            });
+            $scope.$watch('checkedShopBrandUnit.unitId', function (newVal) {//11
+                if (newVal) {
+                    $scope.qryRetailShopTopBrand();
+                }
+            });
+            $scope.$watch('checkedShopModelUnit.unitId', function (newVal) {//12
+                if (newVal) {
+                    $scope.qryRetailShopTopModel();
+                }
+            });
+            $scope.$watch('checkedRetailBrandUnit.unitId', function (newVal) {//13
+                if (newVal) {
+                    $scope.qryRetailTopBrand();
+                }
+            });
+            $scope.$watch('checkedRetailModelUnit.unitId', function (newVal) {//14
+                if (newVal) {
                     $scope.qryRetailTopModel();
                 }
             });
