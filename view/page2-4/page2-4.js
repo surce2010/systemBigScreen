@@ -6,6 +6,10 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
     angular
         .module('pageModule', ['ngDirective', 'ngHighCharts', 'ngEcharts', 'httpMethod'])
         .run(['$rootScope', function ($rootScope) {
+            var id = window.frameElement && window.frameElement.id || '',
+                obj = parent.$('#' + id).attr('data');
+            $rootScope.targetStore = obj ? JSON.parse(obj) : {};
+
             $rootScope.month = '';
         }])
         .controller('pageCtrl', ['$rootScope', '$scope', '$log', '$interval', 'httpMethod', '$uibModal', function ($rootScope, $scope, $log, $interval, httpMethod, $uibModal) {
@@ -1463,9 +1467,8 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                 });
             };
 
-
             $rootScope.$watch('month.key', function (newVal) {
-                if ($rootScope.targetStore) {
+                if (_.get($rootScope.targetStore, 'CHANNEL_NBR')) {
                     var params = {
                         curPage: 1, //当前页
                         pageSize: 1, //每页条数
