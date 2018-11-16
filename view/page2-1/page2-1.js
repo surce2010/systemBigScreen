@@ -999,7 +999,10 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                     $scope.inStockTimeInBar = {
                         tooltip: {
                             show: true,
-                            trigger: 'axis'
+                            trigger: 'axis',
+                            axisPointer: {
+                                type: 'shadow'
+                            }
                         },
                         grid: {
                             left: '150',
@@ -1014,17 +1017,14 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                         xAxis: [
                             {
                                 type: 'value',
+                                axisTick: {
+                                    show: false
+                                },
                                 splitLine: {
-                                    show: false,
-                                    lineStyle: {
-                                        color: 'rgba(255, 255, 255, 0.1)'
-                                    }
+                                    show: false
                                 },
                                 axisLabel: {
-                                    show: false,
-                                    textStyle: {
-                                        color: '#fff'
-                                    }
+                                    show: false
                                 },
                                 axisLine: {
                                     show: false
@@ -1197,7 +1197,10 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                     $scope.priceTop5ModelByCond = {
                         tooltip: {
                             show: true,
-                            trigger: 'axis'
+                            trigger: 'axis',
+                            axisPointer: {
+                                type: 'shadow'
+                            }
                         },
                         grid: {
                             left: '150',
@@ -1212,17 +1215,14 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                         xAxis: [
                             {
                                 type: 'value',
+                                axisTick: {
+                                    show: false
+                                },
                                 splitLine: {
-                                    show: false,
-                                    lineStyle: {
-                                        color: 'rgba(255, 255, 255, 0.1)'
-                                    }
+                                    show: false
                                 },
                                 axisLabel: {
-                                    show: false,
-                                    textStyle: {
-                                        color: '#fff'
-                                    }
+                                    show: false
                                 },
                                 axisLine: {
                                     show: false
@@ -1394,7 +1394,10 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                     $scope.brandTop5ModelByConds = {
                         tooltip: {
                             show: true,
-                            trigger: 'axis'
+                            trigger: 'axis',
+                            axisPointer: {
+                                type: 'shadow'
+                            }
                         },
                         grid: {
                             left: '150',
@@ -1409,17 +1412,14 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                         xAxis: [
                             {
                                 type: 'value',
+                                axisTick: {
+                                    show: false
+                                },
                                 splitLine: {
-                                    show: false,
-                                    lineStyle: {
-                                        color: 'rgba(255, 255, 255, 0.1)'
-                                    }
+                                    show: false
                                 },
                                 axisLabel: {
-                                    show: false,
-                                    textStyle: {
-                                        color: '#fff'
-                                    }
+                                    show: false
                                 },
                                 axisLine: {
                                     show: false
