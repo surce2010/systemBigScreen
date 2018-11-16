@@ -18,7 +18,7 @@
     <div class="wrap-head fn-clear">
         <div class="query-criteria fn-left">
             <div class="text-link fn-clear">
-                <div class="link-store fn-left"><i class="iconfont">&#xe621;</i>查找门店</div>
+                <div class="link-store fn-left" ng-click="chooseStore()"><i class="iconfont">&#xe621;</i>查找门店</div>
                 <div class="line fn-left"></div>
                 <div class="link-norm fn-right"><i class="iconfont">&#xe61d;</i>指标说明</div>
             </div>
@@ -450,6 +450,67 @@
             </div>
         </div>
     </div>
+    <!-- 选择营业厅 -->
+    <script type="text/ng-template" id="chooseServiceHallModal.html">
+        <div class="modal-header">
+            <button type="button" class="close iconfont" ng-click="$ctrl.cancel()">&#xe611;</button>
+            <h3 class="modal-title">选择营业厅</h3>
+        </div>
+        <!-- 条件查询 -->
+        <div class="depot-query-box fn-clear">
+            <div class="account-month fn-left fn-clear">
+                <div class="account-month-title fn-left">门店编码:</div>
+                <div class="account-month-select fn-left">
+                    <input type="text" ng-model="channelNbr"/>
+                </div>
+            </div>
+            <div class="account-month fn-left fn-clear">
+                <div class="account-month-title fn-left">门店名称:</div>
+                <div class="account-month-select fn-left">
+                    <input type="text" ng-model="channelName"/>
+                </div>
+            </div>
+            <div class="account-month fn-left fn-clear">
+                <button type="submit" class="btn-query" ng-click="qryShopByConds()">查询</button>
+            </div>
+        </div>
+        <!-- 结果列表 -->
+        <div class="result-table">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th width="10%">选择</th>
+                    <th width="20%">门店编码</th>
+                    <th>门店名称</th>
+                    <th width="30%">是否精品标杆门店</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in shopByCondsList" ng-class="{'hover':item.checked}" ng-click="check(item)" ng-dblclick="doubleClick(item)">
+                    <td>
+                        <span class="nocheck" ng-class="{'checked': item.checked}"></span>
+                    </td>
+                    <td>
+                        <p class="overflow-handle" title="{{item.CHANNEL_NBR}}" ng-bind="item.CHANNEL_NBR"></p>
+                    </td>
+                    <td>
+                        <p class="overflow-handle" title="{{item.CHANNEL_NAME}}" ng-bind="item.CHANNEL_NAME"></p>
+                    </td>
+                    <td>
+                        <p ng-bind="item.BIAOGAN_FLAG"></p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <p class="no-data" ng-if="shopByCondsList && !shopByCondsList.length" ng-cloak>没有数据</p>
+            <div ng-pages query-submit='qryShopByConds(currentPage, pageSize)' page-size="pageSize"
+                 max-size="maxSize" current-page="currentPage" total="totalNum" page-num="pageNums"></div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-submit" type="button" ng-disabled="isDisabled" ng-click="$ctrl.ok()">确定</button>
+            <button class="btn btn-cancel" type="button" ng-click="$ctrl.cancel()">取消</button>
+        </div>
+    </script>
     <script id="page" src="../../resources/js/require.js" data-main="../../resources/js/requireConfig.js"
             current-page="./page1.js" target-module="pageModule"></script>
 </body>

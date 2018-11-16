@@ -641,3 +641,168 @@
     text-overflow: clip;
     vertical-align: middle;
 }
+
+/*弹窗*/
+.modal.in .modal-dialog {
+    width: 810px;
+    border: 1px solid #3c77d8;
+    /*background: #243e76;*/
+    background: url("../../resources/images/bg-repeat.png") repeat;
+    border-radius: 0;
+}
+
+.modal-content {
+    background: url("../../resources/images/bg-repeat.png") repeat;
+}
+
+.modal-header {
+    height: 42px;
+    padding: 0;
+    border-bottom: 1px solid #3c77d8;
+    background: url("../../resources/images/bg-repeat2.png") repeat;
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+}
+
+.modal-header .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 68px;
+    height: 42px;
+    color: #fff;
+    opacity: 1;
+}
+
+.modal-title {
+    line-height: 42px;
+}
+
+.depot-query-box {
+    padding: 12px 28px 15px;
+}
+
+.result-table {
+    padding: 0 28px;
+}
+
+.btn-query {
+    width: 100px;
+    height: 32px;
+    border: 0;
+    background: #243e76;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 0;
+}
+
+.account-month-select input {
+    width: 210px;
+    height: 32px;
+    padding: 0 10px;
+    border: 0;
+    background: none;
+}
+
+.depot-query-box .account-month {
+    margin-right: 18px;
+    background: #243e76;
+    font-size: 16px;
+}
+
+.depot-query-box .account-month-title {
+    width: 94px;
+    padding: 0;
+    text-align: center;
+}
+
+.depot-query-box .account-month:last-child {
+    margin-right: 0;
+}
+
+.table {
+    border: 1px solid #3c77d8;
+    margin-bottom: 12px;
+}
+
+.table tr {
+    height: 32px;
+    border-bottom: 1px solid #3c77d8;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.table thead tr {
+    height: 36px;
+    background: rgba(73, 98, 166, 0.9);
+    color: #99ffee;
+    font-size: 16px;
+}
+
+.table > thead > tr > th, .table > tbody > tr > td {
+    border-bottom: 1px dashed #697bb9;
+}
+
+.table thead tr th, .table tbody tr td {
+    text-align: center;
+    border-bottom: 1px dashed #697bb9;
+}
+
+.table tbody tr:nth-of-type(odd) {
+    background: rgba(28, 50, 101, 0.66);
+}
+
+.table tbody tr:hover {
+    background: rgba(57, 154, 186, 0.8);
+}
+
+.table tbody tr.hover {
+    background: rgba(57, 154, 186, 0.8);
+}
+
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    border-top: 0;
+}
+
+.modal-footer {
+    height: 66px;
+    margin-top: 12px;
+    border-top: 1px solid #3050a0;
+    background: url("../../resources/images/bg-repeat2.png") repeat;
+    padding: 0;
+    text-align: center;
+}
+
+.modal-footer .btn {
+    width: 100px;
+    height: 36px;
+    padding: 0;
+    margin-top: 16px;
+    border-radius: 0;
+}
+
+.modal-footer .btn-submit {
+    background: #38d8d4;
+    border: 1px solid #38d8d4;
+    color: #333;
+}
+
+.modal-footer .btn-cancel {
+    background: #2d5aa5;
+    border: 1px solid #3050a0;
+    color: #fff;
+}
+
+.nocheck {
+    display: block;
+    width: 19px;
+    height: 19px;
+    margin: auto;
+    background: url("../../resources/images/icon-nocheck.png") no-repeat;
+}
+
+.checked {
+    background: url("../../resources/images/icon-checked.png") no-repeat;
+}

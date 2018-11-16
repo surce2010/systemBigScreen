@@ -5,7 +5,22 @@
 define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts', 'scrollbar', 'ngMapDrill', 'httpMethod'], function (angular, $, _) {
     angular
         .module('pageModule', ['ngDirective', 'ngHighCharts', 'ngMapDrill', 'ngEcharts', 'httpMethod'])
-        .controller('pageCtrl', ['$rootScope', '$scope', '$log', '$timeout', 'httpMethod', function ($rootScope, $scope, $log, $timeout, httpMethod) {
+        .controller('pageCtrl', ['$rootScope', '$scope', '$log', '$uibModal', 'httpMethod', function ($rootScope, $scope, $log, $uibModal, httpMethod) {
+            $scope.chooseStore = function () {
+                $uibModal.open({
+                    animation: true,
+                    templateUrl: 'chooseServiceHallModal.html',
+                    controller: 'chooseServiceHallModalCtrl',
+                    controllerAs: '$ctrl',
+                    size: 'lg',
+                    resolve: {
+                        items: function () {
+                            return;
+                        }
+                    }
+                });
+            };
+
             //获取当前时间向前的12个月列表
             function getMonthList() {
                 var now = new Date(), y, m;
@@ -503,4 +518,64 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                 }
             });
         }])
+        .controller('chooseServiceHallModalCtrl', function ($uibModalInstance, $scope, $rootScope, items, httpMethod) {
+            var $ctrl = this;
+
+            $scope.totalNum = 0;
+            $scope.pageSize = 5;
+            $scope.currentPage = 1;
+            $scope.maxSize = 3; //最大显示页码数
+            $scope.qryShopByConds = function (curPage, pageSize) {
+                $scope.currentPage = curPage || 1;
+                $scope.pageSize = pageSize || 5;
+                var params = {
+                    curPage: $scope.currentPage, //当前页
+                    pageSize: $scope.pageSize, //每页条数
+                    queryDate: _.get($rootScope, 'month.key'),
+                    channelNbr: $scope.channelNbr,
+                    channelName: $scope.channelName
+                };
+                httpMethod.qryShopByConds(params).then(function (rsp) {
+                    if (rsp.success) {
+                        $scope.totalNum = rsp.data.total;
+                        $scope.pageNums = rsp.data.pages;
+                        $scope.shopByCondsList = rsp.data.list;
+                    }
+                });
+            };
+            $scope.qryShopByConds();
+
+            $scope.todoChecked = {}; //待确认的选项
+            //单选框选择
+            $scope.check = function (item) {
+                if (!item.checked) {
+                    _.map($scope.shopByCondsList, function (item) {
+                        item.checked = false;
+                    });
+                    $scope.todoChecked = item;
+                    item.checked = true;
+                } else {
+                    item.checked = false;
+                    $scope.todoChecked = {};
+                }
+            };
+
+            //双击操作
+            $scope.doubleClick = function (item) {
+                $rootScope.targetStore = item;
+                $scope.todoChecked = {}; // 置空
+                $uibModalInstance.close();
+            };
+
+            $ctrl.ok = function () {
+                if (_.get($scope.todoChecked, 'CHANNEL_ID')) {
+                    $rootScope.targetStore = $scope.todoChecked;
+                    $scope.todoChecked = {}; // 置空
+                }
+                $uibModalInstance.close();
+            };
+            $ctrl.cancel = function () {
+                $uibModalInstance.dismiss('cancel');
+            };
+        })
 });

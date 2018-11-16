@@ -247,12 +247,12 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                         tooltip: {
                             show: true,
                             trigger: 'axis',
-                            formatter:function(params) {
+                            formatter: function (params) {
                                 var relVal = params[0].name;
                                 for (var i = 0, l = params.length; i < l; i++) {
-                                    if(params[i].seriesName === '合约销量占比' || params[i].seriesName === '裸机销量占比'){
-                                        relVal += '<br/>' + params[i].marker + params[i].seriesName + ' : ' + params[i].value+"%";
-                                    }else{
+                                    if (params[i].seriesName === '合约销量占比' || params[i].seriesName === '裸机销量占比') {
+                                        relVal += '<br/>' + params[i].marker + params[i].seriesName + ' : ' + params[i].value + "%";
+                                    } else {
                                         relVal += '<br/>' + params[i].marker + params[i].seriesName + ' : ' + params[i].value;
                                     }
                                 }
@@ -1464,8 +1464,8 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
             };
 
 
-            $rootScope.$watch('month.key', function(newVal){
-                if($rootScope.targetStore){
+            $rootScope.$watch('month.key', function (newVal) {
+                if ($rootScope.targetStore) {
                     var params = {
                         curPage: 1, //当前页
                         pageSize: 1, //每页条数

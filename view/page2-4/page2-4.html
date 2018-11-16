@@ -48,7 +48,8 @@
                 <p class="p-line">归属商圈级别：<span ng-bind="targetStore.BUSINESS_LEVEL_VALUE || '--'"></span></p>
                 <p class="p-line">经营主体：<span ng-bind="targetStore.OPERATORS_NAME || '--'"></span></p>
                 <p class="p-line">店中商信息：</p>
-                <p class="p-line" ng-repeat="item in targetStore.BIZMAN_LIST"><span ng-bind="item.CHANNEL_NAME"></span></p>
+                <p class="p-line" ng-repeat="item in targetStore.BIZMAN_LIST"><span ng-bind="item.CHANNEL_NAME"></span>
+                </p>
                 <p class="p-line">是否精品标杆门店：<span ng-bind="targetStore.BIAOGAN_FLAG || '--'"></span></p>
                 <p class="p-line">店长：<span ng-bind="targetStore.SM_NAME || '--'"></span></p>
                 <p class="p-line">店长联系电话：<span ng-bind="targetStore.SM_PHONE || '--'"></span></p>
@@ -58,15 +59,19 @@
                     <li class="card fn-left">
                         <p class="title">连续6月入库核销量</p>
                         <div class="chart-one">
-                            <div class="chart" e-chart options="shopProcureSalesLast6Months" ng-show="shopProcureSalesLast6MonthsList.length"></div>
-                            <img class="none-img" src="../../resources/images/icon-none.png" ng-show="!shopProcureSalesLast6MonthsList.length">
+                            <div class="chart" e-chart options="shopProcureSalesLast6Months"
+                                 ng-show="shopProcureSalesLast6MonthsList.length"></div>
+                            <img class="none-img" src="../../resources/images/icon-none.png"
+                                 ng-show="!shopProcureSalesLast6MonthsList.length">
                         </div>
                     </li>
                     <li class="card fn-left">
                         <p class="title">连续6月终端核销量</p>
                         <div class="chart-one">
-                            <div class="chart" e-chart options="shopSalesInfoLast6Months" ng-show="shopSalesInfoLast6MonthsList.length"></div>
-                            <img class="none-img" src="../../resources/images/icon-none.png" ng-show="!shopSalesInfoLast6MonthsList.length">
+                            <div class="chart" e-chart options="shopSalesInfoLast6Months"
+                                 ng-show="shopSalesInfoLast6MonthsList.length"></div>
+                            <img class="none-img" src="../../resources/images/icon-none.png"
+                                 ng-show="!shopSalesInfoLast6MonthsList.length">
                         </div>
                     </li>
                 </ul>
@@ -74,23 +79,29 @@
                     <li class="card fn-left">
                         <p class="title">连续6月终端核销量结构</p>
                         <div class="chart-one">
-                            <div class="chart" e-chart options="shopSalesStockInfoLast6Months" ng-show="shopSalesStockInfoLast6MonthsList.length"></div>
-                            <img class="none-img" src="../../resources/images/icon-none.png" ng-show="!shopSalesStockInfoLast6MonthsList.length">
+                            <div class="chart" e-chart options="shopSalesStockInfoLast6Months"
+                                 ng-show="shopSalesStockInfoLast6MonthsList.length"></div>
+                            <img class="none-img" src="../../resources/images/icon-none.png"
+                                 ng-show="!shopSalesStockInfoLast6MonthsList.length">
                         </div>
                     </li>
                     <li class="card fn-left">
                         <p class="title">连续6月终端核销激活量及拉新</p>
                         <div class="chart-one">
-                            <div class="chart" e-chart options="shopSalesJhLxLast6Months" ng-show="shopSalesJhLxLast6MonthsList.length"></div>
-                            <img class="none-img" src="../../resources/images/icon-none.png" ng-show="!shopSalesJhLxLast6MonthsList.length">
+                            <div class="chart" e-chart options="shopSalesJhLxLast6Months"
+                                 ng-show="shopSalesJhLxLast6MonthsList.length"></div>
+                            <img class="none-img" src="../../resources/images/icon-none.png"
+                                 ng-show="!shopSalesJhLxLast6MonthsList.length">
                         </div>
                     </li>
                 </ul>
                 <div class="list-right-bottom card">
                     <p class="title">连续6个月销售品牌种类</p>
                     <div class="chart-one">
-                        <div class="chart" e-chart options="shopSalesBrandModelNumLast6Months" ng-show="shopSalesBrandModelNumLast6MonthsList.length"></div>
-                        <img class="none-img" src="../../resources/images/icon-none.png" ng-show="!shopSalesBrandModelNumLast6MonthsList.length">
+                        <div class="chart" e-chart options="shopSalesBrandModelNumLast6Months"
+                             ng-show="shopSalesBrandModelNumLast6MonthsList.length"></div>
+                        <img class="none-img" src="../../resources/images/icon-none.png"
+                             ng-show="!shopSalesBrandModelNumLast6MonthsList.length">
                     </div>
                 </div>
             </div>
@@ -99,8 +110,10 @@
             <li class="card fn-left">
                 <p class="title">{{month.key}}月分店中商入库核销收银</p>
                 <div class="chart-one">
-                    <div class="chart" e-chart options="bizmanProcureSales" ng-show="bizmanProcureSalesList.length"></div>
-                    <img class="none-img" src="../../resources/images/icon-none.png" ng-show="!bizmanProcureSalesList.length">
+                    <div class="chart" e-chart options="bizmanProcureSales"
+                         ng-show="bizmanProcureSalesList.length"></div>
+                    <img class="none-img" src="../../resources/images/icon-none.png"
+                         ng-show="!bizmanProcureSalesList.length">
                 </div>
             </li>
             <li class="card fn-left">
@@ -167,7 +180,8 @@
                     <div class="top-rank-result" ng-scroll-bar>
                         <div class="result-list">
                             <div class="scroll-content rank-tbody">
-                                <div class="rank-tr" ng-repeat="item in shopStockZZModelTop5List track by $index" ng-cloak>
+                                <div class="rank-tr" ng-repeat="item in shopStockZZModelTop5List track by $index"
+                                     ng-cloak>
                                     <div class="rank-tr-td"
                                          style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
                                          title="{{item.OFFER_MODEL_NAME}}">{{item.OFFER_MODEL_NAME}}
@@ -188,29 +202,35 @@
                         </div>
                     </div>
                 </div>
-                <img class="none-img" src="../../resources/images/icon-none.png" ng-show="!shopStockZZModelTop5List.length">
+                <img class="none-img" src="../../resources/images/icon-none.png"
+                     ng-show="!shopStockZZModelTop5List.length">
             </li>
         </ul>
         <ul class="ul-two-line fn-clear">
             <li class="card fn-left">
                 <p class="title">{{month.key}}月TOP5销量机型</p>
                 <div class="chart-one">
-                    <div class="chart" e-chart options="shopSalesModelTop5" ng-show="shopSalesModelTop5List.length"></div>
-                    <img class="none-img" src="../../resources/images/icon-none.png" ng-show="!shopSalesModelTop5List.length">
+                    <div class="chart" e-chart options="shopSalesModelTop5"
+                         ng-show="shopSalesModelTop5List.length"></div>
+                    <img class="none-img" src="../../resources/images/icon-none.png"
+                         ng-show="!shopSalesModelTop5List.length">
                 </div>
             </li>
             <li class="card fn-left">
                 <p class="title">{{month.key}}月TOP5销售员</p>
                 <div class="chart-one">
                     <div class="chart" e-chart options="shopSalesManTop5" ng-show="shopSalesManTop5List.length"></div>
-                    <img class="none-img" src="../../resources/images/icon-none.png" ng-show="!shopSalesManTop5List.length">
+                    <img class="none-img" src="../../resources/images/icon-none.png"
+                         ng-show="!shopSalesManTop5List.length">
                 </div>
             </li>
             <li class="card fn-left">
                 <p class="title">库存量--TOP5机型分布（单位：台）</p>
                 <div class="chart-one">
-                    <div style="width: 100%; height: 280px;" high-charts config="shopStockModelTop5" ng-show="shopStockModelTop5List.length"></div>
-                    <img class="none-img" src="../../resources/images/icon-none.png" ng-show="!shopStockModelTop5List.length">
+                    <div style="width: 100%; height: 280px;" high-charts config="shopStockModelTop5"
+                         ng-show="shopStockModelTop5List.length"></div>
+                    <img class="none-img" src="../../resources/images/icon-none.png"
+                         ng-show="!shopStockModelTop5List.length">
                 </div>
             </li>
         </ul>
@@ -252,7 +272,8 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="item in shopByCondsList" ng-class="{'hover':item.checked}" ng-click="check(item)" ng-dblclick="doubleClick(item)">
+            <tr ng-repeat="item in shopByCondsList" ng-class="{'hover':item.checked}" ng-click="check(item)"
+                ng-dblclick="doubleClick(item)">
                 <td>
                     <span class="nocheck" ng-class="{'checked': item.checked}"></span>
                 </td>
