@@ -11,6 +11,22 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
             $scope.link = function (title, view, id, data) {
                 parent.angular.element(parent.$('#tabs')).scope().addTab(title, view, id, data);
             };
+            $scope.unitPurchaseList = [{
+                unitId: 10000,
+                unitName: '万台'
+            },{
+                unitId: 1,
+                unitName: '个台'
+            }];
+            $scope.unitSaleList = [{
+                unitId: 10000,
+                unitName: '万'
+            },{
+                unitId: 1,
+                unitName: '个'
+            }];
+            $scope.checkedPurchaseUnit = $scope.unitPurchaseList[0];
+            $scope.checkedSaleUnit = $scope.unitSaleList[0];
 
             function getTimeStamp() {
                 var now = new Date(),
@@ -91,14 +107,14 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                         color: ['#1DA1DD', '#FCCC0E', '#54B594', '#7370E8', '#1DA1DD', '#CEA963'],
                         legend: {
                             show: true,
-                            left: 'right',
                             top: 0,
+                            right: 105,
                             itemWidth: 13,
                             itemHeight: 6,
                             textStyle: {
                                 color: '#fff'
                             },
-                            data: ['入库量（万台）']
+                            data: ['入库量']
                         },
                         xAxis: [
                             {
@@ -155,7 +171,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             }
                         ],
                         series: [{
-                            name: '入库量（万台）',
+                            name: '入库量',
                             type: 'bar',
                             stack: false,
                             barWidth: 30,
@@ -198,17 +214,17 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             right: '0',
                             bottom: '22'
                         },
-                        color: ['#1DA1DD', '#ff395f', '#fada4a', '#CEA963'],
+                        color: ['#ff395f', '#fada4a', '#1DA1DD', '#CEA963'],
                         legend: {
                             show: true,
-                            left: 'center',
                             top: 0,
+                            right: 105,
                             itemWidth: 13,
                             itemHeight: 6,
                             textStyle: {
                                 color: '#fff'
                             },
-                            data: ['核销量（万台）', '合约销量（万台）', '裸机销量（万台）', '合约销量占比', '裸机销量占比']
+                            data: ['合约销量占比', '裸机销量占比', '核销量']
                         },
                         xAxis: [
                             {
@@ -282,18 +298,6 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             }
                         ],
                         series: [{
-                            name: '核销量（万台）',
-                            type: 'bar',
-                            barWidth: 30,
-                            label: {
-                                show: true,
-                                fontSize: '12'
-                            },
-                            itemStyle: {
-                                barBorderRadius: 0
-                            },
-                            data: arr1
-                        }, {
                             name: '合约销量占比',
                             type: 'line',
                             smooth: false,
@@ -319,6 +323,18 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             },
                             yAxisIndex: 1,
                             data: arr5
+                        }, {
+                            name: '核销量',
+                            type: 'bar',
+                            barWidth: 30,
+                            label: {
+                                show: true,
+                                fontSize: '12'
+                            },
+                            itemStyle: {
+                                barBorderRadius: 0
+                            },
+                            data: arr1
                         }]
                     }
                 });
@@ -350,14 +366,14 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                         color: ['#1da1dd', '#e44b68'],
                         legend: {
                             show: true,
-                            left: 'center',
                             top: 0,
+                            right: 105,
                             itemWidth: 13,
                             itemHeight: 6,
                             textStyle: {
                                 color: '#fff'
                             },
-                            data: ['当月入库当月核销量（万台）', '非当月入库当月核销量（万台）']
+                            data: ['当月入库当月核销量', '非当月入库当月核销量']
                         },
                         xAxis: [
                             {
@@ -413,7 +429,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                                 }
                             }],
                         series: [{
-                            name: '当月入库当月核销量（万台）',
+                            name: '当月入库当月核销量',
                             type: 'bar',
                             stack: 'one',
                             barWidth: 30,
@@ -426,7 +442,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             },
                             data: arr1
                         }, {
-                            name: '非当月入库当月核销量（万台）',
+                            name: '非当月入库当月核销量',
                             type: 'bar',
                             stack: 'one',
                             barWidth: 30,
@@ -641,17 +657,17 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             right: '0',
                             bottom: '22'
                         },
-                        color: ['#1DA1DD', '#f7c911'],
+                        color: ['#f7c911', '#1DA1DD'],
                         legend: {
                             show: true,
-                            left: 'center',
                             top: 0,
+                            right: 105,
                             itemWidth: 13,
                             itemHeight: 6,
                             textStyle: {
                                 color: '#fff'
                             },
-                            data: ['有销门店（万）', '单店月销量（台/月）']
+                            data: ['单店月销量（台/月）', '有销门店']
                         },
                         xAxis: [
                             {
@@ -725,7 +741,17 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             }
                         ],
                         series: [{
-                            name: '有销门店（万）',
+                            name: '单店月销量（台/月）',
+                            type: 'line',
+                            smooth: false,
+                            label: {
+                                show: true,
+                                fontSize: '12'
+                            },
+                            yAxisIndex: 1,
+                            data: arr2
+                        }, {
+                            name: '有销门店',
                             type: 'bar',
                             barWidth: 30,
                             label: {
@@ -736,16 +762,6 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                                 barBorderRadius: 0
                             },
                             data: arr1
-                        }, {
-                            name: '单店月销量（台/月）',
-                            type: 'line',
-                            smooth: false,
-                            label: {
-                                show: true,
-                                fontSize: '12'
-                            },
-                            yAxisIndex: 1,
-                            data: arr2
                         }]
                     }
                 });

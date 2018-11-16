@@ -90,7 +90,15 @@
 .ul-two-line {
     margin-bottom: 8px;
 }
-
+.legend {
+    position: absolute;
+    top: 44px;
+    right: 22px;
+    width: 84px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+}
 .ng-city-check span {
     top: 0;
 }
