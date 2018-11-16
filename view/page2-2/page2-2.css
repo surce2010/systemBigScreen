@@ -121,3 +121,9 @@
 .sale-shop-chart {
     height: 280px;
 }
+.legend {
+    position: absolute;
+    top: 44px;
+    right: 22px;
+    width: 84px;
+}
