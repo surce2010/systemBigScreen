@@ -5,6 +5,9 @@
 define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts', 'scrollbar', 'ngMapDrill', 'httpMethod'], function (angular, $, _) {
     angular
         .module('pageModule', ['ngDirective', 'ngHighCharts', 'ngMapDrill', 'ngEcharts', 'httpMethod'])
+        .run(['$rootScope', function ($rootScope) {
+            $rootScope.curMonth = ''; //以当前月查询门店列表
+        }])
         .controller('pageCtrl', ['$rootScope', '$scope', '$log', '$uibModal', 'httpMethod', function ($rootScope, $scope, $log, $uibModal, httpMethod) {
             $scope.chooseStore = function () {
                 $uibModal.open({
@@ -41,6 +44,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                 });
                 $scope.monthList = index > 0 ? arr.slice(0, index + 1) : arr;
                 $scope.month = $scope.monthList[0];
+                $rootScope.curMonth = $scope.monthList[0];
             }
 
             getMonthList();
@@ -531,7 +535,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                 var params = {
                     curPage: $scope.currentPage, //当前页
                     pageSize: $scope.pageSize, //每页条数
-                    queryDate: _.get($rootScope, 'month.key'),
+                    queryDate: _.get($rootScope, 'curMonth.key'),
                     channelNbr: $scope.channelNbr,
                     channelName: $scope.channelName
                 };
@@ -562,14 +566,14 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
 
             //双击操作
             $scope.doubleClick = function (item) {
-                $rootScope.targetStore = item;
+                parent.angular.element(parent.$('#tabs')).scope().addTab('门店进销存数据', '../page2-4/page2-4.html', 'page2-4', JSON.stringify(item));
                 $scope.todoChecked = {}; // 置空
                 $uibModalInstance.close();
             };
 
             $ctrl.ok = function () {
                 if (_.get($scope.todoChecked, 'CHANNEL_ID')) {
-                    $rootScope.targetStore = $scope.todoChecked;
+                    parent.angular.element(parent.$('#tabs')).scope().addTab('门店进销存数据', '../page2-4/page2-4.html', 'page2-4', JSON.stringify($scope.todoChecked));
                     $scope.todoChecked = {}; // 置空
                 }
                 $uibModalInstance.close();
