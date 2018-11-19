@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>图形化报表</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="../../resources/css/bootstrap.css">
+    <link rel="stylesheet" href="../../resources/css/jquery.dialog.css">
+    <link rel="stylesheet" href="../../resources/css/reset.css">
+    <link rel="stylesheet" href="../../resources/css/common.css">
+    <link rel="stylesheet" href="../../resources/css/ngDirective.css">
+    <link rel="stylesheet" href="page4.css">
+</head>
+
+<body>
+<div class="wrapper box-1342" ng-controller="pageCtrl">
+    <div class="header fn-clear">
+        <p class="wrds fn-left"><img src="../../resources/images/icon-loc.png"><span ng-click="link('可视化报表主页', '../page1/page1.html', 'page1')">首页</span></p>
+        <p class="wrds fn-left">><span>指标说明</span></p>
+    </div>
+    <div class="card">
+        <p class="title">指标说明</p>
+        <div class="content">
+            <p class="norm-item"><span class="warn">门店：</span>指集团渠道视图中销售点，关联店中商的相关数据都归集至销售点下。</p>
+            <p class="norm-item"><span class="warn">上线门店：</span>统计期间内集团渠道视图中打标“使用精品门店销售系统”标识的销售点数量，剔除渠道视图状态为“非有效”且“销量为0”的门店。如下：</p>
+            <div class="index-rank">
+                <div class="rank-thead">
+                    <div class="rank-th">
+                        <div class="rank-th-td" style="width: 70px">序号</div>
+                        <div class="rank-th-td">标识</div>
+                        <div class="rank-th-td" style="width: 110px">渠道视图状态</div>
+                        <div class="rank-th-td" style="width: 110px">销量判断</div>
+                        <div class="rank-th-td" style="width: 180px">是否统计为上线门店</div>
+                    </div>
+                </div>
+                <div class="top-rank-result">
+                    <div class="result-list">
+                        <div class="scroll-content rank-tbody">
+                            <div class="rank-tr">
+                                <div class="rank-tr-td" style="width: 70px">1</div>
+                                <div class="rank-tr-td">有“使用精品门店销售系统”标识</div>
+                                <div class="rank-tr-td" style="width: 110px">有效</div>
+                                <div class="rank-tr-td" style="width: 110px">有销量</div>
+                                <div class="rank-tr-td" style="width: 180px">是</div>
+                            </div>
+                            <div class="rank-tr">
+                                <div class="rank-tr-td" style="width: 70px">2</div>
+                                <div class="rank-tr-td">有“使用精品门店销售系统”标识</div>
+                                <div class="rank-tr-td" style="width: 110px">有效</div>
+                                <div class="rank-tr-td" style="width: 110px"><span class="warn">无销量</span></div>
+                                <div class="rank-tr-td" style="width: 180px">是</div>
+                            </div>
+                            <div class="rank-tr">
+                                <div class="rank-tr-td" style="width: 70px">3</div>
+                                <div class="rank-tr-td">有“使用精品门店销售系统”标识</div>
+                                <div class="rank-tr-td" style="width: 110px"><span class="warn">非有效</span></div>
+                                <div class="rank-tr-td" style="width: 110px">有销量</div>
+                                <div class="rank-tr-td" style="width: 180px">是</div>
+                            </div>
+                            <div class="rank-tr">
+                                <div class="rank-tr-td" style="width: 70px">4</div>
+                                <div class="rank-tr-td">有“使用精品门店销售系统”标识</div>
+                                <div class="rank-tr-td" style="width: 110px"><span class="warn">非有效</span></div>
+                                <div class="rank-tr-td" style="width: 110px"><span class="warn">无销量</span></div>
+                                <div class="rank-tr-td" style="width: 180px"><span class="warn">否</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="norm-item"><span class="warn">有销门店：</span>统计期间内核销量不等于0的门店</p>
+            <p class="norm-item"><span class="warn">有销门店占比：</span>有销门店/上线门店，该指标用于评估省市系统推广应用情况。</p>
+            <p class="norm-item"><span class="warn">入库量：</span>统计期间内操作终端入库量，只统计统计期内最新一次的入库行为，即：统计期间内一个串码被操作多次入库，只统计1次。</p>
+            <p class="norm-item"><span class="warn">激活量：</span>统计期内总核销量在核销之日起10日内（包含核销当日）被自注册激活（本省号码激活+外省号码激活）都统计为激活量，即激活的=时间区间为【精品系统开始有自注册激活数据，核销之日起10天内】自注册激活，即为激活。例如：10月1日核销终端串码，在10月10日前被自注册激活都统计为激活量，如10月11日自注册激活，则不统计为激活量。</p>
+            <p class="norm-item"><span class="warn">拉新用户：</span>总核销量且自注册激活量，被激活的号卡为本省号卡且为当月（自然月）新开号卡，即统计为拉新用户。</p>
+            <p class="norm-item"><span class="warn">激活率：</span>激活量/核销量</p>
+            <p class="norm-item"><span class="warn">拉新率：</span>拉新用户/激活量</p>
+            <p class="norm-item"><span class="warn">单店月销量：</span>单个门店每月的核销总量，核销量/上线门店数。该指标用于评估门店终端销售能力。</p>
+            <p class="norm-item"><span class="warn">有销门店单店月销量：</span>单个门店每月核销总量，核销量/有销门店数。该指标用于评估门店终端销售能力。</p>
+            <p class="norm-item"><span class="warn">当月入库当月核销量：</span>当月核销量中是当月入库的量</p>
+            <p class="norm-item"><span class="warn">非当月入库当月核销量：</span>当月核销量中是非当月入库的量</p>
+            <p class="norm-item"><span class="warn">库存周转周数：</span>当前库存量可供销售的周数，库存量/（核销量/当月天数）/7，如分母为0，则展示为“∞”。该指标用于评估销售流速，进行库存预警。</p>
+            <p class="norm-item"><span class="warn">库存中自注册激活量：</span>库存中（串码在精品门店销售系统中的状态为“在库”）被自注册激活的量，不限制激活时间和激活省份，只要激活了都统计为激活量。该指标用于评估门店核销动作是否规范，如库存中已被自注册激活，则应督促门店进行补录核销。</p>
+            <div class="index-info">
+                <p class="name">精品门店销售系统数据统计模型</p>
+                <div class="content">
+                    <img src="../../resources/images/index-info.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script id="page" src="../../resources/js/require.js" data-main="../../resources/js/requireConfig.js"
+        current-page="./page4.js" target-module="pageModule"></script>
+</body>
+
+</html>

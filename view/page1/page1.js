@@ -9,7 +9,8 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
             $rootScope.curMonth = ''; //以当前月查询门店列表
         }])
         .controller('pageCtrl', ['$rootScope', '$scope', '$log', '$uibModal', 'httpMethod', function ($rootScope, $scope, $log, $uibModal, httpMethod) {
-            $scope.chooseStore = function () {
+            //查找门店
+            $scope.linkStore = function () {
                 $uibModal.open({
                     animation: true,
                     templateUrl: 'chooseServiceHallModal.html',
@@ -22,6 +23,11 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                         }
                     }
                 });
+            };
+
+            //指标说明
+            $scope.linkNorm = function () {
+                parent.angular.element(parent.$('#tabs')).scope().addTab('指标说明', '../page4/page4.html', 'page4');
             };
 
             //获取当前时间向前的12个月列表

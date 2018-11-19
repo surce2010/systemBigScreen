@@ -1,0 +1,136 @@
+.wrapper {
+    height: 100%;
+    padding: 10px;
+}
+
+.header {
+    height: 30px;
+    line-height: 30px;
+    margin: -4px 0 6px 0;
+}
+
+.header .wrds {
+    font-size: 14px;
+    color: #84d8ff;
+    cursor: pointer;
+}
+
+.header .wrds:hover span {
+    color: #73c2e6;
+}
+
+.header .wrds span {
+    margin: 0 5px;
+}
+
+.card {
+    height: 1080px;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+}
+
+.title {
+    height: 30px;
+    line-height: 30px;
+    border-bottom: 1px solid #4261c0;
+    color: #fff;
+    font-size: 14px;
+}
+
+.content {
+    width: 1180px;
+    margin: 0 auto;
+    padding: 10px 0;
+}
+
+.content .norm-item {
+    padding: 5px 10px;
+    line-height: 20px;
+    color: #fff;
+    font-size: 12px;
+}
+
+.warn {
+    color: #ffcb16;
+}
+
+.index-rank {
+    width: 780px;
+    margin: 10px auto;
+    border: 1px solid #3c78da;
+}
+
+.rank-thead {
+    display: table;
+    width: 100%;
+    height: 30px;
+    background-color: rgba(107, 119, 190, 0.46);
+}
+
+.rank-th {
+    display: table-row;
+    height: 30px;
+    border-bottom: 1px dotted #5263a4;
+}
+
+.rank-th-td {
+    display: table-cell;
+    padding: 0 5px;
+    line-height: 16px;
+    color: #99ffee;
+    font-size: 12px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.top-rank-result {
+    width: 100%;
+}
+
+.result-list {
+    position: relative;
+    width: 100%;
+}
+
+.rank-tbody {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.rank-tr {
+    display: table-row;
+    height: 30px;
+    border-bottom: 1px dotted #5263a4;
+}
+
+.rank-tr:last-of-type {
+    border-bottom: none;
+}
+
+.rank-tr-td {
+    display: table-cell;
+    color: #99ffee;
+    font-size: 12px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.index-info {
+    margin-top: 20px;
+    border-top: 1px dashed #6a7cbb;
+}
+
+.index-info .name {
+    height: 20px;
+    padding: 15px 0 30px;
+    line-height: 20px;
+    color: #ffb821;
+    font-size: 14px;
+    text-align: center;
+}
+
+.index-info .content {
+    text-align: center;
+}
