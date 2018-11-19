@@ -948,14 +948,15 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                         color: '#ccc'
                     },
                     layout: 'vertical',
-                    align: 'right',
-                    verticalAlign: 'top',
                     itemMarginTop: 10,
                     symbolHeight: 10,
                     symbolWidth: 10,
                     symbolRadius: 2,
-                    x: -60,
-                    y: 40
+                    width: 120,
+                    align: 'right',
+                    verticalAlign: 'middle',
+                    x: 0,
+                    y: 0
                 },
                 tooltip: {
                     pointFormat: '<b>{point.y}万台<br/>{point.percentage:.1f}%</b>'
@@ -1149,14 +1150,15 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                         color: '#ccc'
                     },
                     layout: 'vertical',
-                    align: 'right',
-                    verticalAlign: 'top',
                     itemMarginTop: 10,
                     symbolHeight: 10,
                     symbolWidth: 10,
                     symbolRadius: 2,
-                    x: -60,
-                    y: 40
+                    width: 120,
+                    align: 'right',
+                    verticalAlign: 'middle',
+                    x: 0,
+                    y: 0
                 },
                 tooltip: {
                     pointFormat: '<b>{point.y}万台<br/>{point.percentage:.1f}%</b>'
@@ -1348,14 +1350,15 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                         color: '#ccc'
                     },
                     layout: 'vertical',
-                    align: 'right',
-                    verticalAlign: 'top',
                     itemMarginTop: 10,
                     symbolHeight: 10,
                     symbolWidth: 10,
                     symbolRadius: 2,
-                    x: -60,
-                    y: 40
+                    width: 120,
+                    align: 'right',
+                    verticalAlign: 'middle',
+                    x: 0,
+                    y: 0
                 },
                 tooltip: {
                     pointFormat: '<b>{point.y}万台<br/>{point.percentage:.1f}%</b>'
@@ -1545,14 +1548,15 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                         color: '#ccc'
                     },
                     layout: 'vertical',
-                    align: 'right',
-                    verticalAlign: 'top',
                     itemMarginTop: 10,
                     symbolHeight: 10,
                     symbolWidth: 10,
                     symbolRadius: 2,
-                    x: -60,
-                    y: 40
+                    width: 120,
+                    align: 'right',
+                    verticalAlign: 'middle',
+                    x: 0,
+                    y: 0
                 },
                 tooltip: {
                     pointFormat: '<b>{point.y}万台<br/>{point.percentage:.1f}%</b>'

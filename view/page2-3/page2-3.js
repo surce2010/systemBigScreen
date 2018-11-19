@@ -834,7 +834,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             textStyle: {
                                 color: '#fff'
                             },
-                            data: ['总核销量（台）', '单店月销量']
+                            data: ['总核销量（台）', '单店月销量（台/月）']
                         },
                         xAxis: [
                             {
@@ -924,7 +924,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             },
                             data: allSaleCount
                         }, {
-                            name: '单店月销量',
+                            name: '单店月销量（台/月）',
                             type: 'line',
                             smooth: false,
                             label: {
