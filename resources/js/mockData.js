@@ -1137,8 +1137,8 @@
         error: null,
         'data|6': [{
             "QUERY_DATE": "@date(MM)",
-            "CM_STOCK_SALESS|1-5000": 1,//当月入库当月核销
-            "NON_CM_STOCK_SALESS|1-5000": 1//非当月入库当月核销
+            "CM_STOCK_SALES|1-100": 1,//当月入库当月核销
+            "NON_CM_STOCK_SALES|1-100": 1//非当月入库当月核销
         }]
     });
     //5.连续6个月核销激活量及拉新
@@ -1175,11 +1175,14 @@
         code: null,
         msg: null, //失败信息
         error: null,
-        'data|3': [{
+        'data|6': [{
+            "STORAGE_NAME": "@cword(4,10)",
             "CHANNEL_NAME": "@cword(4,10)",//店中商名称
             "PROCURE_IN_AMOUNT|1-5000": 1,//入库量
             "SALES|1-5000": 1,//核销量
-            "SALES_AMOUNT|1-5000": 1//收银金额
+            "SALES_AMOUNT|1-5000": 1,//收银金额
+            "JH_AMOUNT|1-5000": 1,
+            "LX_AMOUNT|1-5000": 1
         }]
     });
     //8.XX月分店中商收银结算
@@ -1191,6 +1194,7 @@
         error: null,
         'data|7': [{
             "CHANNEL_NAME": "@cword(4,10)",//店中商名称
+            "TOTAL_AMOUNT|1-5000": 1,//合计
             "XJ_AMOUNT|1-5000": 1,//现金
             "POS_AMOUNT|1-5000": 1,//POS
             "DYQ_AMOUNT|1-5000": 1,//抵用券
@@ -1208,7 +1212,8 @@
         'data|7': [{
             "OFFER_MODEL_NAME": "@cword(4,10)",//机型名称
             "STOCK_COUNT|1-5000": 1,//库存量
-            "STOCK_ZZZS|1-5000": 1//库存周转周数
+            "STOCK_ZZZS|1-5000": 1,//库存周转周数
+            "SALES|1-5000": 1
         }]
     });
     //10.XX月TOP5销量机型

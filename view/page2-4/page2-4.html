@@ -96,7 +96,7 @@
                     </li>
                 </ul>
                 <div class="list-right-bottom card">
-                    <p class="title">连续6个月销售品牌种类</p>
+                    <p class="title">连续6个月销售品牌机型数量</p>
                     <div class="chart-one">
                         <div class="chart" e-chart options="shopSalesBrandModelNumLast6Months"
                              ng-show="shopSalesBrandModelNumLast6MonthsList.length"></div>
@@ -108,13 +108,50 @@
         </div>
         <ul class="ul-two-line fn-clear">
             <li class="card fn-left">
-                <p class="title">{{month.key}}月分店中商入库核销收银</p>
-                <div class="chart-one">
-                    <div class="chart" e-chart options="bizmanProcureSales"
-                         ng-show="bizmanProcureSalesList.length"></div>
-                    <img class="none-img" src="../../resources/images/icon-none.png"
-                         ng-show="!bizmanProcureSalesList.length">
+                <p class="title">{{month.key}}月分仓库入库核销量</p>
+                <div ng-show="bizmanProcureSalesList.length">
+                    <div class="rank-thead">
+                        <div class="rank-th">
+                            <div class="rank-th-td">仓库</div>
+                            <div class="rank-th-td" style="width: 70px">入库量</div>
+                            <div class="rank-th-td" style="width: 70px">核销量</div>
+                            <div class="rank-th-td" style="width: 70px">激活量</div>
+                            <div class="rank-th-td" style="width: 75px">拉新用户</div>
+                        </div>
+                    </div>
+                    <div class="top-rank-result" ng-scroll-bar>
+                        <div class="result-list">
+                            <div class="scroll-content rank-tbody">
+                                <div class="rank-tr" ng-repeat="item in bizmanProcureSalesList track by $index" ng-cloak>
+                                    <div class="rank-tr-td"
+                                         style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                                         title="{{item.STORAGE_NAME}}">{{item.STORAGE_NAME}}
+                                    </div>
+                                    <div class="rank-tr-td"
+                                         style="width: 70px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                                         title="{{item.PROCURE_IN_AMOUNT}}">{{item.PROCURE_IN_AMOUNT}}
+                                    </div>
+                                    <div class="rank-tr-td"
+                                         style="width: 70px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                                         title="{{item.SALES}}">{{item.SALES}}
+                                    </div>
+                                    <div class="rank-tr-td"
+                                         style="width: 70px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                                         title="{{item.JH_AMOUNT}}">{{item.JH_AMOUNT}}
+                                    </div>
+                                    <div class="rank-tr-td"
+                                         style="width: 75px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                                         title="{{item.LX_AMOUNT}}">{{item.LX_AMOUNT}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="track">
+                                <div></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <img class="none-img" src="../../resources/images/icon-none.png" ng-show="!bizmanProcureSalesList.length">
             </li>
             <li class="card fn-left">
                 <p class="title">{{month.key}}月分店中商收银结算（元）</p>
@@ -122,39 +159,44 @@
                     <div class="rank-thead">
                         <div class="rank-th">
                             <div class="rank-th-td">店中商</div>
-                            <div class="rank-th-td" style="width: 54px">现金</div>
-                            <div class="rank-th-td" style="width: 56px">POS</div>
-                            <div class="rank-th-td" style="width: 60px">抵用券</div>
-                            <div class="rank-th-td" style="width: 70px">微信支付</div>
-                            <div class="rank-th-td" style="width: 60px">支付宝</div>
+                            <div class="rank-th-td" style="width: 50px">合计</div>
+                            <div class="rank-th-td" style="width: 50px">现金</div>
+                            <div class="rank-th-td" style="width: 50px">POS</div>
+                            <div class="rank-th-td" style="width: 50px">抵用券</div>
+                            <div class="rank-th-td" style="width: 60px">微信支付</div>
+                            <div class="rank-th-td" style="width: 50px">支付宝</div>
                         </div>
                     </div>
                     <div class="top-rank-result" ng-scroll-bar>
                         <div class="result-list">
                             <div class="scroll-content rank-tbody">
-                                <div class="rank-tr" ng-repeat="item in bizmanSalesInfoList track by $index" ng-cloak>
+                                <div class="rank-tr" ng-repeat="item in bizmanSalesInfoList | orderBy:'TOTAL_AMOUNT':'desc'" ng-cloak>
                                     <div class="rank-tr-td"
                                          style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
                                          title="{{item.CHANNEL_NAME}}">{{item.CHANNEL_NAME}}
                                     </div>
                                     <div class="rank-tr-td"
-                                         style="width: 54px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                                         style="width: 50px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                                         title="{{item.TOTAL_AMOUNT}}">{{item.TOTAL_AMOUNT}}
+                                    </div>
+                                    <div class="rank-tr-td"
+                                         style="width: 50px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
                                          title="{{item.XJ_AMOUNT}}">{{item.XJ_AMOUNT}}
                                     </div>
                                     <div class="rank-tr-td"
-                                         style="width: 56px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                                         style="width: 50px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
                                          title="{{item.POS_AMOUNT}}">{{item.POS_AMOUNT}}
                                     </div>
                                     <div class="rank-tr-td"
-                                         style="width: 60px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                                         style="width: 50px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
                                          title="{{item.DYQ_AMOUNT}}">{{item.DYQ_AMOUNT}}
                                     </div>
                                     <div class="rank-tr-td"
-                                         style="width: 66px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                                         style="width: 55px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
                                          title="{{item.WXZF_AMOUNT}}">{{item.WXZF_AMOUNT}}
                                     </div>
                                     <div class="rank-tr-td"
-                                         style="width: 54px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                                         style="width: 50px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
                                          title="{{item.ZFB_AMOUNT}}">{{item.ZFB_AMOUNT}}
                                     </div>
                                 </div>
@@ -173,8 +215,9 @@
                     <div class="rank-thead">
                         <div class="rank-th">
                             <div class="rank-th-td">库存预警TOP5机型</div>
-                            <div class="rank-th-td" style="width: 112px">库存量(台)</div>
-                            <div class="rank-th-td" style="width: 120px">库存周转周数</div>
+                            <div class="rank-th-td" style="width: 90px">库存量(台)</div>
+                            <div class="rank-th-td" style="width: 90px">库存周转周数</div>
+                            <div class="rank-th-td" style="width: 90px">本月核销量</div>
                         </div>
                     </div>
                     <div class="top-rank-result" ng-scroll-bar>
@@ -187,11 +230,15 @@
                                          title="{{item.OFFER_MODEL_NAME}}">{{item.OFFER_MODEL_NAME}}
                                     </div>
                                     <div class="rank-tr-td"
-                                         style="width: 112px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                                         style="width: 90px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
                                          title="{{item.STOCK_COUNT}}">{{item.STOCK_COUNT}}
                                     </div>
                                     <div class="rank-tr-td"
-                                         style="width: 120px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                                         style="width: 90px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                                         title="{{item.STOCK_ZZZS}}">{{item.STOCK_ZZZS}}
+                                    </div>
+                                    <div class="rank-tr-td"
+                                         style="width: 90px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
                                          title="{{item.STOCK_ZZZS}}">{{item.STOCK_ZZZS}}
                                     </div>
                                 </div>
