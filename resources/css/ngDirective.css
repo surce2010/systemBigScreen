@@ -437,24 +437,12 @@
     z-index: 99;
 }
 
-.ng-unit-box .select-bg {
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 18px;
-    height: 18px;
-    line-height: 18px;
-    cursor: pointer;
-}
-
-.ng-unit-box .select-bg:after {
+.ng-unit-box .value-box:after {
     font-family: 'iconfont';
     content: '\e65d';
     position: absolute;
-    top: 0;
-    left: 50%;
-    margin-left: -6px;
+    top: 1px;
+    right: 2px;
     color: #fff;
     font-size: 14px;
 }
