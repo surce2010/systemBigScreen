@@ -9,17 +9,6 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'httpMethod'], function (a
             $rootScope.myCheck = '首页';
         }])
         .controller('indexCtrl', ['$scope', '$rootScope', 'httpMethod', 'JqueryDialog', '$window', '$log', function ($scope, $rootScope, httpMethod, JqueryDialog, $window, $log) {
-            //获取用户信息
-            httpMethod.loadUserInfo().then(function (rsp) {
-                $log.log('调用获取用户信息接口成功.');
-                if (rsp.success) {
-                    $scope.userInfo = rsp.data.userInfo;
-                } else {
-                    $window.location.href = '/psm/login.jsp';
-                }
-            }, function () {
-                $log.log('调用获取用户信息接口失败.');
-            });
 
             $scope.menuInfo = [{
                 'menuPath': '../page1/page1.html',
@@ -40,6 +29,24 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'httpMethod'], function (a
                 'parentResourceId': '',
                 'resourceName': '数据报表'
             }];
+
+            //获取用户信息
+            httpMethod.loadUserInfo().then(function (rsp) {
+                $log.log('调用获取用户信息接口成功.');
+                if (rsp.success) {
+                    $scope.userInfo = rsp.data.userInfo;
+                    $scope.menuInfoList = rsp.data.menuInfo;
+                    var menuInfo = $scope.menuInfoList.sort(function (a, b) {
+                        return a.orderSeq - b.orderSeq;
+                    });
+                    $scope.menuInfoList = menuInfo;
+                    $scope.menuInfo[2].menuInfoList = $scope.menuInfoList;
+                } else {
+                    $window.location.href = '/psm/login.jsp';
+                }
+            }, function () {
+                $log.log('调用获取用户信息接口失败.');
+            });
 
             $scope.loginOut = function () {
                 JqueryDialog.confirm('提示', '您确定要退出账户吗？', function () {
