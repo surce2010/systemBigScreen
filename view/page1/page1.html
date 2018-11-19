@@ -79,7 +79,7 @@
                         <div class="rank-th">
                             <div class="rank-th-td" style="width: 45px">排名</div>
                             <div class="rank-th-td" style="width: 60px">地区</div>
-                            <div class="rank-th-td">指标数值(单位:万)</div>
+                            <div class="rank-th-td">指标数值(单位:<span ng-bind="checkedMapUnit.unitName"></span>)</div>
                             <div class="rank-th-td" style="width: 45px">排名变化</div>
                         </div>
                     </div>
@@ -125,12 +125,12 @@
                     class="navigation-item" ng-click="navigationToggle($index)" ng-bind="item.name"></em><i
                     ng-if="!$last">></i></span></div>
                 <div class="notice">说明：显示每个地区终端指标数据情况，并可根据颜色不同进行区分。</div>
-                <div class="unit-text">(单位:万)</div>
+                <div ng-unit class="unit-text-chart" value="checkedMapUnit" select-id="unitId" select-name="unitName" list="unitSaleList"></div>
                 <div class="map-chart" map-drill-chart data="mapData" common-region-id="commonRegionId" current-region-name="currentRegionName" level="level"
                      navigation-list="navigationList"></div>
             </div>
             <div class="m-wrap-bottom">
-                <div class="unit-text">(单位:万)</div>
+                <div ng-unit class="unit-text-chart" value="checkedDateUnit" select-id="unitId" select-name="unitName" list="unitPurchaseList"></div>
                 <div class="x-scroll-bar" ng-x-scroll-bar>
                     <div class="scroll-content line-chart-wrap">
                         <div e-chart options="config.indexGroupDay"></div>
@@ -145,7 +145,7 @@
                     <span ng-click="toggleShow(1)" class="tab-header-item" ng-class="{'curr': selectIndex === 1}">TOP12品牌</span>
                     <span ng-click="toggleShow(2)" class="tab-header-item" ng-class="{'curr': selectIndex === 2}">TOP6成长型品牌</span>
                     <span ng-click="toggleShow(3)" class="tab-header-item" ng-class="{'curr': selectIndex === 3}">TOP6特色品牌</span>
-                    <div class="unit-text">(单位:万)</div>
+                    <div ng-unit class="unit-text" value="checkedTopBrandUnit" select-id="unitId" select-name="unitName" list="unitPurchaseList"></div>
                 </div>
                 <div class="tab-content">
                     <div class="tab-content-item" ng-class="{'curr': selectIndex === 1}">
@@ -295,7 +295,7 @@
                 <div class="tab-header">
                     <span ng-click="toggleShow(1)" class="tab-header-item" ng-class="{'curr': selectIndex === 1}">TOP10销量机型</span>
                     <span ng-click="toggleShow(2)" class="tab-header-item" ng-class="{'curr': selectIndex === 2}">TOP10销量泛智能终端</span>
-                    <div class="unit-text">(单位:万)</div>
+                    <div ng-unit class="unit-text" value="checkedTopModelUnit" select-id="unitId" select-name="unitName" list="unitPurchaseList"></div>
                 </div>
                 <div class="tab-content">
                     <div class="tab-content-item" ng-class="{'curr': selectIndex === 1}">
@@ -394,7 +394,7 @@
             </div>
             <div class="r-wrap-bottom" ng-controller="topChannelCtrl">
                 <p class="card-title">分渠道类型数据</p>
-                <div class="unit-text">(单位:万)</div>
+                <div ng-unit class="unit-text" value="checkedTopChannelUnit" select-id="unitId" select-name="unitName" list="unitPurchaseList"></div>
                 <div class="top-channel">
                     <div class="top-channel-thead">
                         <div class="top-channel-th">
