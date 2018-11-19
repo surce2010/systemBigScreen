@@ -7,9 +7,12 @@ angular
         var pages = '<div class="text-right page mt10">' +
             '<ul uib-pagination total-items="total" items-per-page="pageSize" ng-model="currentPage" max-size="maxSize || 4" ng-change="pageChanged()" class="pagination-sm" boundary-links="true" rotate="false" first-text="首页" last-text="尾页" previous-text="上一页" next-text="下一页"></ul>' +
             '<div class="page-num">共<span class="number" ng-bind="pageNum"></span>页，到第<input type="text" class="number" ng-model="pageTo">页</div><button class="confirm-btn" ng-click="confirmPage(pageTo)">确定</button></div>';
+        var unit = '<div class="ng-unit-box" ng-class="{disabled: !list.length}">单位：<span class="value-box" ng-bind="value[selectName]" ng-click="showList()"></span><ul class="select-opt-list" ng-show="showOpt"><li ng-click="checkedItem(item)" ng-repeat="item in list" ng-bind="item[selectName]"></li></ul><div class="select-bg"></div></div>';
+
         $templateCache.put('select.html', select);
         $templateCache.put('city.html', city);
         $templateCache.put('pages.html', pages);
+        $templateCache.put('unit.html', unit);
     })
     .directive('ngSelect', function () {
         return {
@@ -220,6 +223,50 @@ angular
                     scope.currentPage = page;
                     scope.pageChanged();
                 };
+            }
+        };
+    })
+    .directive('ngUnit', function () {
+        return {
+            restrict: 'AE',
+            replace: true,
+            scope: {
+                value: '=', //初始值
+                selectId: '@', //下拉框对应Id
+                selectName: '@', //下拉框显示名称
+                list: '=', //下拉框列表信息
+                // allow: '=', //是否禁用下拉框
+                // require: '@' //是否可设置为空
+            },
+            templateUrl: 'unit.html',
+            link: function (scope, element, attr) {
+                // scope.$watch('value', function (newObj) {
+                //     if (newObj) {
+                //         scope.isShow = !scope.allow;
+                //     } else {
+                //         scope.isShow = false;
+                //     }
+                // });
+                scope.showOpt = false;
+                // scope.delValue = function () {
+                //     scope.value = null;
+                // };
+                scope.checkedItem = function (item) {
+                    scope.value = item;
+                    scope.showOpt = false;
+                };
+                scope.showList = function () {
+                    if (scope.list.length) {
+                        scope.showOpt = !scope.showOpt;
+                    }
+                };
+                angular.element('body').click(function (e) {
+                    var flag = element[0].contains(e.target);
+                    if (!flag) {
+                        scope.showOpt = false;
+                        scope.$apply();
+                    }
+                });
             }
         };
     });

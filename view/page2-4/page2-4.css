@@ -89,7 +89,6 @@
     text-shadow: 0 0 5px #8ce9dd;
     text-align: center;
 }
-
 .list-right .ul-one-line {
     margin: 0 0 10px 0;
 }
@@ -409,3 +408,4 @@
 .checked {
     background: url("../../resources/images/icon-checked.png") no-repeat;
 }
+/*弹窗*/

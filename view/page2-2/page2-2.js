@@ -34,6 +34,19 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
 
             getMonthList();
 
+            $scope.unitPurchaseList = [{
+                unitId: 10000,
+                unitName: '万台'
+            },{
+                unitId: 1,
+                unitName: '个台'
+            }];
+            $scope.checkedStockMonthRatioUnit = $scope.unitPurchaseList[0];//1
+            $scope.checkedSaleCountMonthRatioUnit = $scope.unitPurchaseList[0];//2
+            $scope.checkedStockSaleProportionUnit = $scope.unitPurchaseList[0];//3
+            $scope.checkedShopSaleMonthRatioUnit = $scope.unitPurchaseList[0];//5
+            $scope.checkedJihuoLaxinAndAllSaleCountUnit = $scope.unitPurchaseList[0];//6
+
             //查询地区
             httpMethod.initCommonRegionInfo4VisualRegionInvoicing().then(function (rsp) {
                 if (rsp.success) {
@@ -48,11 +61,13 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                 }
             });
 
+            //1
             $scope.qryInStockAndMonthRatio = function () {
                 var params = {
                     queryDate: _.get($scope, 'month.key'),
                     channelTypeCd: _.get($scope, 'channelType.channelTypeCd'),
-                    commonRegionId: _.get($scope, 'checkedCity.commonRegionId')
+                    commonRegionId: _.get($scope, 'checkedCity.commonRegionId'),
+                    unit: _.get($scope, 'checkedStockMonthRatioUnit.unitId')
                 };
                 httpMethod.qryInStockAndMonthRatio(params).then(function (rsp) {
                     var xaxis = [], inStockCount = [], monthRatio = [];
@@ -74,17 +89,17 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             right: '0',
                             bottom: '22'
                         },
-                        color: ['#1DA1DD', '#FCCC0E'],
+                        color: ['#FCCC0E', '#1DA1DD'],
                         legend: {
                             show: true,
                             top: 0,
-                            right: 0,
+                            right: 105,
                             itemWidth: 20,
                             itemHeight: 10,
                             textStyle: {
                                 color: '#fff'
                             },
-                            data: ['入库量（万台）', '环比']
+                            data: ['环比', '入库量']
                         },
                         xAxis: [
                             {
@@ -161,7 +176,17 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             }
                         ],
                         series: [{
-                            name: '入库量（万台）',
+                            name: '环比',
+                            type: 'line',
+                            smooth: false,
+                            label: {
+                                show: true,
+                                fontSize: '12'
+                            },
+                            yAxisIndex: 1,
+                            data: monthRatio
+                        }, {
+                            name: '入库量',
                             type: 'bar',
                             stack: false,
                             barWidth: 22,
@@ -173,26 +198,17 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                                 barBorderRadius: 0
                             },
                             data: inStockCount
-                        }, {
-                            name: '环比',
-                            type: 'line',
-                            smooth: false,
-                            label: {
-                                show: true,
-                                fontSize: '12'
-                            },
-                            yAxisIndex: 1,
-                            data: monthRatio
                         }]
                     }
                 });
             };
-
+            //2
             $scope.qryAllSaleCountAndMonthRatio = function () {
                 var params = {
                     queryDate: _.get($scope, 'month.key'),
                     channelTypeCd: _.get($scope, 'channelType.channelTypeCd'),
-                    commonRegionId: _.get($scope, 'checkedCity.commonRegionId')
+                    commonRegionId: _.get($scope, 'checkedCity.commonRegionId'),
+                    unit: _.get($scope, 'checkedSaleCountMonthRatioUnit.unitId'),
                 };
                 httpMethod.qryAllSaleCountAndMonthRatio(params).then(function (rsp) {
                     var xaxis = [], allSaleCount = [], monthRatio = [];
@@ -214,17 +230,17 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             right: '0',
                             bottom: '22'
                         },
-                        color: ['#1DA1DD', '#FCCC0E'],
+                        color: ['#FCCC0E', '#1DA1DD'],
                         legend: {
                             show: true,
                             top: 0,
-                            right: 0,
+                            right: 105,
                             itemWidth: 20,
                             itemHeight: 10,
                             textStyle: {
                                 color: '#fff'
                             },
-                            data: ['核销量（万台）', '环比']
+                            data: ['环比', '核销量']
                         },
                         xAxis: [
                             {
@@ -301,7 +317,17 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             }
                         ],
                         series: [{
-                            name: '核销量（万台）',
+                            name: '环比',
+                            type: 'line',
+                            smooth: false,
+                            label: {
+                                show: true,
+                                fontSize: '12'
+                            },
+                            yAxisIndex: 1,
+                            data: monthRatio
+                        }, {
+                            name: '核销量',
                             type: 'bar',
                             stack: false,
                             barWidth: 22,
@@ -313,26 +339,17 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                                 barBorderRadius: 0
                             },
                             data: allSaleCount
-                        }, {
-                            name: '环比',
-                            type: 'line',
-                            smooth: false,
-                            label: {
-                                show: true,
-                                fontSize: '12'
-                            },
-                            yAxisIndex: 1,
-                            data: monthRatio
                         }]
                     }
                 });
             };
-
+            //3
             $scope.qryMonthStockSaleProportion = function () {
                 var params = {
                     queryDate: _.get($scope, 'month.key'),
                     channelTypeCd: _.get($scope, 'channelType.channelTypeCd'),
-                    commonRegionId: _.get($scope, 'checkedCity.commonRegionId')
+                    commonRegionId: _.get($scope, 'checkedCity.commonRegionId'),
+                    unit: _.get($scope, 'checkedStockSaleProportionUnit.unitId'),
                 };
                 httpMethod.qryMonthStockSaleProportion(params).then(function (rsp) {
                     var xaxis = [], monthInstockSale = [], monthNoInstockSale = [];
@@ -358,13 +375,13 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                         legend: {
                             show: true,
                             top: 0,
-                            right: 0,
+                            right: 105,
                             itemWidth: 20,
                             itemHeight: 10,
                             textStyle: {
                                 color: '#fff'
                             },
-                            data: ['当月入库当月核销量（万台）', '非当月入库当月核销量（万台）']
+                            data: ['当月入库当月核销量', '非当月入库当月核销量']
                         },
                         xAxis: [
                             {
@@ -424,7 +441,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             }
                         ],
                         series: [{
-                            name: '当月入库当月核销量（万台）',
+                            name: '当月入库当月核销量',
                             type: 'bar',
                             stack: true,
                             barWidth: 22,
@@ -437,7 +454,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             },
                             data: monthInstockSale
                         }, {
-                            name: '非当月入库当月核销量（万台）',
+                            name: '非当月入库当月核销量',
                             type: 'bar',
                             stack: true,
                             barWidth: 22,
@@ -453,7 +470,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                     }
                 });
             };
-
+            //4
             $scope.qrySaleShopCountAndMonthRatio = function () {
                 var params = {
                     queryDate: _.get($scope, 'month.key'),
@@ -593,12 +610,13 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                     }
                 });
             };
-
+            //5
             $scope.qryShopMonthSaleAndMonthRatio = function () {
                 var params = {
                     queryDate: _.get($scope, 'month.key'),
                     channelTypeCd: _.get($scope, 'channelType.channelTypeCd'),
-                    commonRegionId: _.get($scope, 'checkedCity.commonRegionId')
+                    commonRegionId: _.get($scope, 'checkedCity.commonRegionId'),
+                    unit: _.get($scope, 'checkedShopSaleMonthRatioUnit.unitId')
                 };
                 httpMethod.qryShopMonthSaleAndMonthRatio(params).then(function (rsp) {
                     var xaxis = [], shopMonthSale = [], monthRatio = [];
@@ -620,17 +638,17 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             right: '0',
                             bottom: '22'
                         },
-                        color: ['#1DA1DD', '#FCCC0E'],
+                        color: ['#FCCC0E', '#1DA1DD'],
                         legend: {
                             show: true,
                             top: 0,
-                            right: 0,
+                            right: 105,
                             itemWidth: 20,
                             itemHeight: 10,
                             textStyle: {
                                 color: '#fff'
                             },
-                            data: ['单店月销量（万台）', '环比']
+                            data: ['环比', '单店月销量']
                         },
                         xAxis: [
                             {
@@ -707,7 +725,17 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             }
                         ],
                         series: [{
-                            name: '单店月销量（万台）',
+                            name: '环比',
+                            type: 'line',
+                            smooth: false,
+                            label: {
+                                show: true,
+                                fontSize: '12'
+                            },
+                            yAxisIndex: 1,
+                            data: monthRatio
+                        },{
+                            name: '单店月销量',
                             type: 'bar',
                             stack: false,
                             barWidth: 22,
@@ -719,26 +747,17 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                                 barBorderRadius: 0
                             },
                             data: shopMonthSale
-                        }, {
-                            name: '环比',
-                            type: 'line',
-                            smooth: false,
-                            label: {
-                                show: true,
-                                fontSize: '12'
-                            },
-                            yAxisIndex: 1,
-                            data: monthRatio
                         }]
                     }
                 });
             };
-
+            //6
             $scope.qryJihuoLaxinAndAllSaleCount = function () {
                 var params = {
                     queryDate: _.get($scope, 'month.key'),
                     channelTypeCd: _.get($scope, 'channelType.channelTypeCd'),
-                    commonRegionId: _.get($scope, 'checkedCity.commonRegionId')
+                    commonRegionId: _.get($scope, 'checkedCity.commonRegionId'),
+                    unit: _.get($scope, 'checkedJihuoLaxinAndAllSaleCountUnit.unitId')
                 };
                 httpMethod.qryJihuoLaxinAndAllSaleCount(params).then(function (rsp) {
                     var xaxis = [], allSaleCount = [], JihuoCount = [], LaxinCount = [];
@@ -765,13 +784,13 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                         legend: {
                             show: true,
                             top: 0,
-                            right: 0,
+                            right: 105,
                             itemWidth: 20,
                             itemHeight: 10,
                             textStyle: {
                                 color: '#fff'
                             },
-                            data: ['核销量（万台）', '激活量（万台）', '拉新用户（万台）']
+                            data: ['核销量', '激活量', '拉新用户']
                         },
                         xAxis: [
                             {
@@ -831,7 +850,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             }
                         ],
                         series: [{
-                            name: '核销量（万台）',
+                            name: '核销量',
                             type: 'bar',
                             stack: true,
                             barWidth: 22,
@@ -844,7 +863,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             },
                             data: allSaleCount
                         }, {
-                            name: '激活量（万台）',
+                            name: '激活量',
                             type: 'bar',
                             stack: true,
                             barWidth: 22,
@@ -857,7 +876,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             },
                             data: JihuoCount
                         }, {
-                            name: '拉新用户（万台）',
+                            name: '拉新用户',
                             type: 'bar',
                             stack: true,
                             barWidth: 22,
@@ -873,7 +892,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                     }
                 });
             };
-
+            //7
             $scope.qryMonthJihuoAndLaxinRatio = function () {
                 var params = {
                     queryDate: _.get($scope, 'month.key'),
@@ -1015,6 +1034,32 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                     $scope.qryShopMonthSaleAndMonthRatio();
                     $scope.qryJihuoLaxinAndAllSaleCount();
                     $scope.qryMonthJihuoAndLaxinRatio();
+                }
+            });
+
+            $scope.$watch('checkedStockMonthRatioUnit.unitId', function (newVal) {//1
+                if (newVal) {
+                    $scope.qryInStockAndMonthRatio();
+                }
+            });
+            $scope.$watch('checkedSaleCountMonthRatioUnit.unitId', function (newVal) {//2
+                if (newVal) {
+                    $scope.qryAllSaleCountAndMonthRatio();
+                }
+            });
+            $scope.$watch('checkedStockSaleProportionUnit.unitId', function (newVal) {//3
+                if (newVal) {
+                    $scope.qryMonthStockSaleProportion();
+                }
+            });
+            $scope.$watch('checkedShopSaleMonthRatioUnit.unitId', function (newVal) {//5
+                if (newVal) {
+                    $scope.qryShopMonthSaleAndMonthRatio();
+                }
+            });
+            $scope.$watch('checkedJihuoLaxinAndAllSaleCountUnit.unitId', function (newVal) {//6
+                if (newVal) {
+                    $scope.qryJihuoLaxinAndAllSaleCount();
                 }
             });
         }])

@@ -48,18 +48,21 @@
             <li class="card fn-left">
                 <p class="title">连续6个月采购入库量</p>
                 <div class="chart-one">
+                    <div ng-unit ng-cloak class="legend" value="checkedPurchaseUnit" select-id="unitId" select-name="unitName" list="unitPurchaseList"></div>
                     <div class="chart" e-chart options="purchaseInAmountLast6Months"></div>
                 </div>
             </li>
             <li class="card fn-left">
                 <p class="title">连续6月终端核销量</p>
                 <div class="chart-one">
+                    <div ng-unit ng-cloak class="legend" value="checkedSalesAmountUnit" select-id="unitId" select-name="unitName" list="unitPurchaseList"></div>
                     <div class="chart" e-chart options="salesAmountLast6Months"></div>
                 </div>
             </li>
             <li class="card fn-left">
                 <p class="title">连续6个月核销量结构</p>
                 <div class="chart-one">
+                    <div ng-unit ng-cloak class="legend" value="checkedStructureUnit" select-id="unitId" select-name="unitName" list="unitPurchaseList"></div>
                     <div class="chart" e-chart options="salesAmountStructureLast6Months"></div>
                 </div>
             </li>
@@ -74,27 +77,29 @@
             <li class="card fn-left">
                 <p class="title">连续6个月有销门店单店月销量</p>
                 <div class="chart-one">
+                    <div ng-unit ng-cloak class="legend" value="checkedSaleUnit" select-id="unitId" select-name="unitName" list="unitSaleList"></div>
                     <div class="chart" e-chart options="salesAmountPerSaleShopLast6Months"></div>
                 </div>
             </li>
             <li class="card fn-left">
                 <p class="title">连续6个月核销激活量及拉新率</p>
                 <div class="chart-one">
+                    <div ng-unit ng-cloak class="legend" value="checkedZzcInfoUnit" select-id="unitId" select-name="unitName" list="unitPurchaseList"></div>
                     <div class="chart" e-chart options="zzcInfoLast6Months"></div>
                 </div>
             </li>
         </ul>
-        <ul class="ul-two-line fn-clear">
+        <ul class="ul-two-line circle fn-clear">
             <li class="card fn-left">
                 <p class="title">库存量--在库时间分布</p>
                 <div ng-show="state1 === 'circle'">
-                    <div class="legend">单位：万台</div>
+                    <div ng-unit ng-cloak class="legend" value="checkedInStockTimeUnit" select-id="unitId" select-name="unitName" list="unitPurchaseList"></div>
                     <div style="width: 100%; height: 280px;" high-charts config="inStockTimeByConds"></div>
                 </div>
-                <div class="stock-time" ng-show="state1 === 'bar'">
+                <div class="stock-time" ng-show="state1 === 'bar'" ng-cloak>
                     <div class="target-title fn-clear">
                         <p class="p-line fn-left"><span ng-cloak>[{{paymentDayDuring}}] </span>天的TOP5库存机型</p>
-                        <div class="legend2 fn-left">单位：万台</div>
+                        <div ng-unit ng-cloak class="legend2" value="checkedInStockTimeUnit" select-id="unitId" select-name="unitName" list="unitPurchaseList"></div>
                         <button class="back fn-right" ng-click="changeTarget1('circle')">< 返回</button>
                     </div>
                     <div class="chart-one">
@@ -105,13 +110,13 @@
             <li class="card fn-left">
                 <p class="title">库存量--分价位段分布</p>
                 <div ng-show="state2 === 'circle'">
-                    <div class="legend" style="right: 127px">单位：万台</div>
+                    <div ng-unit ng-cloak class="legend" value="checkedInStockPriceUnit" select-id="unitId" select-name="unitName" list="unitPurchaseList"></div>
                     <div style="width: 100%; height: 280px;" high-charts config="inStockByPriceRange"></div>
                 </div>
-                <div class="stock-time" ng-show="state2 === 'bar'">
+                <div class="stock-time" ng-show="state2 === 'bar'" ng-cloak>
                     <div class="target-title fn-clear">
                         <p class="p-line fn-left"><span ng-cloak>[{{priceRangeName}}] </span>元的TOP5库存机型</p>
-                        <div class="legend2 fn-left">单位：万台</div>
+                        <div ng-unit ng-cloak class="legend2" value="checkedInStockPriceUnit" select-id="unitId" select-name="unitName" list="unitPurchaseList"></div>
                         <button class="back fn-right" ng-click="changeTarget2('circle')">< 返回</button>
                     </div>
                     <div class="chart-one">
@@ -120,17 +125,17 @@
                 </div>
             </li>
         </ul>
-        <ul class="ul-two-line fn-clear">
+        <ul class="ul-two-line circle fn-clear">
             <li class="card fn-left">
                 <p class="title">库存量--TOP5品牌分布</p>
                 <div ng-show="state3 === 'circle'">
-                    <div class="legend" style="right: 83px;">单位：万台</div>
+                    <div ng-unit ng-cloak class="legend" value="checkedStockBrandUnit" select-id="unitId" select-name="unitName" list="unitPurchaseList"></div>
                     <div style="width: 100%; height: 280px;" high-charts config="inStockTopBrand"></div>
                 </div>
-                <div class="stock-time" ng-show="state3 === 'bar'">
+                <div class="stock-time" ng-show="state3 === 'bar'" ng-cloak>
                     <div class="target-title fn-clear">
                         <p class="p-line fn-left"><span ng-cloak>[{{brandName}}] </span>品牌的TOP5库存机型</p>
-                        <div class="legend2 fn-left">单位：万台</div>
+                        <div ng-unit ng-cloak class="legend2" value="checkedStockBrandUnit" select-id="unitId" select-name="unitName" list="unitPurchaseList"></div>
                         <button class="back fn-right" ng-click="changeTarget3('circle')">< 返回</button>
                     </div>
                     <div class="chart-one">
@@ -140,22 +145,24 @@
             </li>
             <li class="card fn-left">
                 <p class="title">库存量--TOP5机型分布</p>
-                <div class="legend" style="right: 118px;">单位：万台</div>
+                <div ng-unit ng-cloak class="legend" value="checkedStockModelUnit" select-id="unitId" select-name="unitName" list="unitPurchaseList"></div>
                 <div style="width: 100%; height: 280px;" high-charts config="inStockTopModel"></div>
             </li>
         </ul>
         <ul class="ul-two-line fn-clear">
             <li class="card fn-left">
                 <p class="title">TOP10销量品牌有销门店及占比</p>
-                <p class="info">有销门店占比=筛选条件下该品牌有销门店数/筛选条件下的上线门店数</p>
+                <p class="info">有销门店占比=筛选条件下该品牌有销门店数/<br/>筛选条件下的上线门店数</p>
                 <div class="chart-one">
+                    <div ng-unit ng-cloak class="legend" value="checkedShopBrandUnit" select-id="unitId" select-name="unitName" list="unitPurchaseList"></div>
                     <div class="chart" e-chart options="retailShopTopBrand"></div>
                 </div>
             </li>
             <li class="card fn-left">
                 <p class="title">TOP10销量机型有销门店及占比</p>
-                <p class="info">有销门店占比=筛选条件下该机型有销门店数/筛选条件下的上线门店数</p>
+                <p class="info">有销门店占比=筛选条件下该机型有销门店数/<br/>筛选条件下的上线门店数</p>
                 <div class="chart-one">
+                    <div ng-unit ng-cloak class="legend" value="checkedShopModelUnit" select-id="unitId" select-name="unitName" list="unitPurchaseList"></div>
                     <div class="chart" e-chart options="retailShopTopModel"></div>
                 </div>
             </li>
@@ -165,6 +172,7 @@
                 <p class="title">TOP10销量品牌销量及销量占比</p>
                 <p class="info">销量占比=筛选条件下品牌核销量/筛选条件下总核销量</p>
                 <div class="chart-one">
+                    <div ng-unit ng-cloak class="legend" value="checkedRetailBrandUnit" select-id="unitId" select-name="unitName" list="unitPurchaseList"></div>
                     <div class="chart" e-chart options="retailTopBrand"></div>
                 </div>
             </li>
@@ -172,6 +180,7 @@
                 <p class="title">TOP10销量机型销量及销量占比</p>
                 <p class="info">销量占比=筛选条件下该机型核销量/筛选条件下总核销量</p>
                 <div class="chart-one">
+                    <div ng-unit ng-cloak class="legend" value="checkedRetailModelUnit" select-id="unitId" select-name="unitName" list="unitPurchaseList"></div>
                     <div class="chart" e-chart options="retailTopModel"></div>
                 </div>
             </li>

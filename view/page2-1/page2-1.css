@@ -60,6 +60,7 @@
     position: absolute;
     top: 47px;
     left: 23px;
+    line-height: 18px;
 }
 
 .ul-one-line {
@@ -90,7 +91,12 @@
 .ul-two-line {
     margin-bottom: 8px;
 }
-
+.legend {
+    position: absolute;
+    top: 44px;
+    right: 22px;
+    width: 84px;
+}
 .ng-city-check span {
     top: 0;
 }
@@ -103,13 +109,11 @@
     height: 275px;
 }
 
-.ul-two-line li .legend {
+.ul-two-line.circle li .legend {
     position: absolute;
+    width: 84px;
     top: 80px;
     right: 96px;
-    color: #fff;
-    font-size: 12px;
-    font-weight: bold;
 }
 .target-title{
     position: relative;
@@ -130,8 +134,15 @@
     color: #fcfb0e;
 }
 .legend2{
-    margin-left: 20px;
-    line-height: 24px;
+    display: inline-block;
+    width: 84px;
+    margin: 4px 0 0 20px;
+}
+.legend2 .ng-unit-box .value-box{
+    vertical-align: middle;
+}
+.legend2 .ng-unit-box .value-box .select-bg{
+    top:4px;
 }
 .target-title .back{
     width: 54px;

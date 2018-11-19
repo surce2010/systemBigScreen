@@ -46,6 +46,7 @@
         <div class="card">
             <p class="title"><span ng-bind="month.key"></span>月份省入库量及环比变化</p>
             <div class="sale-shop-chart">
+                <div ng-unit ng-cloak class="legend" value="checkedStockMonthRatioUnit" select-id="unitId" select-name="unitName" list="unitPurchaseList"></div>
                 <div e-chart options="inStockAndMonthRatioConfig"></div>
             </div>
         </div>
@@ -55,6 +56,7 @@
         <div class="card">
             <p class="title"><span ng-bind="month.key"></span>月份省核销量及环比变化</p>
             <div class="sale-shop-chart">
+                <div ng-unit ng-cloak class="legend" value="checkedSaleCountMonthRatioUnit" select-id="unitId" select-name="unitName" list="unitPurchaseList"></div>
                 <div e-chart options="allSaleCountAndMonthRatioConfig"></div>
             </div>
         </div>
@@ -64,6 +66,7 @@
         <div class="card">
             <p class="title"><span ng-bind="month.key"></span>月份省核销量及环比变化</p>
             <div class="sale-shop-chart">
+                <div ng-unit ng-cloak class="legend" value="checkedStockSaleProportionUnit" select-id="unitId" select-name="unitName" list="unitPurchaseList"></div>
                 <div e-chart options="monthStockSaleProportionConfig"></div>
             </div>
         </div>
@@ -82,6 +85,7 @@
         <div class="card">
             <p class="title"><span ng-bind="month.key"></span>月份有销门店单店月销量及环比变化</p>
             <div class="sale-shop-chart">
+                <div ng-unit ng-cloak class="legend" value="checkedShopSaleMonthRatioUnit" select-id="unitId" select-name="unitName" list="unitPurchaseList"></div>
                 <div e-chart options="shopMonthSaleAndMonthRatioConfig"></div>
             </div>
         </div>
@@ -91,6 +95,7 @@
         <div class="card">
             <p class="title"><span ng-bind="month.key"></span>月份核销量、激活量、拉新用户</p>
             <div class="sale-shop-chart">
+                <div ng-unit ng-cloak class="legend" value="checkedJihuoLaxinAndAllSaleCountUnit" select-id="unitId" select-name="unitName" list="unitPurchaseList"></div>
                 <div e-chart options="jihuoLaxinAndAllSaleCountConfig"></div>
             </div>
         </div>
