@@ -295,7 +295,7 @@
                 <div class="tab-header">
                     <span ng-click="toggleShow(1)" class="tab-header-item" ng-class="{'curr': selectIndex === 1}">TOP10销量机型</span>
                     <span ng-click="toggleShow(2)" class="tab-header-item" ng-class="{'curr': selectIndex === 2}">TOP10销量泛智能终端</span>
-                    <div ng-unit class="unit-text" value="checkedSaleUnit" select-id="unitId" select-name="unitName" list="unitSaleList"></div>
+                    <div ng-unit class="unit-text" value="checkedTopModelUnit" select-id="unitId" select-name="unitName" list="unitPurchaseList"></div>
                 </div>
                 <div class="tab-content">
                     <div class="tab-content-item" ng-class="{'curr': selectIndex === 1}">
@@ -394,7 +394,7 @@
             </div>
             <div class="r-wrap-bottom" ng-controller="topChannelCtrl">
                 <p class="card-title">分渠道类型数据</p>
-                <div ng-unit class="unit-text" value="checkedSaleUnit" select-id="unitId" select-name="unitName" list="unitSaleList"></div>
+                <div ng-unit class="unit-text" value="checkedTopChannelUnit" select-id="unitId" select-name="unitName" list="unitPurchaseList"></div>
                 <div class="top-channel">
                     <div class="top-channel-thead">
                         <div class="top-channel-th">

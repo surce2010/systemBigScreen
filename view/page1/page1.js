@@ -47,6 +47,8 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
             $scope.checkedMapUnit = $scope.unitSaleList[0];
             $scope.checkedDateUnit = $scope.unitPurchaseList[0];
             $scope.checkedTopBrandUnit = $scope.unitPurchaseList[0];
+            $scope.checkedTopModelUnit = $scope.unitPurchaseList[0];
+            $scope.checkedTopChannelUnit = $scope.unitPurchaseList[0];
 
             //获取当前时间向前的12个月列表
             function getMonthList() {
@@ -472,7 +474,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                 });
             };
 
-            $scope.$watchGroup(['checkedTopBrandUnit.unitId', 'month.key'], function (newVal) {
+            $scope.$watchGroup(['month.key', 'checkedTopBrandUnit.unitId'], function (newVal) {
                 if (newVal[0] !== undefined && newVal[1] !== undefined) {
                     if ($rootScope.userCommonRegionID) {
                         $scope.queryTop12Brand();
@@ -501,7 +503,8 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
             $scope.queryTop10SaleModel = function () {
                 var params = {
                     queryDate: _.get($scope, 'month.key'),
-                    common_region_id: $rootScope.userCommonRegionID
+                    common_region_id: $rootScope.userCommonRegionID,
+                    unit: _.get($scope, 'checkedTopModelUnit.unitId')
                 };
                 httpMethod.queryTop10SaleModel(params).then(function (rsp) {
                     $scope.top10SaleModel = rsp.data || [];
@@ -511,25 +514,26 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
             $scope.queryTop10FznModel = function () {
                 var params = {
                     queryDate: _.get($scope, 'month.key'),
-                    common_region_id: $rootScope.userCommonRegionID
+                    common_region_id: $rootScope.userCommonRegionID,
+                    unit: _.get($scope, 'checkedTopModelUnit.unitId')
                 };
                 httpMethod.queryTop10FznModel(params).then(function (rsp) {
                     $scope.top10FznModel = rsp.data || [];
                 });
             };
 
-            $rootScope.$watch('userCommonRegionID', function (newValue) {
-                if (newValue) {
-                    if (_.get($scope, 'month.key') !== undefined) {
+            $scope.$watchGroup(['month.key', 'checkedTopModelUnit.unitId'], function (newVal) {
+                if (newVal[0] !== undefined && newVal[1] !== undefined) {
+                    if ($rootScope.userCommonRegionID) {
                         $scope.queryTop10SaleModel();
                         $scope.queryTop10FznModel();
                     }
                 }
             });
 
-            $scope.$watch('month.key', function (newValue) {
+            $rootScope.$watch('userCommonRegionID', function (newValue) {
                 if (newValue) {
-                    if ($rootScope.userCommonRegionID) {
+                    if (_.get($scope, 'month.key') !== undefined && _.get($scope, 'checkedTopModelUnit.unitId') !== undefined) {
                         $scope.queryTop10SaleModel();
                         $scope.queryTop10FznModel();
                     }
@@ -540,24 +544,25 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
             $scope.queryInfoGroupChannelType = function () {
                 var params = {
                     queryDate: _.get($scope, 'month.key'),
-                    common_region_id: $rootScope.userCommonRegionID
+                    common_region_id: $rootScope.userCommonRegionID,
+                    unit: _.get($scope, 'checkedTopChannelUnit.unitId')
                 };
                 httpMethod.queryInfoGroupChannelType(params).then(function (rsp) {
                     $scope.infoGroupChannelTypeList = rsp.data || [];
                 });
             };
 
-            $rootScope.$watch('userCommonRegionID', function (newValue) {
-                if (newValue) {
-                    if (_.get($scope, 'month.key') !== undefined) {
+            $scope.$watchGroup(['month.key', 'checkedTopChannelUnit.unitId'], function (newVal) {
+                if (newVal[0] !== undefined && newVal[1] !== undefined) {
+                    if ($rootScope.userCommonRegionID) {
                         $scope.queryInfoGroupChannelType();
                     }
                 }
             });
 
-            $scope.$watch('month.key', function (newValue) {
+            $rootScope.$watch('userCommonRegionID', function (newValue) {
                 if (newValue) {
-                    if ($rootScope.userCommonRegionID) {
+                    if (_.get($scope, 'month.key') !== undefined && _.get($scope, 'checkedTopChannelUnit.unitId') !== undefined) {
                         $scope.queryInfoGroupChannelType();
                     }
                 }
