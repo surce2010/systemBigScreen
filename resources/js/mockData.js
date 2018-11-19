@@ -537,6 +537,45 @@
         },
         'errors': null
     });
+    //所在地区查询接口
+    Mock.mock(new RegExp('/report/q/initCommonRegionInfo'), {
+        'rsphead': 's',
+        'success': true, //是否成功
+        'code': null,
+        'msg': null, //失败信息
+        'data': {
+            'areaLevelNames': ['地市', '区县'],
+            'commonRegion|10': [{
+                'commonRegionId': '@id',
+                'regionName': '@province',
+                'regionCode': '@id',
+                'upRegionId': '@id',
+                'regionDesc': '@cword(4)',
+                'createDate': '@date()',
+                'idPrefix': 64,
+                'areaLevel': 3,
+                'zipCode': null,
+                'zoneNumber': '0951',
+                'areaId': '@id',
+                'childrenCommon|20': [{
+                    'commonRegionId': '@id',
+                    'regionName': '@city',
+                    'regionCode': '@id',
+                    'upRegionId': '@id',
+                    'regionDesc': '@cword(5)',
+                    'createDate': '@date()',
+                    'idPrefix': 64,
+                    'areaLevel': 4,
+                    'zipCode': null,
+                    'zoneNumber': '0951',
+                    'areaId': null,
+                    'childrenCommon': null,
+                }]
+            }]
+
+        },
+        'errors': null
+    });
     //渠道类型查询接口
     Mock.mock(new RegExp('/visual/q/loadChannelType'), {
         rsphead: 's',

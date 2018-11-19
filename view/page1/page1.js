@@ -530,6 +530,13 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
         }])
         .controller('chooseServiceHallModalCtrl', function ($uibModalInstance, $scope, $rootScope, items, httpMethod) {
             var $ctrl = this;
+            //查询地区
+            httpMethod.initCommonRegionInfoReport().then(function (rsp) {
+                if (rsp.success) {
+                    $scope.nameList = rsp.data.areaLevelNames;
+                    $scope.commonRegionList = rsp.data.commonRegion;
+                }
+            });
 
             $scope.totalNum = 0;
             $scope.pageSize = 5;
@@ -543,7 +550,8 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                     pageSize: $scope.pageSize, //每页条数
                     queryDate: _.get($rootScope, 'curMonth.key'),
                     channelNbr: $scope.channelNbr,
-                    channelName: $scope.channelName
+                    channelName: $scope.channelName,
+                    commonRegionId: _.get($scope, 'checkedCity.commonRegionId')
                 };
                 httpMethod.qryShopByConds(params).then(function (rsp) {
                     if (rsp.success) {

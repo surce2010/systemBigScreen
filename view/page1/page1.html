@@ -459,6 +459,13 @@
         <!-- 条件查询 -->
         <div class="depot-query-box fn-clear">
             <div class="account-month fn-left fn-clear">
+                <div class="account-month-title fn-left">地区:</div>
+                <div class="account-month-select fn-left">
+                    <div ng-region-selection value="checkedCity" list="commonRegionList" name-list="nameList"
+                         require="true" name="regionName" code="commonRegionId"></div>
+                </div>
+            </div>
+            <div class="account-month fn-left fn-clear">
                 <div class="account-month-title fn-left">门店编码:</div>
                 <div class="account-month-select fn-left">
                     <input type="text" ng-model="channelNbr"/>
