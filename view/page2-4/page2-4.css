@@ -290,31 +290,37 @@
 }
 
 .btn-query {
-    width: 100px;
+    width: 60px;
     height: 32px;
     border: 0;
-    background: #243e76;
+    background-color: #2d5aa5;
     color: #fff;
     font-size: 16px;
     border-radius: 0;
 }
 
-.account-month-select input {
-    width: 210px;
+.depot-query-box .account-month-select input {
+    width: 130px;
     height: 32px;
+    margin-top: -1px;
     padding: 0 10px;
     border: 0;
     background: none;
 }
-
+.depot-query-box .account-month-select .ng-city-check{
+    background: none;
+}
+.depot-query-box .account-month-select .ng-city-check input{
+    width: 170px;
+}
 .depot-query-box .account-month {
-    margin-right: 18px;
+    margin-right: 10px;
     background: #243e76;
     font-size: 16px;
 }
 
 .depot-query-box .account-month-title {
-    width: 94px;
+    width: 74px;
     padding: 0;
     text-align: center;
 }

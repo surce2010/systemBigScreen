@@ -315,6 +315,10 @@ angular
         httpMethod.index = function (params) {
             return httpServer(httpConfig.siteUrl + '/chain-visual/user/index', params, 'POST');
         };
+        //所在地区查询接口（新增）
+        httpMethod.initCommonRegionInfoReport = function (params) {
+            return httpServer(httpConfig.siteUrl + '/report/q/initCommonRegionInfo', params, 'POST');
+        };
 
 
         return httpMethod;

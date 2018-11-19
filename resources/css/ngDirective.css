@@ -51,13 +51,14 @@
 
 .ng-select-box span {
     position: absolute;
-    right: 28px;
+    width: 18px;
+    right: 22px;
     top: 10px;
-    z-index: 99;
     color: #ccc;
     font-size: 12px;
     text-align: center;
     cursor: pointer;
+    z-index: 100;
 }
 
 .select-opt-list {

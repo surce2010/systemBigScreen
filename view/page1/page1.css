@@ -697,33 +697,42 @@
 }
 
 .btn-query {
-    width: 100px;
+    width: 60px;
     height: 32px;
     border: 0;
-    background: #243e76;
+    background-color: #2d5aa5;
     color: #fff;
     font-size: 16px;
     border-radius: 0;
 }
-
-.account-month-select input {
-    width: 210px;
+.depot-query-box .account-month-select{
+    width: auto;
+}
+.depot-query-box .account-month-select input {
+    width: 130px;
     height: 32px;
+    margin-top: 0;
     padding: 0 10px;
     border: 0;
     background: none;
 }
-
+.depot-query-box .account-month-select .ng-city-check{
+    background: none;
+}
+.depot-query-box .account-month-select .ng-city-check input{
+    width: 166px;
+}
 .depot-query-box .account-month {
-    margin-right: 18px;
-    background: #243e76;
+    margin-right: 10px;
     font-size: 16px;
+    background: #243e76;
 }
 
 .depot-query-box .account-month-title {
-    width: 94px;
+    width: 74px;
     padding: 0;
     text-align: center;
+    background-color: #2d5aa5;
 }
 
 .depot-query-box .account-month:last-child {
@@ -815,3 +824,4 @@
 .checked {
     background: url("../../resources/images/icon-checked.png") no-repeat;
 }
+/*弹窗*/
