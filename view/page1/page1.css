@@ -464,7 +464,7 @@
 }
 
 .tab-header {
-    margin-left: 10px;
+    margin-left: 6px;
     margin-bottom: 6px;
     text-align: left;
 }
@@ -472,7 +472,6 @@
 .tab-header-item {
     display: inline-block;
     height: 24px;
-    margin: 0 3px;
     padding: 0 6px;
     border: 1px solid #51ccff;
     line-height: 22px;
@@ -577,10 +576,20 @@
     background: url("../../resources/images/bg-right03.png") no-repeat;
 }
 
-.unit-text {
+.unit-text-chart {
     position: absolute;
     top: 16px;
     right: 10px;
+    width: 84px;
+    color: #cfe9e5;
+    font-size: 12px;
+}
+
+.unit-text {
+    position: absolute;
+    top: 12px;
+    right: 6px;
+    width: 84px;
     color: #cfe9e5;
     font-size: 12px;
 }

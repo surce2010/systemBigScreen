@@ -30,6 +30,24 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                 parent.angular.element(parent.$('#tabs')).scope().addTab('指标说明', '../page4/page4.html', 'page4');
             };
 
+            $scope.unitPurchaseList = [{
+                unitId: 10000,
+                unitName: '万台'
+            },{
+                unitId: 1,
+                unitName: '个台'
+            }];
+            $scope.unitSaleList = [{
+                unitId: 10000,
+                unitName: '万'
+            },{
+                unitId: 1,
+                unitName: '个'
+            }];
+            $scope.checkedMapUnit = $scope.unitSaleList[0];
+            $scope.checkedDateUnit = $scope.unitPurchaseList[0];
+            $scope.checkedTopBrandUnit = $scope.unitPurchaseList[0];
+
             //获取当前时间向前的12个月列表
             function getMonthList() {
                 var now = new Date(), y, m;
@@ -196,7 +214,8 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                 var params = {
                     queryDate: _.get($scope, 'month.key'),
                     index_id: _.get($scope, 'indexInfo.INDEX_ID'),
-                    common_region_id: commonRegionId || $scope.commonRegionId
+                    common_region_id: commonRegionId || $scope.commonRegionId,
+                    unit: _.get($scope, 'checkedMapUnit.unitId')
                 };
                 httpMethod.queryIndexSeqGroupRegion(params).then(function (rsp) {
                     if (rsp.data.AREA_LEVEL) {
@@ -266,7 +285,8 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                 var params = {
                     queryDate: _.get($scope, 'month.key'),
                     index_id: _.get($scope, 'indexInfo.INDEX_ID'),
-                    common_region_id: commonRegionId || $scope.commonRegionId
+                    common_region_id: commonRegionId || $scope.commonRegionId,
+                    unit: _.get($scope, 'checkedDateUnit.unitId')
                 };
                 httpMethod.queryIndexGroupDay(params).then(function (rsp) {
                     var xaxis = [], indexGroupDayList = [];
@@ -371,6 +391,18 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                 });
             };
 
+            $scope.$watch('checkedMapUnit.unitId', function (newVal) {
+                if (_.get($scope, 'month.key') !== undefined && _.get($scope, 'indexInfo.INDEX_ID') !== undefined && newVal) {
+                    $scope.queryIndexSeqGroupRegion();
+                }
+            });
+
+            $scope.$watch('checkedDateUnit.unitId', function (newVal) {
+                if (_.get($scope, 'month.key') !== undefined && _.get($scope, 'indexInfo.INDEX_ID') !== undefined && newVal) {
+                    $scope.queryIndexGroupDay();
+                }
+            });
+
             $scope.$watchGroup(['month.key', 'indexInfo.INDEX_ID'], function (newVal) {
                 if (newVal[0] !== undefined && newVal[1] !== undefined) {
                     if ($scope.commonRegionId) {
@@ -410,7 +442,8 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
             $scope.queryTop12Brand = function () {
                 var params = {
                     queryDate: _.get($scope, 'month.key'),
-                    common_region_id: $rootScope.userCommonRegionID
+                    common_region_id: $rootScope.userCommonRegionID,
+                    unit: _.get($scope, 'checkedTopBrandUnit.unitId')
                 };
                 httpMethod.queryTop12Brand(params).then(function (rsp) {
                     $scope.top12BrandList = rsp.data || [];
@@ -420,7 +453,8 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
             $scope.queryTop6GrowthBrand = function () {
                 var params = {
                     queryDate: _.get($scope, 'month.key'),
-                    common_region_id: $rootScope.userCommonRegionID
+                    common_region_id: $rootScope.userCommonRegionID,
+                    unit: _.get($scope, 'checkedTopBrandUnit.unitId')
                 };
                 httpMethod.queryTop6GrowthBrand(params).then(function (rsp) {
                     $scope.top6GrowthBrand = rsp.data || [];
@@ -430,16 +464,17 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
             $scope.queryTop6FeatureBrand = function () {
                 var params = {
                     queryDate: _.get($scope, 'month.key'),
-                    common_region_id: $rootScope.userCommonRegionID
+                    common_region_id: $rootScope.userCommonRegionID,
+                    unit: _.get($scope, 'checkedTopBrandUnit.unitId')
                 };
                 httpMethod.queryTop6FeatureBrand(params).then(function (rsp) {
                     $scope.top6FeatureBrand = rsp.data || [];
                 });
             };
 
-            $rootScope.$watch('userCommonRegionID', function (newValue) {
-                if (newValue) {
-                    if (_.get($scope, 'month.key') !== undefined) {
+            $scope.$watchGroup(['checkedTopBrandUnit.unitId', 'month.key'], function (newVal) {
+                if (newVal[0] !== undefined && newVal[1] !== undefined) {
+                    if ($rootScope.userCommonRegionID) {
                         $scope.queryTop12Brand();
                         $scope.queryTop6GrowthBrand();
                         $scope.queryTop6FeatureBrand();
@@ -447,9 +482,9 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                 }
             });
 
-            $scope.$watch('month.key', function (newValue) {
+            $rootScope.$watch('userCommonRegionID', function (newValue) {
                 if (newValue) {
-                    if ($rootScope.userCommonRegionID) {
+                    if (_.get($scope, 'month.key') !== undefined && _.get($scope, 'checkedTopBrandUnit.unitId') !== undefined) {
                         $scope.queryTop12Brand();
                         $scope.queryTop6GrowthBrand();
                         $scope.queryTop6FeatureBrand();
