@@ -43,7 +43,6 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
             }];
             $scope.checkedStockMonthRatioUnit = $scope.unitPurchaseList[0];//1
             $scope.checkedSaleCountMonthRatioUnit = $scope.unitPurchaseList[0];//2
-            $scope.checkedMonthStockSaleProportionUnit = $scope.unitPurchaseList[0];//3
             $scope.checkedShopSaleMonthRatioUnit = $scope.unitPurchaseList[0];//5
             $scope.checkedJihuoLaxinAndAllSaleCountUnit = $scope.unitPurchaseList[0];//6
 
@@ -99,7 +98,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             textStyle: {
                                 color: '#fff'
                             },
-                            data: ['环比', '入库量']
+                            data: ['环比数量变化（台）', '入库量']
                         },
                         xAxis: [
                             {
@@ -176,7 +175,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             }
                         ],
                         series: [{
-                            name: '环比',
+                            name: '环比数量变化（台）',
                             type: 'line',
                             smooth: false,
                             label: {
@@ -208,7 +207,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                     queryDate: _.get($scope, 'month.key'),
                     channelTypeCd: _.get($scope, 'channelType.channelTypeCd'),
                     commonRegionId: _.get($scope, 'checkedCity.commonRegionId'),
-                    unit: _.get($scope, 'checkedSaleCountMonthRatioUnit.unitId')
+                    unit: _.get($scope, 'checkedSaleCountMonthRatioUnit.unitId'),
                 };
                 httpMethod.qryAllSaleCountAndMonthRatio(params).then(function (rsp) {
                     var xaxis = [], allSaleCount = [], monthRatio = [];
@@ -240,7 +239,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             textStyle: {
                                 color: '#fff'
                             },
-                            data: ['环比', '核销量']
+                            data: ['环比数量变化（台）', '核销量']
                         },
                         xAxis: [
                             {
@@ -317,7 +316,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             }
                         ],
                         series: [{
-                            name: '环比',
+                            name: '环比数量变化（台）',
                             type: 'line',
                             smooth: false,
                             label: {
@@ -348,8 +347,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                 var params = {
                     queryDate: _.get($scope, 'month.key'),
                     channelTypeCd: _.get($scope, 'channelType.channelTypeCd'),
-                    commonRegionId: _.get($scope, 'checkedCity.commonRegionId'),
-                    unit: _.get($scope, 'checkedMonthStockSaleProportionUnit.unitId')
+                    commonRegionId: _.get($scope, 'checkedCity.commonRegionId')
                 };
                 httpMethod.qryMonthStockSaleProportion(params).then(function (rsp) {
                     var xaxis = [], monthInstockSale = [], monthNoInstockSale = [];
@@ -375,13 +373,13 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                         legend: {
                             show: true,
                             top: 0,
-                            right: 105,
+                            right: 0,
                             itemWidth: 20,
                             itemHeight: 10,
                             textStyle: {
                                 color: '#fff'
                             },
-                            data: ['当月入库当月核销量', '非当月入库当月核销量']
+                            data: ['当月入库当月核销量占比', '非当月入库当月核销量占比']
                         },
                         xAxis: [
                             {
@@ -441,26 +439,32 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             }
                         ],
                         series: [{
-                            name: '当月入库当月核销量',
+                            name: '当月入库当月核销量占比',
                             type: 'bar',
                             stack: true,
                             barWidth: 22,
                             label: {
                                 show: true,
                                 fontSize: '12',
+                                formatter: function (params) {
+                                    return params.value + '%';
+                                }
                             },
                             itemStyle: {
                                 barBorderRadius: 0
                             },
                             data: monthInstockSale
                         }, {
-                            name: '非当月入库当月核销量',
+                            name: '非当月入库当月核销量占比',
                             type: 'bar',
                             stack: true,
                             barWidth: 22,
                             label: {
                                 show: true,
                                 fontSize: '12',
+                                formatter: function (params) {
+                                    return params.value + '%';
+                                }
                             },
                             itemStyle: {
                                 barBorderRadius: 0
@@ -507,7 +511,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             textStyle: {
                                 color: '#fff'
                             },
-                            data: ['有销门店数（个）', '环比']
+                            data: ['有销门店数（个）', '环比数量变化（台）']
                         },
                         xAxis: [
                             {
@@ -597,7 +601,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             },
                             data: saleShopCount
                         }, {
-                            name: '环比',
+                            name: '环比数量变化（台）',
                             type: 'line',
                             smooth: false,
                             label: {
@@ -648,7 +652,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             textStyle: {
                                 color: '#fff'
                             },
-                            data: ['环比', '单店月销量']
+                            data: ['环比数量变化（台）', '单店月销量（台/月）']
                         },
                         xAxis: [
                             {
@@ -725,7 +729,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             }
                         ],
                         series: [{
-                            name: '环比',
+                            name: '环比数量变化（台）',
                             type: 'line',
                             smooth: false,
                             label: {
@@ -735,7 +739,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             yAxisIndex: 1,
                             data: monthRatio
                         },{
-                            name: '单店月销量',
+                            name: '单店月销量（台/月）',
                             type: 'bar',
                             stack: false,
                             barWidth: 22,
@@ -780,7 +784,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             right: '0',
                             bottom: '22'
                         },
-                        color: ['#1da1dd', '#cea963', '#6cb37a'],
+                        color: ['#FCCC0E', '#1DA1DD'],
                         legend: {
                             show: true,
                             top: 0,
@@ -790,7 +794,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             textStyle: {
                                 color: '#fff'
                             },
-                            data: ['核销量', '激活量', '拉新用户']
+                            data: ['拉新用户（户）', '激活量（台）']
                         },
                         xAxis: [
                             {
@@ -850,29 +854,18 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             }
                         ],
                         series: [{
-                            name: '核销量',
-                            type: 'bar',
-                            stack: 'one',
-                            barWidth: 22,
+                            name: '拉新用户（户）',
+                            type: 'line',
+                            smooth: false,
                             label: {
                                 show: true,
                                 fontSize: '12'
                             },
-                            data: allSaleCount
-                        },{
-                            name: '激活量',
-                            type: 'bar',
-                            stack: 'one',
-                            barWidth: 22,
-                            label: {
-                                show: true,
-                                fontSize: '12'
-                            },
-                            data: JihuoCount
+                            data: LaxinCount
                         }, {
-                            name: '拉新用户',
+                            name: '激活量（台）',
                             type: 'bar',
-                            stack: 'one',
+                            stack: true,
                             barWidth: 22,
                             label: {
                                 show: true,
@@ -881,7 +874,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             itemStyle: {
                                 barBorderRadius: 0
                             },
-                            data: LaxinCount
+                            data: JihuoCount
                         }]
                     }
                 });
@@ -1039,11 +1032,6 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
             $scope.$watch('checkedSaleCountMonthRatioUnit.unitId', function (newVal) {//2
                 if (newVal) {
                     $scope.qryAllSaleCountAndMonthRatio();
-                }
-            });
-            $scope.$watch('checkedMonthStockSaleProportionUnit.unitId', function (newVal) {//3
-                if (newVal) {
-                    $scope.qryMonthStockSaleProportion();
                 }
             });
             $scope.$watch('checkedShopSaleMonthRatioUnit.unitId', function (newVal) {//5

@@ -44,7 +44,7 @@
 
     <div class="wrap-content">
         <div class="card">
-            <p class="title"><span ng-bind="month.key"></span>月份省入库量及环比变化</p>
+            <p class="title"><span ng-bind="month.key"></span>月入库量及环比变化</p>
             <div class="sale-shop-chart">
                 <div ng-unit ng-cloak class="legend" value="checkedStockMonthRatioUnit" select-id="unitId" select-name="unitName" list="unitPurchaseList"></div>
                 <div e-chart options="inStockAndMonthRatioConfig"></div>
@@ -54,7 +54,7 @@
 
     <div class="wrap-content">
         <div class="card">
-            <p class="title"><span ng-bind="month.key"></span>月份省核销量及环比变化</p>
+            <p class="title"><span ng-bind="month.key"></span>月核销量及环比变化</p>
             <div class="sale-shop-chart">
                 <div ng-unit ng-cloak class="legend" value="checkedSaleCountMonthRatioUnit" select-id="unitId" select-name="unitName" list="unitPurchaseList"></div>
                 <div e-chart options="allSaleCountAndMonthRatioConfig"></div>
@@ -64,9 +64,8 @@
 
     <div class="wrap-content">
         <div class="card">
-            <p class="title"><span ng-bind="month.key"></span>月份核销量结构</p>
+            <p class="title"><span ng-bind="month.key"></span>月核销量结构</p>
             <div class="sale-shop-chart">
-                <div ng-unit ng-cloak class="legend" value="checkedMonthStockSaleProportionUnit" select-id="unitId" select-name="unitName" list="unitPurchaseList"></div>
                 <div e-chart options="monthStockSaleProportionConfig"></div>
             </div>
         </div>
@@ -74,7 +73,7 @@
 
     <div class="wrap-content">
         <div class="card">
-            <p class="title"><span ng-bind="month.key"></span>月份有销门店及环比变化</p>
+            <p class="title"><span ng-bind="month.key"></span>月有销门店及环比变化</p>
             <div class="sale-shop-chart">
                 <div e-chart options="saleShopCountAndMonthRatioConfig"></div>
             </div>
@@ -83,7 +82,7 @@
 
     <div class="wrap-content">
         <div class="card">
-            <p class="title"><span ng-bind="month.key"></span>月份有销门店单店月销量及环比变化</p>
+            <p class="title"><span ng-bind="month.key"></span>月有销门店单店月销量及环比变化</p>
             <div class="sale-shop-chart">
                 <div ng-unit ng-cloak class="legend" value="checkedShopSaleMonthRatioUnit" select-id="unitId" select-name="unitName" list="unitPurchaseList"></div>
                 <div e-chart options="shopMonthSaleAndMonthRatioConfig"></div>
@@ -93,7 +92,7 @@
 
     <div class="wrap-content">
         <div class="card">
-            <p class="title"><span ng-bind="month.key"></span>月份和销量、激活量、拉新用户</p>
+            <p class="title"><span ng-bind="month.key"></span>月激活量及拉新用户</p>
             <div class="sale-shop-chart">
                 <div ng-unit ng-cloak class="legend" value="checkedJihuoLaxinAndAllSaleCountUnit" select-id="unitId" select-name="unitName" list="unitPurchaseList"></div>
                 <div e-chart options="jihuoLaxinAndAllSaleCountConfig"></div>
@@ -103,7 +102,7 @@
 
     <div class="wrap-content">
         <div class="card">
-            <p class="title"><span ng-bind="month.key"></span>月份激活率和拉新率</p>
+            <p class="title"><span ng-bind="month.key"></span>月激活率和拉新率</p>
             <div class="sale-shop-chart">
                 <div e-chart options="monthJihuoAndLaxinRatioConfig"></div>
             </div>
