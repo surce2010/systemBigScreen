@@ -27,7 +27,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'httpMethod'], function (a
                 'resourceId': '502',
                 'dispOrder': 1,
                 'parentResourceId': '',
-                'resourceName': '数据报表'
+                'resourceName': '固化报表'
             }];
 
             //获取用户信息
