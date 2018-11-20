@@ -576,7 +576,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             stack: 'one',
                             barWidth: 30,
                             label: {
-                                show: true,
+                                show: false,
                                 fontSize: '12'
                             },
                             itemStyle: {
@@ -589,7 +589,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             stack: 'one',
                             barWidth: 30,
                             label: {
-                                show: true,
+                                show: false,
                                 fontSize: '12'
                             },
                             itemStyle: {
@@ -602,7 +602,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             stack: 'one',
                             barWidth: 30,
                             label: {
-                                show: true,
+                                show: false,
                                 fontSize: '12'
                             },
                             itemStyle: {
@@ -615,7 +615,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             stack: 'one',
                             barWidth: 30,
                             label: {
-                                show: true,
+                                show: false,
                                 fontSize: '12'
                             },
                             itemStyle: {
@@ -628,7 +628,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             stack: 'one',
                             barWidth: 30,
                             label: {
-                                show: true,
+                                show: false,
                                 fontSize: '12'
                             },
                             itemStyle: {
@@ -641,7 +641,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             stack: 'one',
                             barWidth: 30,
                             label: {
-                                show: true,
+                                show: false,
                                 fontSize: '12'
                             },
                             itemStyle: {
