@@ -35,12 +35,11 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'httpMethod'], function (a
                 $log.log('调用获取用户信息接口成功.');
                 if (rsp.success) {
                     $scope.userInfo = rsp.data.userInfo;
-                    $scope.menuInfoList = rsp.data.menuInfo;
-                    var menuInfo = $scope.menuInfoList.sort(function (a, b) {
+                    var menuInfoList = rsp.data.menuInfo;
+                    menuInfoList.sort(function (a, b) {
                         return a.orderSeq - b.orderSeq;
                     });
-                    $scope.menuInfoList = menuInfo;
-                    $scope.menuInfo[2].menuInfoList = $scope.menuInfoList;
+                    $scope.menuInfo[2].menuInfoList = menuInfoList;
                 } else {
                     $window.location.href = '/psm/login.jsp';
                 }

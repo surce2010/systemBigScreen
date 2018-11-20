@@ -25,7 +25,8 @@ require.config({
         'jqueryDialog': './jquery.dialog',
         'ngJqueryDialog': './ngJqueryDialog',
         'scrollbar': './jquery.scrollbar',
-        'moment': './moment'
+        'moment': './moment',
+        'ngStorage': './ngStorage.min'
     },
     shim: {
         'angular': {
@@ -67,6 +68,9 @@ require.config({
             init: function (moment) {
                 return moment;
             }
+        },
+        'ngStorage': {
+            deps: ['angular']
         }
     }
 });
