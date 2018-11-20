@@ -192,6 +192,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             type: 'bar',
                             stack: false,
                             barWidth: 30,
+                            barGap: '5%',
                             label: {
                                 show: true,
                                 fontSize: '12',
@@ -640,6 +641,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             type: 'bar',
                             stack: false,
                             barWidth: 30,
+                            barGap: '5%',
                             label: {
                                 show: true,
                                 fontSize: '12',
@@ -657,7 +659,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                                 show: true,
                                 fontSize: '12',
                                 position: 'top',
-                                color:'#fff'
+                                color: '#fff'
                             },
                             itemStyle: {
                                 barBorderRadius: 0
@@ -1126,6 +1128,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             type: 'bar',
                             stack: false,
                             barWidth: 30,
+                            barGap: '5%',
                             label: {
                                 show: true,
                                 fontSize: '12',
@@ -1310,6 +1313,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             type: 'bar',
                             stack: false,
                             barWidth: 30,
+                            barGap: '5%',
                             label: {
                                 show: true,
                                 fontSize: '12',
@@ -1443,25 +1447,23 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
             });
 
             $rootScope.$watchGroup(['month.key', 'targetStore.CHANNEL_ID'], function (newVal) {
-                if (newVal) {
-                    if (_.get($rootScope.targetStore, 'CHANNEL_ID')) {
-                        $scope.qryShopProcureSalesLast6Months();
-                        $scope.qryShopSalesInfoLast6Months();
-                        $scope.qryShopSalesStockInfoLast6Months();
-                        $scope.qryShopSalesJhLxLast6Months();
-                        $scope.qryShopSalesBrandModelNumLast6Months();
-                        $scope.qryShopSalesJhLxRatioLast6Months();
+                if (newVal[0] && newVal[1]) {
+                    $scope.qryShopProcureSalesLast6Months();
+                    $scope.qryShopSalesInfoLast6Months();
+                    $scope.qryShopSalesStockInfoLast6Months();
+                    $scope.qryShopSalesJhLxLast6Months();
+                    $scope.qryShopSalesBrandModelNumLast6Months();
+                    $scope.qryShopSalesJhLxRatioLast6Months();
 
-                        $scope.qryBizmanProcureSales();
-                        $scope.qryBizmanSalesInfo();
-                        $scope.qryShopStockZZModelTop5();
+                    $scope.qryBizmanProcureSales();
+                    $scope.qryBizmanSalesInfo();
+                    $scope.qryShopStockZZModelTop5();
 
-                        $scope.qryShopSalesModelTop5();
-                        $scope.qryShopSalesManTop5();
-                        $scope.qryShopStockModelTop5();
-                    }
+                    $scope.qryShopSalesModelTop5();
+                    $scope.qryShopSalesManTop5();
+                    $scope.qryShopStockModelTop5();
                 }
-            }, true);
+            });
 
         }])
         .controller('chooseServiceHallModalCtrl', function ($uibModalInstance, $scope, $rootScope, items, httpMethod) {
