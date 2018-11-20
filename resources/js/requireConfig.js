@@ -25,7 +25,8 @@ require.config({
         'jqueryDialog': './jquery.dialog',
         'ngJqueryDialog': './ngJqueryDialog',
         'scrollbar': './jquery.scrollbar',
-        'moment': './moment'
+        'moment': './moment',
+        'ngStorage': './ngStorage.min'
     },
     shim: {
         'angular': {
@@ -67,6 +68,9 @@ require.config({
             init: function (moment) {
                 return moment;
             }
+        },
+        'ngStorage': {
+            deps: ['angular']
         }
     }
 });
@@ -76,7 +80,7 @@ require(['jquery'], function ($) {
     var targetModule = $('#page').attr('target-module');
 
     // mockData 加载与否决定是否启用模拟数据
-    require(['angular', currentPage], function (angular) {
+    require(['angular', 'mockData', currentPage], function (angular) {
         angular.bootstrap(document, [targetModule]);
     });
 });
