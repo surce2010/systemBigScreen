@@ -605,7 +605,10 @@
                 'roleName': '宁夏自治区店长',
                 'retailShopName': '@cword(5,7)',
                 'userId': '@id'
-            }
+            },
+            'menuInfo|5': [{
+                'orderSeq|1-10': 1
+            }]
         }
     });
 
