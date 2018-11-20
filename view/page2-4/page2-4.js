@@ -835,7 +835,14 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                     $scope.shopSalesJhLxRatioLast6Months = {
                         tooltip: {
                             show: true,
-                            trigger: 'axis'
+                            trigger: 'axis',
+                            formatter: function (params) {
+                                var relVal = params[0].name;
+                                for (var i = 0, l = params.length; i < l; i++) {
+                                    relVal += '<br/>' + params[i].marker + params[i].seriesName + ' : ' + params[i].value + '%';
+                                }
+                                return relVal;
+                            }
                         },
                         grid: {
                             left: '0',
