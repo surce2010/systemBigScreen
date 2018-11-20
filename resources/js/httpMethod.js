@@ -315,11 +315,10 @@ angular
         httpMethod.index = function (params) {
             return httpServer(httpConfig.siteUrl + '/chain-visual/user/index', params, 'POST');
         };
-        //所在地区查询接口（新增）
-        httpMethod.initCommonRegionInfoReport = function (params) {
-            return httpServer(httpConfig.siteUrl + '/report/q/initCommonRegionInfo', params, 'POST');
+
+        //连续6个月核销激活率及拉新率（新增）
+        httpMethod.qryShopSalesJhLxRatioLast6Months = function (params) {
+            return httpServer(httpConfig.siteUrl + '/visual/q/qryShopSalesJhLxRatioLast6Months', params, 'POST');
         };
-
-
         return httpMethod;
     }]);

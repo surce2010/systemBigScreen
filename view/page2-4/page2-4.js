@@ -191,11 +191,10 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             name: '入库量（台）',
                             type: 'bar',
                             stack: false,
-                            barWidth: 11,
+                            barWidth: 30,
                             label: {
                                 show: true,
                                 fontSize: '12',
-                                position: 'top'
                             },
                             itemStyle: {
                                 barBorderRadius: 0
@@ -205,11 +204,12 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             name: '核销量（台）',
                             type: 'bar',
                             stack: false,
-                            barWidth: 11,
+                            barWidth: 30,
                             label: {
                                 show: true,
                                 fontSize: '12',
-                                position: 'top'
+                                position: 'top',
+                                color: '#fff'
                             },
                             itemStyle: {
                                 barBorderRadius: 0
@@ -356,7 +356,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             name: '核销量（台）',
                             type: 'bar',
                             stack: 'one',
-                            barWidth: 27,
+                            barWidth: 50,
                             label: {
                                 show: true,
                                 fontSize: '12'
@@ -418,7 +418,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             formatter: function (params) {
                                 var relVal = params[0].name;
                                 for (var i = 0, l = params.length; i < l; i++) {
-                                    relVal += '<br/>' + params[i].marker + params[i].seriesName + ' : ' + params[i].value;
+                                    relVal += '<br/>' + params[i].marker + params[i].seriesName + ' : ' + params[i].value + '%';
                                 }
                                 return relVal;
                             }
@@ -439,7 +439,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             textStyle: {
                                 color: '#fff'
                             },
-                            data: ['当月入库当月核销', '非当月入库当月核销']
+                            data: ['当月入库当月核销占比', '非当月入库当月核销占比']
                         },
                         xAxis: [
                             {
@@ -495,10 +495,10 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                                 }
                             }],
                         series: [{
-                            name: '当月入库当月核销',
+                            name: '当月入库当月核销占比',
                             type: 'bar',
                             stack: 'one',
-                            barWidth: 27,
+                            barWidth: 50,
                             label: {
                                 show: true,
                                 fontSize: '12',
@@ -511,10 +511,10 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             },
                             data: arr1
                         }, {
-                            name: '非当月入库当月核销',
+                            name: '非当月入库当月核销占比',
                             type: 'bar',
                             stack: 'one',
-                            barWidth: 27,
+                            barWidth: 50,
                             label: {
                                 show: false,
                                 fontSize: '12'
@@ -639,11 +639,10 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             name: '核销量（台）',
                             type: 'bar',
                             stack: false,
-                            barWidth: 11,
+                            barWidth: 30,
                             label: {
                                 show: true,
                                 fontSize: '12',
-                                position: 'top'
                             },
                             itemStyle: {
                                 barBorderRadius: 0
@@ -653,11 +652,12 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             name: '激活量（台）',
                             type: 'bar',
                             stack: false,
-                            barWidth: 11,
+                            barWidth: 30,
                             label: {
                                 show: true,
                                 fontSize: '12',
-                                position: 'top'
+                                position: 'top',
+                                color:'#fff'
                             },
                             itemStyle: {
                                 barBorderRadius: 0
@@ -792,7 +792,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             name: '销售品牌数量',
                             type: 'bar',
                             stack: false,
-                            barWidth: 46,
+                            barWidth: 50,
                             label: {
                                 show: true,
                                 fontSize: '12'
@@ -814,6 +814,132 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                                 barBorderRadius: 0
                             },
                             yAxisIndex: 1,
+                            data: arr2
+                        }]
+                    }
+                });
+            };
+            $scope.qryShopSalesJhLxRatioLast6Months = function () {
+                var params = {
+                    queryDate: _.get($rootScope, 'month.key'),
+                    channelId: _.get($rootScope, 'targetStore.CHANNEL_ID')
+                };
+                httpMethod.qryShopSalesJhLxRatioLast6Months(params).then(function (rsp) {
+                    $scope.shopSalesJhLxRatioLast6MonthsList = rsp.data;
+                    var xaxis = [], arr1 = [], arr2 = [];
+                    _.map($scope.shopSalesJhLxRatioLast6MonthsList, function (item) {
+                        xaxis.push(item.QUERY_DATE);
+                        arr1.push(item.JH_RATIO);
+                        arr2.push(item.LX_RATIO);
+                    });
+                    $scope.shopSalesJhLxRatioLast6Months = {
+                        tooltip: {
+                            show: true,
+                            trigger: 'axis'
+                        },
+                        grid: {
+                            left: '0',
+                            top: '50',
+                            right: '0',
+                            bottom: '22'
+                        },
+                        color: ['#0fc4d9', '#ffdb01'],
+                        legend: {
+                            show: true,
+                            left: 'right',
+                            top: 0,
+                            itemWidth: 13,
+                            itemHeight: 6,
+                            textStyle: {
+                                color: '#fff'
+                            },
+                            data: ['激活率', '拉新率']
+                        },
+                        xAxis: [
+                            {
+                                type: 'category',
+                                boundaryGap: true,
+                                axisTick: {
+                                    show: true,
+                                    lineStyle: {
+                                        color: '#2f76a5',
+                                        type: 'solid'
+                                    }
+                                },
+                                splitLine: {
+                                    show: false,
+                                    lineStyle: {
+                                        color: 'rgba(255, 255, 255, 0.1)'
+                                    }
+                                },
+                                axisLabel: {
+                                    show: true,
+                                    interval: 0,
+                                    textStyle: {
+                                        color: '#fff'
+                                    }
+                                },
+                                axisLine: {
+                                    show: true,
+                                    lineStyle: {
+                                        color: '#2f76a5',
+                                        width: 1
+                                    }
+                                },
+                                data: xaxis
+                            }
+                        ],
+                        yAxis: [
+                            {
+                                type: 'value',
+                                splitLine: {
+                                    show: false,
+                                    lineStyle: {
+                                        color: 'rgba(255, 255, 255, 0.1)'
+                                    }
+                                },
+                                axisLabel: {
+                                    show: false,
+                                    textStyle: {
+                                        color: '#fff'
+                                    }
+                                },
+                                axisLine: {
+                                    show: false
+                                }
+                            }
+                        ],
+                        series: [{
+                            name: '激活率',
+                            type: 'line',
+                            smooth: false,
+                            label: {
+                                show: true,
+                                fontSize: '12',
+                                position: 'top',
+                                formatter: function (params) {
+                                    return params.value + '%';
+                                }
+                            },
+                            itemStyle: {
+                                barBorderRadius: 0
+                            },
+                            data: arr1
+                        }, {
+                            name: '拉新率',
+                            type: 'line',
+                            smooth: false,
+                            label: {
+                                show: true,
+                                fontSize: '12',
+                                position: 'top',
+                                formatter: function (params) {
+                                    return params.value + '%';
+                                }
+                            },
+                            itemStyle: {
+                                barBorderRadius: 0
+                            },
                             data: arr2
                         }]
                     }
@@ -992,11 +1118,10 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             name: '核销量（台）',
                             type: 'bar',
                             stack: false,
-                            barWidth: 11,
+                            barWidth: 30,
                             label: {
                                 show: true,
                                 fontSize: '12',
-                                position: 'top'
                             },
                             itemStyle: {
                                 barBorderRadius: 0
@@ -1006,11 +1131,10 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             name: '激活量（台）',
                             type: 'bar',
                             stack: false,
-                            barWidth: 11,
+                            barWidth: 30,
                             label: {
                                 show: true,
                                 fontSize: '12',
-                                position: 'top'
                             },
                             itemStyle: {
                                 barBorderRadius: 0
@@ -1178,11 +1302,10 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             name: '核销量（台）',
                             type: 'bar',
                             stack: false,
-                            barWidth: 11,
+                            barWidth: 30,
                             label: {
                                 show: true,
                                 fontSize: '12',
-                                position: 'top'
                             },
                             itemStyle: {
                                 barBorderRadius: 0
@@ -1192,11 +1315,10 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             name: '激活量（台）',
                             type: 'bar',
                             stack: false,
-                            barWidth: 11,
+                            barWidth: 30,
                             label: {
                                 show: true,
                                 fontSize: '12',
-                                position: 'top'
                             },
                             itemStyle: {
                                 barBorderRadius: 0
@@ -1321,6 +1443,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                         $scope.qryShopSalesStockInfoLast6Months();
                         $scope.qryShopSalesJhLxLast6Months();
                         $scope.qryShopSalesBrandModelNumLast6Months();
+                        $scope.qryShopSalesJhLxRatioLast6Months();
 
                         $scope.qryBizmanProcureSales();
                         $scope.qryBizmanSalesInfo();
@@ -1337,7 +1460,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
         .controller('chooseServiceHallModalCtrl', function ($uibModalInstance, $scope, $rootScope, items, httpMethod) {
             var $ctrl = this;
             //查询地区
-            httpMethod.initCommonRegionInfoReport().then(function (rsp) {
+            httpMethod.initCommonRegionInfo().then(function (rsp) {
                 if (rsp.success) {
                     $scope.nameList = rsp.data.areaLevelNames;
                     $scope.commonRegionList = rsp.data.commonRegion;
