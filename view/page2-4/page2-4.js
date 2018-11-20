@@ -1431,18 +1431,20 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
             };
 
             $rootScope.$watch('month.key', function (newVal) {
-                if (_.get($rootScope.targetStore, 'CHANNEL_NBR')) {
-                    var params = {
-                        curPage: 1, //当前页
-                        pageSize: 1, //每页条数
-                        queryDate: newVal,
-                        channelNbr: _.get($rootScope.targetStore, 'CHANNEL_NBR')
-                    };
-                    httpMethod.qryShopByConds(params).then(function (rsp) {
-                        if (rsp.success) {
-                            $rootScope.targetStore = rsp.data.list[0];
-                        }
-                    });
+                if (newVal) {
+                    if (_.get($rootScope.targetStore, 'CHANNEL_NBR')) {
+                        var params = {
+                            curPage: 1, //当前页
+                            pageSize: 1, //每页条数
+                            queryDate: newVal,
+                            channelNbr: _.get($rootScope.targetStore, 'CHANNEL_NBR')
+                        };
+                        httpMethod.qryShopByConds(params).then(function (rsp) {
+                            if (rsp.success) {
+                                $rootScope.targetStore = rsp.data.list[0];
+                            }
+                        });
+                    }
                 }
             });
 
