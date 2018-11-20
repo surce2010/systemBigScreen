@@ -57,7 +57,7 @@
             <div class="list-right fn-left">
                 <ul class="ul-one-line fn-clear">
                     <li class="card fn-left">
-                        <p class="title">连续6月入库核销量</p>
+                        <p class="title">连续6个月入库核销量</p>
                         <div class="chart-one">
                             <div class="chart" e-chart options="shopProcureSalesLast6Months"
                                  ng-show="shopProcureSalesLast6MonthsList.length"></div>
@@ -66,7 +66,7 @@
                         </div>
                     </li>
                     <li class="card fn-left">
-                        <p class="title">连续6月终端核销量</p>
+                        <p class="title">连续6个月终端核销量</p>
                         <div class="chart-one">
                             <div class="chart" e-chart options="shopSalesInfoLast6Months"
                                  ng-show="shopSalesInfoLast6MonthsList.length"></div>
@@ -77,7 +77,7 @@
                 </ul>
                 <ul class="ul-one-line fn-clear">
                     <li class="card fn-left">
-                        <p class="title">连续6月终端核销量结构</p>
+                        <p class="title">连续6个月终端核销量结构</p>
                         <div class="chart-one">
                             <div class="chart" e-chart options="shopSalesStockInfoLast6Months"
                                  ng-show="shopSalesStockInfoLast6MonthsList.length"></div>
@@ -95,15 +95,26 @@
                         </div>
                     </li>
                 </ul>
-                <div class="list-right-bottom card">
-                    <p class="title">连续6个月销售品牌机型数量</p>
-                    <div class="chart-one">
-                        <div class="chart" e-chart options="shopSalesBrandModelNumLast6Months"
-                             ng-show="shopSalesBrandModelNumLast6MonthsList.length"></div>
-                        <img class="none-img" src="../../resources/images/icon-none.png"
-                             ng-show="!shopSalesBrandModelNumLast6MonthsList.length">
-                    </div>
-                </div>
+                <ul class="ul-one-line fn-clear">
+                    <li class="card fn-left">
+                        <p class="title">连续6个月销售品牌机型数量</p>
+                        <div class="chart-one">
+                            <div class="chart" e-chart options="shopSalesBrandModelNumLast6Months"
+                                 ng-show="shopSalesBrandModelNumLast6MonthsList.length"></div>
+                            <img class="none-img" src="../../resources/images/icon-none.png"
+                                 ng-show="!shopSalesBrandModelNumLast6MonthsList.length">
+                        </div>
+                    </li>
+                    <li class="card fn-left">
+                        <p class="title">连续6个月激活率及拉新率</p>
+                        <div class="chart-one">
+                            <div class="chart" e-chart options="shopSalesJhLxLast6Months"
+                                 ng-show="shopSalesJhLxLast6MonthsList.length"></div>
+                            <img class="none-img" src="../../resources/images/icon-none.png"
+                                 ng-show="!shopSalesJhLxLast6MonthsList.length">
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
         <ul class="ul-two-line fn-clear">

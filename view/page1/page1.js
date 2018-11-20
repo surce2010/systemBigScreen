@@ -571,7 +571,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
         .controller('chooseServiceHallModalCtrl', function ($uibModalInstance, $scope, $rootScope, items, httpMethod) {
             var $ctrl = this;
             //查询地区
-            httpMethod.initCommonRegionInfoReport().then(function (rsp) {
+            httpMethod.initCommonRegionInfo().then(function (rsp) {
                 if (rsp.success) {
                     $scope.nameList = rsp.data.areaLevelNames;
                     $scope.commonRegionList = rsp.data.commonRegion;
