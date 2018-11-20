@@ -825,14 +825,14 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                     channelId: _.get($rootScope, 'targetStore.CHANNEL_ID')
                 };
                 httpMethod.qryShopSalesJhLxRatioLast6Months(params).then(function (rsp) {
-                    $scope.shopSalesBrandModelNumLast6MonthsList = rsp.data;
+                    $scope.shopSalesJhLxRatioLast6MonthsList = rsp.data;
                     var xaxis = [], arr1 = [], arr2 = [];
-                    _.map($scope.shopSalesBrandModelNumLast6MonthsList, function (item) {
+                    _.map($scope.shopSalesJhLxRatioLast6MonthsList, function (item) {
                         xaxis.push(item.QUERY_DATE);
                         arr1.push(item.JH_RATIO);
                         arr2.push(item.LX_RATIO);
                     });
-                    $scope.shopSalesBrandModelNumLast6Months = {
+                    $scope.shopSalesJhLxRatioLast6Months = {
                         tooltip: {
                             show: true,
                             trigger: 'axis'
@@ -1443,6 +1443,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                         $scope.qryShopSalesStockInfoLast6Months();
                         $scope.qryShopSalesJhLxLast6Months();
                         $scope.qryShopSalesBrandModelNumLast6Months();
+                        $scope.qryShopSalesJhLxRatioLast6Months();
 
                         $scope.qryBizmanProcureSales();
                         $scope.qryBizmanSalesInfo();
