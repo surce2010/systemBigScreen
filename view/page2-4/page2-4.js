@@ -192,6 +192,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             type: 'bar',
                             stack: false,
                             barWidth: 30,
+                            barGap: '5%',
                             label: {
                                 show: true,
                                 fontSize: '12',
@@ -640,6 +641,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             type: 'bar',
                             stack: false,
                             barWidth: 30,
+                            barGap: '5%',
                             label: {
                                 show: true,
                                 fontSize: '12',
@@ -1126,6 +1128,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             type: 'bar',
                             stack: false,
                             barWidth: 30,
+                            barGap: '5%',
                             label: {
                                 show: true,
                                 fontSize: '12',
@@ -1310,6 +1313,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             type: 'bar',
                             stack: false,
                             barWidth: 30,
+                            barGap: '5%',
                             label: {
                                 show: true,
                                 fontSize: '12',
