@@ -31,7 +31,10 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'httpMethod'], function (a
             }];
 
             //获取用户信息
-            httpMethod.loadUserInfo().then(function (rsp) {
+            var param = {
+                'sysMenuTypeCd': '2'
+            };
+            httpMethod.loadUserInfo(param).then(function (rsp) {
                 $log.log('调用获取用户信息接口成功.');
                 if (rsp.success) {
                     $scope.userInfo = rsp.data.userInfo;
