@@ -959,7 +959,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                     y: 0
                 },
                 tooltip: {
-                    pointFormat: '<b>{point.y}万台<br/>{point.percentage:.1f}%</b>'
+                    pointFormat: '<b>{point.y}<br/>{point.percentage:.1f}%</b>'
                 },
                 colors: ['#74bd73', '#09a9f7', '#d0b069', '#8178f7'],
                 plotOptions: {
@@ -974,8 +974,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             },
                             format: '{point.y}<br/>{point.percentage:.1f}%'
                         },
-                        showInLegend: true,
-
+                        showInLegend: true
                     },
                     series: {
                         cursor: 'pointer',
@@ -1161,7 +1160,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                     y: 0
                 },
                 tooltip: {
-                    pointFormat: '<b>{point.y}万台<br/>{point.percentage:.1f}%</b>'
+                    pointFormat: '<b>{point.y}<br/>{point.percentage:.1f}%</b>'
                 },
                 colors: ['#74bd73', '#09a9f7', '#2db1be', '#8178f7', '#cd6470', '#d0b069'],
                 plotOptions: {
@@ -1361,7 +1360,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                     y: 0
                 },
                 tooltip: {
-                    pointFormat: '<b>{point.y}万台<br/>{point.percentage:.1f}%</b>'
+                    pointFormat: '<b>{point.y}<br/>{point.percentage:.1f}%</b>'
                 },
                 colors: ['#74bd73', '#d0b069', '#8178f7', '#09a9f7', '#cd6470'],
                 plotOptions: {
@@ -1559,7 +1558,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                     y: 0
                 },
                 tooltip: {
-                    pointFormat: '<b>{point.y}万台<br/>{point.percentage:.1f}%</b>'
+                    pointFormat: '<b>{point.y}<br/>{point.percentage:.1f}%</b>'
                 },
                 colors: ['#74bd73', '#09a9f7', '#2db1be', '#e2bb5d', '#8178f7'],
                 plotOptions: {
