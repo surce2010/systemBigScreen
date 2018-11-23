@@ -652,7 +652,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             textStyle: {
                                 color: '#fff'
                             },
-                            data: ['环比数量变化（台）', '单店月销量（台/月）']
+                            data: ['环比数量变化（台）', '单店月销量']
                         },
                         xAxis: [
                             {
@@ -739,7 +739,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             yAxisIndex: 1,
                             data: monthRatio
                         },{
-                            name: '单店月销量（台/月）',
+                            name: '单店月销量',
                             type: 'bar',
                             stack: false,
                             barWidth: 22,
@@ -794,7 +794,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             textStyle: {
                                 color: '#fff'
                             },
-                            data: ['拉新用户（户）', '激活量（台）']
+                            data: ['拉新用户', '激活量']
                         },
                         xAxis: [
                             {
@@ -854,7 +854,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             }
                         ],
                         series: [{
-                            name: '拉新用户（户）',
+                            name: '拉新用户',
                             type: 'line',
                             smooth: false,
                             label: {
@@ -863,7 +863,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             },
                             data: LaxinCount
                         }, {
-                            name: '激活量（台）',
+                            name: '激活量',
                             type: 'bar',
                             stack: true,
                             barWidth: 22,
