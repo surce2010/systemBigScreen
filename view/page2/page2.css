@@ -15,10 +15,6 @@
     cursor: pointer;
 }
 
-.header .wrds img {
-    /*margin-right: 2px;*/
-}
-
 .header .wrds:hover span {
     color: #73c2e6;
 }
