@@ -868,7 +868,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             stack: true,
                             barWidth: 22,
                             label: {
-                                show: true,
+                                show: false,
                                 fontSize: '12'
                             },
                             itemStyle: {
