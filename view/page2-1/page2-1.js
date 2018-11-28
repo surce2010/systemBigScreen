@@ -14,14 +14,14 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
             $scope.unitPurchaseList = [{
                 unitId: 10000,
                 unitName: '万台'
-            },{
+            }, {
                 unitId: 1,
                 unitName: '个台'
             }];
             $scope.unitSaleList = [{
                 unitId: 10000,
                 unitName: '万'
-            },{
+            }, {
                 unitId: 1,
                 unitName: '个'
             }];
@@ -1094,7 +1094,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                                     textStyle: {
                                         color: '#fff'
                                     },
-                                    formatter:function(val){
+                                    formatter: function (val) {
                                         var reg = /(.{11}).*/;
                                         return val.replace(reg, "$1...");
                                     }
@@ -1294,7 +1294,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                                     textStyle: {
                                         color: '#fff'
                                     },
-                                    formatter:function(val){
+                                    formatter: function (val) {
                                         var reg = /(.{11}).*/;
                                         return val.replace(reg, "$1...");
                                     }
@@ -1492,7 +1492,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                                     textStyle: {
                                         color: '#fff'
                                     },
-                                    formatter:function(val){
+                                    formatter: function (val) {
                                         var reg = /(.{11}).*/;
                                         return val.replace(reg, "$1...");
                                     }
@@ -1664,8 +1664,8 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                                     textStyle: {
                                         color: '#fff'
                                     },
-                                    formatter:function(val){
-                                        var reg = /(.{8}).*/;
+                                    formatter: function (val) {
+                                        var reg = /(.{4}).*/;
                                         return val.replace(reg, "$1...");
                                     }
                                 },
@@ -1805,8 +1805,8 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                                     textStyle: {
                                         color: '#fff'
                                     },
-                                    formatter:function(val){
-                                        var reg = /(.{8}).*/;
+                                    formatter: function (val) {
+                                        var reg = /(.{4}).*/;
                                         return val.replace(reg, "$1...");
                                     }
                                 },
@@ -1948,6 +1948,10 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                                     interval: 0,
                                     textStyle: {
                                         color: '#fff'
+                                    },
+                                    formatter: function (val) {
+                                        var reg = /(.{4}).*/;
+                                        return val.replace(reg, "$1...");
                                     }
                                 },
                                 axisLine: {
@@ -1991,7 +1995,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                                     textStyle: {
                                         color: '#fff'
                                     },
-                                    formatter:function(val){
+                                    formatter: function (val) {
                                         var reg = /(.{8}).*/;
                                         return val.replace(reg, "$1...");
                                     }
@@ -2090,8 +2094,8 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                                     textStyle: {
                                         color: '#fff'
                                     },
-                                    formatter:function(val){
-                                        var reg = /(.{8}).*/;
+                                    formatter: function (val) {
+                                        var reg = /(.{4}).*/;
                                         return val.replace(reg, "$1...");
                                     }
                                 },

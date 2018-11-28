@@ -37,7 +37,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
             $scope.unitPurchaseList = [{
                 unitId: 10000,
                 unitName: '万台'
-            },{
+            }, {
                 unitId: 1,
                 unitName: '个台'
             }];
@@ -738,7 +738,7 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                             },
                             yAxisIndex: 1,
                             data: monthRatio
-                        },{
+                        }, {
                             name: '单店月销量',
                             type: 'bar',
                             stack: false,
@@ -977,34 +977,26 @@ define(['angular', 'jquery', 'lodash', 'ngDirective', 'ngHighCharts', 'ngEcharts
                         ],
                         series: [{
                             name: '激活率',
-                            type: 'bar',
-                            stack: true,
-                            barWidth: 22,
+                            type: 'line',
+                            smooth: false,
                             label: {
                                 show: true,
                                 fontSize: '12',
                                 formatter: function (params) {
                                     return params.value + '%';
                                 }
-                            },
-                            itemStyle: {
-                                barBorderRadius: 0
                             },
                             data: JihuoRatio
                         }, {
                             name: '拉新率',
-                            type: 'bar',
-                            stack: true,
-                            barWidth: 22,
+                            type: 'line',
+                            smooth: false,
                             label: {
                                 show: true,
                                 fontSize: '12',
                                 formatter: function (params) {
                                     return params.value + '%';
                                 }
-                            },
-                            itemStyle: {
-                                barBorderRadius: 0
                             },
                             data: LaxinRatio
                         }]

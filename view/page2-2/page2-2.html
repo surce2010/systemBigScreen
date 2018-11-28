@@ -13,103 +13,107 @@
     <link rel="stylesheet" href="../../resources/css/ngDirective.css">
     <link rel="stylesheet" href="page2-2.css">
 </head>
+
 <body>
-<div class="wrapper box-1342" ng-controller="pageCtrl">
-    <div class="wrap-head">
-        <div class="loc"><span ng-click="link('图形化报表', '../page2/page2.html', 'page2')">图形化报表</span> > 分省终端进销存数据</div>
-        <div class="condition fn-right">
-            <div class="account-month fn-left">
-                <div class="account-month-title fn-left">帐期:</div>
-                <div class="account-month-select fn-right">
-                    <div ng-select value="month" select-id="key" select-name="value" list="monthList"
-                         require="true"></div>
+    <div class="wrapper box-1342" ng-controller="pageCtrl">
+        <div class="wrap-head">
+            <div class="loc"><span ng-click="link('图形化报表', '../page2/page2.html', 'page2')">图形化报表</span> > 分省终端进销存数据</div>
+            <div class="condition fn-right">
+                <div class="account-month fn-left">
+                    <div class="account-month-title fn-left">帐期:</div>
+                    <div class="account-month-select fn-right">
+                        <div ng-select value="month" select-id="key" select-name="value" list="monthList" require="true"></div>
+                    </div>
+                </div>
+                <div class="channel-type fn-left">
+                    <div class="channel-type-title fn-left">渠道类型:</div>
+                    <div class="channel-type-select fn-right">
+                        <div ng-select value="channelType" select-id="channelTypeCd" select-name="channelTypeName" list="channelList"></div>
+                    </div>
+                </div>
+                <div class="checked-city fn-right">
+                    <div class="checked-city-title fn-left">地区:</div>
+                    <div class="checked-city-select fn-right">
+                        <div ng-region-selection value="checkedCity" list="commonRegionList" name-list="nameList"
+                            require="true" name="regionName" code="commonRegionId"></div>
+                    </div>
                 </div>
             </div>
-            <div class="channel-type fn-left">
-                <div class="channel-type-title fn-left">渠道类型:</div>
-                <div class="channel-type-select fn-right">
-                    <div ng-select value="channelType" select-id="channelTypeCd" select-name="channelTypeName"
-                         list="channelList"></div>
-                </div>
-            </div>
-            <div class="checked-city fn-right">
-                <div class="checked-city-title fn-left">地区:</div>
-                <div class="checked-city-select fn-right">
-                    <div ng-region-selection value="checkedCity" list="commonRegionList" name-list="nameList"
-                         require="true" name="regionName" code="commonRegionId"></div>
+        </div>
+
+        <div class="wrap-content">
+            <div class="card">
+                <p class="title"><span ng-bind="month.key"></span>月入库量及环比变化</p>
+                <div class="sale-shop-chart">
+                    <div ng-unit ng-cloak class="legend" value="checkedStockMonthRatioUnit" select-id="unitId"
+                        select-name="unitName" list="unitPurchaseList"></div>
+                    <div e-chart options="inStockAndMonthRatioConfig"></div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="wrap-content">
-        <div class="card">
-            <p class="title"><span ng-bind="month.key"></span>月入库量及环比变化</p>
-            <div class="sale-shop-chart">
-                <div ng-unit ng-cloak class="legend" value="checkedStockMonthRatioUnit" select-id="unitId" select-name="unitName" list="unitPurchaseList"></div>
-                <div e-chart options="inStockAndMonthRatioConfig"></div>
+        <div class="wrap-content">
+            <div class="card">
+                <p class="title"><span ng-bind="month.key"></span>月核销量及环比变化</p>
+                <div class="sale-shop-chart">
+                    <div ng-unit ng-cloak class="legend" value="checkedSaleCountMonthRatioUnit" select-id="unitId"
+                        select-name="unitName" list="unitPurchaseList"></div>
+                    <div e-chart options="allSaleCountAndMonthRatioConfig"></div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="wrap-content">
-        <div class="card">
-            <p class="title"><span ng-bind="month.key"></span>月核销量及环比变化</p>
-            <div class="sale-shop-chart">
-                <div ng-unit ng-cloak class="legend" value="checkedSaleCountMonthRatioUnit" select-id="unitId" select-name="unitName" list="unitPurchaseList"></div>
-                <div e-chart options="allSaleCountAndMonthRatioConfig"></div>
+        <div class="wrap-content">
+            <div class="card">
+                <p class="title"><span ng-bind="month.key"></span>月核销量结构</p>
+                <div class="sale-shop-chart">
+                    <div e-chart options="monthStockSaleProportionConfig"></div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="wrap-content">
-        <div class="card">
-            <p class="title"><span ng-bind="month.key"></span>月核销量结构</p>
-            <div class="sale-shop-chart">
-                <div e-chart options="monthStockSaleProportionConfig"></div>
+        <div class="wrap-content">
+            <div class="card">
+                <p class="title"><span ng-bind="month.key"></span>月有销门店及环比变化</p>
+                <div class="sale-shop-chart">
+                    <div e-chart options="saleShopCountAndMonthRatioConfig"></div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="wrap-content">
-        <div class="card">
-            <p class="title"><span ng-bind="month.key"></span>月有销门店及环比变化</p>
-            <div class="sale-shop-chart">
-                <div e-chart options="saleShopCountAndMonthRatioConfig"></div>
+        <div class="wrap-content">
+            <div class="card">
+                <p class="title"><span ng-bind="month.key"></span>月有销门店单店月销量及环比变化</p>
+                <div class="sale-shop-chart">
+                    <div ng-unit ng-cloak class="legend" value="checkedShopSaleMonthRatioUnit" select-id="unitId"
+                        select-name="unitName" list="unitPurchaseList"></div>
+                    <div e-chart options="shopMonthSaleAndMonthRatioConfig"></div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="wrap-content">
-        <div class="card">
-            <p class="title"><span ng-bind="month.key"></span>月有销门店单店月销量及环比变化</p>
-            <div class="sale-shop-chart">
-                <div ng-unit ng-cloak class="legend" value="checkedShopSaleMonthRatioUnit" select-id="unitId" select-name="unitName" list="unitPurchaseList"></div>
-                <div e-chart options="shopMonthSaleAndMonthRatioConfig"></div>
+        <div class="wrap-content">
+            <div class="card">
+                <p class="title"><span ng-bind="month.key"></span>月激活量及拉新用户</p>
+                <div class="sale-shop-chart">
+                    <div ng-unit ng-cloak class="legend" value="checkedJihuoLaxinAndAllSaleCountUnit" select-id="unitId"
+                        select-name="unitName" list="unitPurchaseList"></div>
+                    <div e-chart options="jihuoLaxinAndAllSaleCountConfig"></div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="wrap-content">
-        <div class="card">
-            <p class="title"><span ng-bind="month.key"></span>月激活量及拉新用户</p>
-            <div class="sale-shop-chart">
-                <div ng-unit ng-cloak class="legend" value="checkedJihuoLaxinAndAllSaleCountUnit" select-id="unitId" select-name="unitName" list="unitPurchaseList"></div>
-                <div e-chart options="jihuoLaxinAndAllSaleCountConfig"></div>
+        <div class="wrap-content">
+            <div class="card">
+                <p class="title"><span ng-bind="month.key"></span>月激活率和拉新率</p>
+                <div class="sale-shop-chart">
+                    <div e-chart options="monthJihuoAndLaxinRatioConfig"></div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="wrap-content">
-        <div class="card">
-            <p class="title"><span ng-bind="month.key"></span>月激活率和拉新率</p>
-            <div class="sale-shop-chart">
-                <div e-chart options="monthJihuoAndLaxinRatioConfig"></div>
-            </div>
-        </div>
-    </div>
-
-    <script id="page" src="../../resources/js/require.js" data-main="../../resources/js/requireConfig.js"
+        <script id="page" src="../../resources/js/require.js" data-main="../../resources/js/requireConfig.js"
             current-page="./page2-2.js" target-module="pageModule"></script>
 </body>
+
 </html>
